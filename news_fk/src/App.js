@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import NewsCard from './components/NewsCard/NewsCard'
+import Header from './components/Header/Header'
 
 class App extends Component {
   state = {
     currpage : 1,
-    country : "in",
+    country : {country:"India", code:"in"},
     newscategory : "general"
   }
   fetchnews = () => {
-    const url = `http://newsapi.org/v2/top-headlines?country=${this.state.country}&category=${this.state.newscategory}&pageSize=10&page=${this.state.currpage}&apiKey=e004421173114bd5b890eb56590a9a12`;
+    const url = `http://newsapi.org/v2/top-headlines?country=${this.state.country.code}&category=${this.state.newscategory}&pageSize=10&page=${this.state.currpage}&apiKey=e004421173114bd5b890eb56590a9a12`;
     fetch(url)
     .then(response => {
       return response.json();
@@ -17,6 +19,8 @@ class App extends Component {
       console.log(fin.articles);
     })
     .catch(err => {console.log("err")}) 
+
+    this.setState({currpage : this.state.currpage+1});
   }
   render() {
     return (
@@ -29,7 +33,11 @@ class App extends Component {
       //     To get started, edit <code>src/App.js</code> and save to reload.
       //   </p>
       // </div>
-      <button onClick={this.fetchnews} > NEWS </button>
+      <div>
+        <Header currcountry={this.state.country}/>
+        <button onClick={this.fetchnews} > NEWS </button>
+        <NewsCard/>
+      </div>
     );
   }
 }
