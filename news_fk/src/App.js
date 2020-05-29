@@ -1,64 +1,94 @@
 import React, { Component } from 'react';
+import BottomScrollListener from 'react-bottom-scroll-listener';
 import './App.css';
-import Header from './components/Header/Header'
+import Header from './components/Header/Header';
+import BottomLoader from './components/BottomLoader/BottomLoader';
+
+const API_PAGE_SIZE = 10
 
 class App extends Component {
   state = {
     initial_loading : true,
+    should_load : false,
     currpage : 1,
     countrycode : "in",
     newscategory : "general",
-    newsarticles : []
+    newsarticles : [],
+    end_of_article : false
   }
-  fetchnews = () => {
-    const url = `http://newsapi.org/v2/top-headlines?country=${this.state.countrycode}&category=${this.state.newscategory}&pageSize=10&page=${this.state.currpage}&apiKey=e004421173114bd5b890eb56590a9a12`;
-    fetch(url)
-    .then(response => {
-      return response.json();
-    })
-    .then(fin => {
-      this.setState({
-        initial_loading : false,
-        newsarticles : [...this.state.newsarticles , ...fin.articles]
+  newsHandler = () => {
+    if(!this.state.end_of_article) {
+      console.log("loaded");
+      this.setState({should_load : false})
+      const url = `http://newsapi.org/v2/top-headlines?country=${this.state.countrycode}&category=${this.state.newscategory}&pageSize=${API_PAGE_SIZE}&page=${this.state.currpage}&apiKey=e004421173114bd5b890eb56590a9a12`;
+      fetch(url)
+      .then(response => {
+        return response.json();
       })
-    })
-    .catch(err => {console.log("err")}) 
-
-    this.setState({currpage : this.state.currpage+1});
+      .then(fin => {
+        this.setState({
+          initial_loading : false,
+          newsarticles : [...this.state.newsarticles , ...fin.articles],
+          should_load : true
+        })
+        if(fin.articles.length < API_PAGE_SIZE) {
+          this.setState({end_of_article : true})
+          console.log("triggered");
+        }
+      })
+      .catch(err => {console.log("err")}) 
+  
+      this.setState({currpage : this.state.currpage+1});
+    }
   }
-
-
   countryChangeHandler = (event) => {
     this.setState({
       initial_loading : true,
       countrycode : event.target.value,
       currpage : 1,
-      newsarticles : []
+      newsarticles : [],
+      should_load : false,
+      end_of_article : false
     });
+    this.newsHandler();
   }
   categoryChangeHandler = (event) => {
     this.setState({
       initial_loading : true,
       newscategory : event.target.value,
       currpage : 1,
-      newsarticles : []
+      newsarticles : [],
+      should_load : false,
+      end_of_article : false
     });
+    this.newsHandler();
+  }
+  onBottomHandler = () => {
+    if(this.state.should_load) {
+      this.newsHandler();
+    }
   }
   render() {
     return (
       <div>
+        <BottomScrollListener onBottom={this.onBottomHandler}/>
         <Header 
           country={this.state.countrycode}
           category={this.state.newscategory}
           countryChangeHandler={this.countryChangeHandler}
           categoryChangeHandler={this.categoryChangeHandler}
         />
-        <button onClick={this.fetchnews} > NEWS </button>
+        {
+          this.state.newsarticles.map( (elem,idx) => {
+            return <h1 key={idx}>{elem.title}</h1>
+          })
+        }
+        <BottomLoader load={!this.state.end_of_article} />
       </div>
     );
   }
   componentDidMount = () => {
-    this.fetchnews();
+    this.newsHandler();
   }
 }
 

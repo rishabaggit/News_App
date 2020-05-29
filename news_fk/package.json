@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.28",
     "bootstrap": "^4.5.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
+    "react-bottom-scroll-listener": "^4.0.0",
     "react-dom": "^16.13.1",
+    "react-pure-loaders": "^3.0.1",
     "react-scripts": "1.1.5"
   },
   "scripts": {
