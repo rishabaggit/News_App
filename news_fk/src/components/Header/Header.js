@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Header.css'
 const Header = (props) => {
     const countries =[
         {country:"Australia" ,code:"au"},
@@ -21,18 +21,35 @@ const Header = (props) => {
         {country:"UK" ,code:"gb"},
         {country:"USA" ,code:"us"}
     ]
+    const categories = [
+        "business" ,
+        "entertainment",
+        "general",
+        "health",
+        "science",
+        "sports",
+        "technology"
+    ]
     return(
-        <div>
+        <div className="header">
             <div className="header-heading">
                 <h1>FK NEWS</h1>
             </div>
             <div className="header-dropdowns">
-                <select value={props.currcountry.country}>
+                <select value={props.country} onChange={props.countryChangeHandler} className="dropdown">
                     {countries.map((cnt) => {
                         return(
-                        <option key={cnt.code} value={cnt.country}>
+                        <option key={cnt.country} value={cnt.code}>
                             {cnt.country}
                         </option>)
+                    })}
+                </select>
+                <select value={props.category} onChange={props.categoryChangeHandler} className="dropdown">
+                    {categories.map((cat) => {
+                            return(
+                            <option key={cat} value={cat}>
+                                {cat}
+                            </option>)
                     })}
                 </select>
             </div>

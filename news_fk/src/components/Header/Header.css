@@ -1,0 +1,23 @@
+.header-heading {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color:#2874f0;
+    color: #fff;
+    font-style: italic;
+}
+.header-dropdowns {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color:#2874f0;
+    margin-bottom: 2em;
+}
+.dropdown {
+    box-sizing: border-box;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
