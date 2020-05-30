@@ -4,6 +4,8 @@ import './App.css';
 import Header from './components/Header/Header';
 import BottomLoader from './components/BottomLoader/BottomLoader';
 import DisplayNewsCards from './components/DisplayNewsCards/DispalyNewsCards';
+import FetchErrorHandler from './components/FetchErrorHandler/FetchErrorHandler';
+import InitialLoader from './components/InitialLoader/InitialLoader';
 import {API_PAGE_SIZE} from './constants';
 
 class App extends Component {
@@ -14,7 +16,8 @@ class App extends Component {
     countrycode : "in",
     newscategory : "general",
     newsarticles : [],
-    end_of_article : false
+    end_of_article : false,
+    error_found : false
   }
   newsHandler = () => {
     if(!this.state.end_of_article) {
@@ -35,7 +38,7 @@ class App extends Component {
           console.log("triggered");
         }
       })
-      .catch(err => {console.log("err")}) 
+      .catch(err => {this.setState({error_found : true})})
   
       this.setState((prevState,props) => {
         return {
@@ -51,7 +54,8 @@ class App extends Component {
       currpage : 1,
       newsarticles : [],
       should_load : false,
-      end_of_article : false
+      end_of_article : false,
+      error_found : false
     }
     , this.newsHandler);
   }
@@ -62,7 +66,8 @@ class App extends Component {
       currpage : 1,
       newsarticles : [],
       should_load : false,
-      end_of_article : false
+      end_of_article : false,
+      error_found : false
     }, this.newsHandler);
   }
   onBottomHandler = () => {
@@ -80,8 +85,18 @@ class App extends Component {
           countryChangeHandler={this.countryChangeHandler}
           categoryChangeHandler={this.categoryChangeHandler}
         />
-        <DisplayNewsCards articles={this.state.newsarticles}/>
-        <BottomLoader load={!this.state.end_of_article} />
+        {
+        this.state.error_found ?
+        <FetchErrorHandler/> : 
+        (
+          this.state.initial_loading ?
+          <InitialLoader/> :
+          <div>
+          <DisplayNewsCards articles={this.state.newsarticles}/>
+          <BottomLoader load={!this.state.end_of_article} />
+        </div>
+        )
+        }
       </div>
     );
   }

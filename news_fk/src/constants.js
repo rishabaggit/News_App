@@ -27,4 +27,4 @@ export const newsCategories = [
     "sports",
     "technology"
 ]
-export const API_PAGE_SIZE = 10;
+export const API_PAGE_SIZE = 9;

@@ -16,8 +16,11 @@ const NewsCard = (props) => {
                 <p><button class="button">Contact</button></p>
             </div>
             </div> */}
-            <div className="card">
-                <img src={props.img} alt="Jane" id="hello"/>
+            <div className="card" onClick={() => {
+                var win = window.open(props.url, '_blank');
+                win.focus();
+            }}>
+                <img src={props.img} alt="not found" id="hello"/>
                 <div className="container">
                     <p class="title">{props.title}</p>
                     <p>{props.description}</p>
