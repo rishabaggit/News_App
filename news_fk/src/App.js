@@ -50,8 +50,8 @@ class App extends Component {
       newsarticles : [],
       should_load : false,
       end_of_article : false
-    });
-    this.newsHandler();
+    }
+    , this.newsHandler);
   }
   categoryChangeHandler = (event) => {
     this.setState({
@@ -61,8 +61,7 @@ class App extends Component {
       newsarticles : [],
       should_load : false,
       end_of_article : false
-    });
-    this.newsHandler();
+    }, this.newsHandler);
   }
   onBottomHandler = () => {
     if(this.state.should_load) {
