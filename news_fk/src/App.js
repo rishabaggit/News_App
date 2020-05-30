@@ -3,8 +3,7 @@ import BottomScrollListener from 'react-bottom-scroll-listener';
 import './App.css';
 import Header from './components/Header/Header';
 import BottomLoader from './components/BottomLoader/BottomLoader';
-
-const API_PAGE_SIZE = 10
+import {API_PAGE_SIZE} from './constants';
 
 class App extends Component {
   state = {
