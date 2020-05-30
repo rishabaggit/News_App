@@ -6,7 +6,7 @@ const Header = (props) => {
 
             <div>
             
-                <nav className="navbar navbar-expand-lg navbar-light bg-primary" >
+                <nav className="navbar navbar-expand-lg navbar-light bg-primary fixed-top" >
                     <div className="container">
                     <a className="navbar-brand" href="#"><i className="fa fa-globe" aria-hidden="true"></i> fLipkart News App</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@ const Header = (props) => {
               
     
                 <div className="container">
-                    <div className="jumbotron mt-5">
+                    <div className="jumbotron mt-10">
                         <h1><i className="fa fa-globe" aria-hidden="true"></i> Flipkart News Bulletin </h1>
                         <p>NEWS Covered From All Corners of the Worlds, Aspiring One Stop NEWS Destination!!</p> 
                     </div>
