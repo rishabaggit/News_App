@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import BottomLoader from './components/BottomLoader/BottomLoader';
 import {API_PAGE_SIZE} from './constants';
+import DisplayNewsCards from './components/DisplayNewsCards/DispalyNewsCards';
 
 class App extends Component {
   state = {
@@ -17,8 +18,8 @@ class App extends Component {
   }
   newsHandler = () => {
     if(!this.state.end_of_article) {
-      console.log("loaded");
       this.setState({should_load : false})
+      console.log(this.state.countrycode);
       const url = `http://newsapi.org/v2/top-headlines?country=${this.state.countrycode}&category=${this.state.newscategory}&pageSize=${API_PAGE_SIZE}&page=${this.state.currpage}&apiKey=e004421173114bd5b890eb56590a9a12`;
       fetch(url)
       .then(response => {
@@ -41,6 +42,7 @@ class App extends Component {
     }
   }
   countryChangeHandler = (event) => {
+    console.log(event.target.value);
     this.setState({
       initial_loading : true,
       countrycode : event.target.value,
@@ -66,6 +68,7 @@ class App extends Component {
     if(this.state.should_load) {
       this.newsHandler();
     }
+    console.log(this.state.newsarticles)
   }
   render() {
     return (
@@ -77,11 +80,7 @@ class App extends Component {
           countryChangeHandler={this.countryChangeHandler}
           categoryChangeHandler={this.categoryChangeHandler}
         />
-        {
-          this.state.newsarticles.map( (elem,idx) => {
-            return <h1 key={idx}>{elem.title}</h1>
-          })
-        }
+        <DisplayNewsCards articles={this.state.newsarticles}/>
         <BottomLoader load={!this.state.end_of_article} />
       </div>
     );
