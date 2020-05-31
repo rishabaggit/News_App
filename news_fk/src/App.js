@@ -107,7 +107,6 @@ class App extends Component {
           <NewsBulletin/>
           <Route path="/" exact component={this.Display}/>
           <Route path="/info" exact component={Info}/>
-          {/* <this.Display /> */}
         </div>
       </BrowserRouter>
     );
