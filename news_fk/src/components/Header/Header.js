@@ -16,8 +16,10 @@ const Header = (props) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav ml-auto">
-                            <CountryNavItem country={props.country} countryChangeHandler={props.countryChangeHandler} />
-                            <CategoryNavItem category={props.category} categoryChangeHandler={props.categoryChangeHandler} />
+                            
+                            <CountryNavItem country={props.country} countryChangeHandler={props.countryChangeHandler} className="checking" />
+                            
+                            <CategoryNavItem category={props.category} categoryChangeHandler={props.categoryChangeHandler}  className="checking"/>
                         </ul>
                     </div>
                     </div>
