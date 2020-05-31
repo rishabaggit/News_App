@@ -8,16 +8,7 @@ const NewsCard = (props) => {
     return (
 
         <div className="column thumbnail col-lg-4 col-md-6 col-xs-1pic">
-            {/* <div class="card">
-            <img src={props.img} alt="No Image Found!" style="width:100%" />
-            <div class="container">
-                <h2>{props.title}</h2>
-                <p class="title">CEO &amp; Founder</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>example@example.com</p>
-                <p><button class="button">Contact</button></p>
-            </div>
-            </div> */}
+            
             <div className="container" >
                 <div className="card" onClick={() => {
                     var win = window.open(props.url, '_blank');
@@ -25,7 +16,7 @@ const NewsCard = (props) => {
                 }}
                 
                 >
-                    {/* <img src={props.img} onError=this.src={errorSign} alt="not found" id="hello" height="175"/> */}
+                    
                     <object data={props.img} height="175" id="hello">
                         <img src={errorSign} alt="Not Found" id="hello" height="175"/>
                     </object>

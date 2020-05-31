@@ -24,6 +24,19 @@
   }
   .card:hover {
     background-color: lightgrey;
+    
+  }
+
+  .card:hover #hello {
+    opacity: 0.7;
+  }
+
+  .card:hover p {
+    color: black;
+  }
+
+  .card:hover .title {
+    font-weight: bold;
   }
   
   /* Some left and right padding inside the container */
@@ -32,11 +45,11 @@
   }
   
   /* Clear floats */
-  .container::after, .row::after {
+  /* .container::after, .row::after {
     content: "";
     clear: both;
     display: table;
-  }
+  } */
   
   .title {
     color: grey;
@@ -55,7 +68,7 @@
     line-height: 1.8em;
   }
 
-  .overlay {
+  /* .overlay {
     position: relative;
     bottom: 0;
     background: rgb(0, 0, 0);
@@ -79,7 +92,7 @@
     position: relative;
     
    
-  }
+  } */
 
 
 /* .overlay {
