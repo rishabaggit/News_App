@@ -1,7 +1,8 @@
 import React from 'react';
-import './Header.css'
+import './Header.css';
 import {Link} from 'react-router-dom';
-import {countryList,newsCategories} from '../../constants'
+import CountryNavItem from '../NavItems/CountryNavItem.js'
+import CategoryNavItem from '../NavItems/CategoryNavItem.js'
 const Header = (props) => {
     return(
 
@@ -15,29 +16,8 @@ const Header = (props) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                
-                                <select value={props.country} onChange={props.countryChangeHandler} className="dropdown custom-select">
-                                {countryList.map((cnt) => {
-                                    return(
-                                    <option key={cnt.country} value={cnt.code}>
-                                        {cnt.country}
-                                    </option>)
-                                })}
-                                </select>
-                            </li>
-    
-                            <li className="nav-item">
-                                
-                                <select value={props.category} onChange={props.categoryChangeHandler} className="dropdown custom-select">
-                                {newsCategories.map((cat) => {
-                                        return(
-                                        <option key={cat} value={cat}>
-                                            {cat}
-                                        </option>)
-                                })}
-                                </select>
-                            </li>
+                            <CountryNavItem country={props.country} countryChangeHandler={props.countryChangeHandler} />
+                            <CategoryNavItem category={props.category} categoryChangeHandler={props.categoryChangeHandler} />
                         </ul>
                     </div>
                     </div>
