@@ -45,3 +45,6 @@ button, input, optgroup, select, textarea {
     background: #A9A9A9;
 }
 
+.Link:active {
+    color: red;
+}
