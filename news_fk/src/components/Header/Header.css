@@ -1,7 +1,7 @@
 
 .jumbotron {
     color: #2c3e50;
-    background: #ffffff;
+   
     margin-top: 5em;
 }
 
@@ -10,14 +10,24 @@
 }
 
 .navbar-light .navbar-brand {
-    color: #ffffff;
+    color: #ffffff !important;
     font-size: 24px;
     font-family: cursive;
 
 }
 
+.nav-link {
+    font-size: 24px !important;
+    font-family: cursive;
+    color: white;
+}
+
+.nav-link:hover {
+    color:lightgrey !important
+}
+
 .navbar-light .navbar-brand:hover {
-    color: lightcyan;
+    color: lightgrey !important;
 }
 
 button, input, optgroup, select, textarea {
@@ -26,4 +36,8 @@ button, input, optgroup, select, textarea {
 
 .nav-item {
     padding-right: 1em;
+}
+
+.fixed-top {
+    background: #A9A9A9;
 }
