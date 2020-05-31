@@ -19,13 +19,13 @@ export const countryList =[
     {country:"USA" ,code:"us"}
 ]
 export const newsCategories = [
-    "business" ,
-    "entertainment",
-    "general",
-    "health",
-    "science",
-    "sports",
-    "technology"
+    "Business" ,
+    "Entertainment",
+    "General",
+    "Health",
+    "Science",
+    "Sports",
+    "Technology"
 ]
 export const API_PAGE_SIZE = 9;
 
