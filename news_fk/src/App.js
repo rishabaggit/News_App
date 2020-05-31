@@ -7,7 +7,9 @@ import DisplayNewsCards from './components/DisplayNewsCards/DispalyNewsCards';
 import FetchErrorHandler from './components/FetchErrorHandler/FetchErrorHandler';
 import InitialLoader from './components/InitialLoader/InitialLoader';
 import {API_PAGE_SIZE} from './constants';
-
+import {BrowserRouter,Route} from 'react-router-dom';
+import NewsBulletin from './components/NewsBulletin/NewsBulletin';
+import Info from './components/Info/Info';
 class App extends Component {
   state = {
     initial_loading : true,
@@ -75,29 +77,39 @@ class App extends Component {
       this.newsHandler();
     }
   }
+  Display = () => {
+    if(this.state.error_found) {
+      return <FetchErrorHandler/>;
+    }
+    else if(this.state.initial_loading) {
+      return <InitialLoader/>;
+    }
+    else {
+      return (
+        <div>
+            <DisplayNewsCards articles={this.state.newsarticles}/>
+            <BottomLoader load={!this.state.end_of_article} />
+        </div>
+      );
+    }
+  }
   render() {
     return (
-      <div>
-        <BottomScrollListener onBottom={this.onBottomHandler}/>
-        <Header 
-          country={this.state.countrycode}
-          category={this.state.newscategory}
-          countryChangeHandler={this.countryChangeHandler}
-          categoryChangeHandler={this.categoryChangeHandler}
-        />
-        {
-        this.state.error_found ?
-        <FetchErrorHandler/> : 
-        (
-          this.state.initial_loading ?
-          <InitialLoader/> :
-          <div>
-          <DisplayNewsCards articles={this.state.newsarticles}/>
-          <BottomLoader load={!this.state.end_of_article} />
+      <BrowserRouter>
+        <div>
+          <BottomScrollListener onBottom={this.onBottomHandler}/>
+          <Header 
+            country={this.state.countrycode}
+            category={this.state.newscategory}
+            countryChangeHandler={this.countryChangeHandler}
+            categoryChangeHandler={this.categoryChangeHandler}
+          />
+          <NewsBulletin/>
+          <Route path="/" exact component={this.Display}/>
+          <Route path="/info" exact component={Info}/>
+          {/* <this.Display /> */}
         </div>
-        )
-        }
-      </div>
+      </BrowserRouter>
     );
   }
   componentDidMount = () => {

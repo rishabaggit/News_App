@@ -22,7 +22,7 @@ const NewsCard = (props) => {
             }}>
                 <img src={props.img} alt="not found" id="hello"/>
                 <div className="container">
-                    <p class="title">{props.title}</p>
+                    <p className="title">{props.title}</p>
                     <p>{props.description}</p>
                 </div>
             </div>
