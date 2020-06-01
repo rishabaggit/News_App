@@ -53,8 +53,9 @@ const reducer = (state = initialState,action) => {
                 ...state,
                 error_found : action.val
             }
+        default:
+            return state;
     }
-    return state;
 }
 
 export default reducer;
