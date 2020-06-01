@@ -16,7 +16,7 @@ class App extends Component {
     should_load : false,
     currpage : 1,
     countrycode : "in",
-    newscategory : "general",
+    newscategory : "General",
     newsarticles : [],
     end_of_article : false,
     error_found : false

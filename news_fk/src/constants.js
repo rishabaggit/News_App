@@ -28,7 +28,3 @@ export const newsCategories = [
     "Technology"
 ]
 export const API_PAGE_SIZE = 9;
-
-export const DEVELEPOR_INFO = [
-    {name : "Mudreka Arif" , img :"null"}
-]
