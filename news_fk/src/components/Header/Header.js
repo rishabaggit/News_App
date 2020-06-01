@@ -1,8 +1,8 @@
 import React from 'react';
 import './Header.css';
 import {Link} from 'react-router-dom';
-import CountryNavItem from '../NavItems/CountryNavItem.js'
-import CategoryNavItem from '../NavItems/CategoryNavItem.js'
+import CountryNavItem from './NavItems/CountryNavItem.js'
+import CategoryNavItem from './NavItems/CategoryNavItem.js'
 const Header = (props) => {
     return(
 

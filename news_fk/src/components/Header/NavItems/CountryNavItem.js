@@ -1,5 +1,5 @@
 import React from 'react';
-import {countryList} from '../../constants'
+import {countryList} from '../../../constants'
 const CountryNavItem = (props) => {
     return (
         <li className="nav-item">                        

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import BottomScrollListener from 'react-bottom-scroll-listener';
 import './App.css';
 import Header from './components/Header/Header';
-import BottomLoader from './components/BottomLoader/BottomLoader';
-import DisplayNewsCards from './components/DisplayNewsCards/DispalyNewsCards';
-import FetchErrorHandler from './components/FetchErrorHandler/FetchErrorHandler';
-import InitialLoader from './components/InitialLoader/InitialLoader';
+import BottomLoader from './components/Content/BottomLoader/BottomLoader';
+import DisplayNewsCards from './components/Content/DisplayNewsCards/DispalyNewsCards';
+import FetchErrorHandler from './components/Content/FetchErrorHandler/FetchErrorHandler';
+import InitialLoader from './components/Content/InitialLoader/InitialLoader';
 import {API_PAGE_SIZE} from './constants';
 import {BrowserRouter,Route} from 'react-router-dom';
-import NewsBulletin from './components/NewsBulletin/NewsBulletin';
+import NewsBulletin from './components/Content/NewsBulletin/NewsBulletin';
 import Info from './components/Info/Info';
 class App extends Component {
   state = {

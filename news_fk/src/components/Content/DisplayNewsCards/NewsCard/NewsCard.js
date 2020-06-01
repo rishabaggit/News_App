@@ -1,7 +1,7 @@
 import React from 'react';
 // import Card from 'react-bootstrap/Card'
 import "./NewsCard.css"
-import errorSign from '../../resources/ImageNotFound.png'
+import errorSign from '../../../../resources/ImageNotFound.png';
 
 
 const NewsCard = (props) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import NewsCard from '../NewsCard/NewsCard'
+import NewsCard from './NewsCard/NewsCard'
 import "./DisplayNewsCards.css"
 const DisplayNewsCards = (props) => {
     return(

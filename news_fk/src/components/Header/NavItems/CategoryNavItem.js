@@ -1,5 +1,5 @@
 import React from 'react';
-import {newsCategories} from '../../constants'
+import {newsCategories} from '../../../constants'
 const CategoryNavItem = (props) => {
     return (
         <li className="nav-item">                

@@ -1,5 +1,5 @@
 import React from 'react';
-import errorSign from '../../resources/ErrorSign.png'
+import errorSign from '../../../resources/ErrorSign.png'
 import './FetchErrorHandler.css'
 const FetchErrorHandler = (props) => {
     return (
