@@ -53,6 +53,28 @@ const reducer = (state = initialState,action) => {
                 ...state,
                 error_found : action.val
             }
+        case actionTypes.COUNTRY_CHANGE:
+            return {
+                ...state,
+                initial_loading : true,
+                countrycode : action.newcnt,
+                currpage : 1,
+                newsarticles : [],
+                should_load : false,
+                end_of_article : false,
+                error_found : false
+            }
+        case actionTypes.CATEGORY_CHANGE:
+            return {
+                ...state,
+                initial_loading : true,
+                newscategory : action.newcat,
+                currpage : 1,
+                newsarticles : [],
+                should_load : false,
+                end_of_article : false,
+                error_found : false
+            }
         default:
             return state;
     }

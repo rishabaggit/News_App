@@ -8,11 +8,25 @@ export const SET_NEWS_CATEGORY = 'SET_NEWS_CATEGORY';
 export const SET_NEWS_ARTICLES = 'SET_NEWS_ARTICLES';
 export const SET_END_OF_ARTICLE = 'SET_END_OF_ARTICLE';
 export const SET_ERROR_FOUND = 'SET_ERROR_FOUND';
+export const COUNTRY_CHANGE = 'COUNTRY_CHANGE';
+export const CATEGORY_CHANGE = 'CATEGORY_CHANGE';
 
 export const setShouldLoad = ( newVal ) => {
     return {
         type: SET_SHOULD_LOAD,
         val : newVal
+    };
+}
+export const countryChangeHandler = ( newCountry ) => {
+    return {
+        type: COUNTRY_CHANGE,
+        newcnt : newCountry
+    };
+}
+export const categoryChangeHandler = (newCategory) => {
+    return {
+        type: CATEGORY_CHANGE,
+        newcat : newCategory
     };
 }
 
