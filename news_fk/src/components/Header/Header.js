@@ -8,14 +8,14 @@ const Header = (props) => {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
                     <div className="container">
-                    <Link className="navbar-brand Link" to="/#">
+                    <Link className="nav-link" to="/#">
                         <i className="fa fa-globe" 
                             aria-hidden="true">
                         </i> 
                         fLipkart News App
                     </Link>
-                    <Link className="nav-link Link" to="/info">
-                        Info
+                    <Link className="nav-link" to="/info">
+                        Team
                     </Link>
                     <button className="navbar-toggler" 
                         type="button" 

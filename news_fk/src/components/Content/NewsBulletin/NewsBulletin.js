@@ -9,7 +9,7 @@ const NewsBulletin = () => {
             <div className="jumbotron mt-10">
            
                 <h1><i className="fa fa-globe color" aria-hidden="true"></i> Flipkart News Bulletin </h1>
-                <p className="color">NEWS Covered From All Corners of the Worlds, Aspiring One Stop NEWS Destination!!</p> 
+                <p className="color">NEWS Covered From All Corners of the World, Aspiring One Stop NEWS Destination!!</p> 
             </div>
         </div>
     );

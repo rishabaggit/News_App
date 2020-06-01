@@ -4,7 +4,7 @@ justify-content: center;
 /* Three columns side by side */
 .column {
     float: left;
-    width: 20%;
+    width: 100%;
     margin-bottom: 16px;
     padding: 0 8px;
   }
