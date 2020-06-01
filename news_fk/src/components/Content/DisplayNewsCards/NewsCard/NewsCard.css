@@ -36,7 +36,8 @@
   }
 
   .card:hover .title {
-    font-weight: bold;
+    /* font-weight: bold; */
+    text-shadow: 0 0 .9px #333, 0 0 .9px #333, 0 0 .9px #333;
   }
   
   /* Some left and right padding inside the container */

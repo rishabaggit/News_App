@@ -6,7 +6,7 @@ import BottomLoader from './components/Content/BottomLoader/BottomLoader';
 import DisplayNewsCards from './components/Content/DisplayNewsCards/DispalyNewsCards';
 import FetchErrorHandler from './components/Content/FetchErrorHandler/FetchErrorHandler';
 import InitialLoader from './components/Content/InitialLoader/InitialLoader';
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import NewsBulletin from './components/Content/NewsBulletin/NewsBulletin';
 import Info from './components/Info/Info';
 import {connect} from 'react-redux';
@@ -42,8 +42,12 @@ class App extends Component {
           <BottomScrollListener onBottom={this.onBottomHandler}/>
           <Header/>
           <NewsBulletin/>
-          <Route path="/" exact component={this.Display}/>
-          <Route path="/info" exact component={Info}/>
+          <Switch>
+              <Route path="/" exact component={this.Display}/>
+              <Route path="/info" exact component={Info}/>
+              <Route render={() => <h2 style={{textAlign:"center", fontWeight:"bold"}}>Page Link Broken!</h2> } />
+          </Switch>
+          
         </div>
       </BrowserRouter>
     );

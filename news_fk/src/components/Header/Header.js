@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
@@ -20,15 +20,15 @@ class Header extends Component {
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
                         <div className="container">
-                        <Link className="nav-link" to="/#">
+                        <NavLink className="nav-link l2" exact to="/">
                             <i className="fa fa-globe" 
                                 aria-hidden="true">
                             </i> 
                             fLipkart News App
-                        </Link>
-                        <Link className="nav-link" to="/info">
+                        </NavLink>
+                        <NavLink className="nav-link l1" exact to="/info">
                             Team
-                        </Link>
+                        </NavLink>
                         <button className="navbar-toggler" 
                             type="button" 
                             data-toggle="collapse" 

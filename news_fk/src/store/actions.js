@@ -70,8 +70,9 @@ export const newsHandler = () => {
             //getState() = getState();
             if(!getState().end_of_article) {
             dispatch(setShouldLoad(false));
-              const url = `http://newsapi.org/v2/top-headlines?country=${getState().countrycode}&category=${getState().newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().currpage}&apiKey=8115e82c195f445ebba7f0beeeb524e2`;
-              fetch(url)
+            //   const url = `http://newsapi.org/v2/top-headlines?country=${getState().countrycode}&category=${getState().newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().currpage}&apiKey=8115e82c195f445ebba7f0beeeb524e2`;
+            const url = `http://newsapi.org/v2/top-headlines?country=${getState().countrycode}&category=${getState().newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().currpage}&apiKey=e004421173114bd5b890eb56590a9a12`;  
+            fetch(url)
               .then(response => {
                 return response.json();
               })

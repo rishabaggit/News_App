@@ -14,3 +14,9 @@
 .h1, h1 {
     color: red;
 }
+
+@media screen and (max-width: 600px){
+    .jumbotron {
+        padding-top: 10%;
+    }
+}
