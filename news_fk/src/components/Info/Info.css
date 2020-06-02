@@ -4,9 +4,10 @@ justify-content: center;
 /* Three columns side by side */
 .column {
     float: left;
-    width: 100%;
+    /* width: 33.33%; */
     margin-bottom: 16px;
     padding: 0 8px;
+    height: auto;
   }
   
   .row{
@@ -51,4 +52,8 @@ justify-content: center;
   .rowContainer{
       justify-content: center;
       display: flex;
+  }
+
+  .image {
+    height: 400px;
   }
