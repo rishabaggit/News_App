@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
-import {NavLink, Route} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
@@ -29,35 +29,27 @@ class Header extends Component {
                         <NavLink className="nav-link l1" exact to="/info">
                             Team
                         </NavLink>
-                        
-                        <Route path="/" exact render={() =>{ return (
-                            <div>
-                                <button className="navbar-toggler" 
-                                    type="button" 
-                                    data-toggle="collapse" 
-                                    data-target="#navbarNavDropdown" 
-                                    aria-controls="navbarNavDropdown" 
-                                    aria-expanded="false" 
-                                    aria-label="Toggle navigation">
-                                    <span className="navbar-toggler-icon"></span>
-                                </button>
-                                <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                                <ul className="navbar-nav ml-auto">
-                                    <CountryNavItem 
-                                        country={this.props.countrycode} 
-                                        countryChangeHandler={this.countryChangeHandler} 
-                                        className="checking" />
-                                    <CategoryNavItem 
-                                        category={this.props.newscategory} 
-                                        categoryChangeHandler={this.categoryChangeHandler}  
-                                        className="checking"/>
-                                </ul>
-                            </div>
-                            </div>
-                        )}}>
-
-                        </Route>
-                        
+                        <button className="navbar-toggler" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#navbarNavDropdown" 
+                            aria-controls="navbarNavDropdown" 
+                            aria-expanded="false" 
+                            aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul className="navbar-nav ml-auto">
+                                <CountryNavItem 
+                                    country={this.props.countrycode} 
+                                    countryChangeHandler={this.countryChangeHandler} 
+                                    className="checking" />
+                                <CategoryNavItem 
+                                    category={this.props.newscategory} 
+                                    categoryChangeHandler={this.categoryChangeHandler}  
+                                    className="checking"/>
+                            </ul>
+                        </div>
                         </div>
                     </nav>
                 </div>

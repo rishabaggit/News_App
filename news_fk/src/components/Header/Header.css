@@ -67,6 +67,9 @@ a.active {
     color: black;
 }
 
+l1 a.active .collapse {
+    display: none;
+}
 @media screen and (max-width: 600px){
         .nav-link {
             font-size: 20px !important;
