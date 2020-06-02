@@ -1,7 +1,7 @@
 import React from 'react';
 // import Card from 'react-bootstrap/Card'
 import "./NewsCard.css"
-import errorSign from '../../../../resources/ImageNotFound.png';
+// import errorSign from '../../../../resources/ImageNotFound.png';
 
 
 const NewsCard = (props) => {
@@ -16,10 +16,9 @@ const NewsCard = (props) => {
                 }}
                 
                 >
-                    
-                    <object data={props.img} height="175" id="hello">
-                        <img src={errorSign} alt="Not Found" id="hello" height="175"/>
-                    </object>
+                    {/* <object data={props.img} height="175" id="hello"> */}
+                        <img src={props.img} alt="" id="hello" height="175"/>
+                    {/* </object> */}
                     <div className="container">
                         <p className="title">{props.title}</p>
                         <p className="maxLines">{props.description}...</p>

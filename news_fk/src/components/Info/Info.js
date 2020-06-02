@@ -12,7 +12,7 @@ const Info = (props) => {
 <div className="container">
     <div className='row'>
         <div className ='rowContainer column'>
-            <Person name='Harshavardhana Shrirup' imageSrc = {Pic1} title='SDE Intern at Flipkart'/>
+            <Person name='Harshavardhana' imageSrc = {Pic1} title='SDE Intern at Flipkart'/>
             <Person name='Mudreka Arif' imageSrc = {Pic2} title='SDE Intern at Flipkart'/>
             <Person name='Pranjal Tripathi' imageSrc = {Pic3} title='SDE Intern at Flipkart'/>
         </div>
