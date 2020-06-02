@@ -1,3 +1,8 @@
+//----------------------------------------------------------------------------------------------------
+//PURPOSE: A separate js file used to Store Constants to Improve Readability and Maintainibility of Code
+
+// countryList used in Header/NavItems/CountryNavItem.js to display list of Available Countries in the Navbar.
+
 export const countryList =[
     {country:"Australia" ,code:"au"},
     {country:"Argentina" ,code:"ar"},
@@ -18,6 +23,11 @@ export const countryList =[
     {country:"UK" ,code:"gb"},
     {country:"USA" ,code:"us"}
 ]
+
+//----------------------------------------------------------------------------------------------------
+
+// countryList used in Header/NavItems/CategoryNavItems.js to display list of Available Category of news in the Navbar.
+
 export const newsCategories = [
     "Business" ,
     "Entertainment",
@@ -27,4 +37,10 @@ export const newsCategories = [
     "Sports",
     "Technology"
 ]
+
+//----------------------------------------------------------------------------------------------------
+
+// API_PAGE_SIZE is used to set maximum no of news articles render at a page loading at a time, Also used to check for reaching end of all available news articles.
 export const API_PAGE_SIZE = 9;
+
+//----------------------------------------------------------------------------------------------------

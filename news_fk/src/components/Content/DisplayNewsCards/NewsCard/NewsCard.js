@@ -1,44 +1,48 @@
+// PURPOSE: Component Called From DisplayNewsCard.js and Reposible for Rendering each News Article in a card visible in the home page
+
+//-----------------------------------------------------------------------------------------------------------------
+// Importing a named module or parameter to be used in NewsCard.js
+
 import React from 'react';
-// import Card from 'react-bootstrap/Card'
 import "./NewsCard.css"
-// import errorSign from '../../../../resources/ImageNotFound.png';
+
+//-----------------------------------------------------------------------------------------------------------------
 
 
 const NewsCard = (props) => {
     return (
 
         <div className="column thumbnail col-lg-4 col-md-6 col-xs-1pic">
-            
+                            {/* Bootstrap used for scaling issues on various window sizes ranging from XS to Large 
+                                Container Used For Using only a fixed part of Window and Not Letting Card Flow Across the Screen*/}
             <div className="container" >
+                            {/* onClick function acts an a listener and renders the news in a new tab upon article clicking
+                            To open a new window on every call of window.open(), used the special value _blank for windowName. */}
                 <div className="card" onClick={() => {
                     var win = window.open(props.url, '_blank');
                     win.focus();
-                }}
-                
-                >
+                }}>
                     {/* <object data={props.img} height="175" id="hello"> */}
                         <img src={props.img} alt="" id="hello" height="175"/>
                     {/* </object> */}
-                    <div className="container">
-                        <p className="title">{props.title}</p>
-                        <p className="maxLines">{props.description}...</p>
-                    </div>
+
+                        <div className="container">
+                            <p className="title">{props.title}</p>
+                            <p className="maxLines">{props.description}...</p>
+                        </div>
                 </div>
-                {/* <div className="overlay" style={{visibility: 'hidden'}}>
-                    <div className="text">Read More</div>
-                </div> */}
+                
             </div>
             
         </div>
-        // <Card variant="outlined" style={{ width: '18rem' }}>
-        // <Card.Img variant="left" src={props.img}/>
-        // <Card.Body>
-        //     <Card.Title>{props.title}</Card.Title>
-        //     <Card.Text>
-        //         {props.description}
-        //     </Card.Text>
-        // </Card.Body>
-        // </Card>
+        
     )
 }
+
+
+//---------------------------------------------------------------------------------------------------------------
+//Exporting as default NewsCard
+
 export default NewsCard;
+
+//---------------------------------------------------------------------------------------------------------------
