@@ -29,7 +29,7 @@ class Header extends Component {
         return(
                 <div>
                                         {/* display navbar with the flexibility of scaling across the screen dimension change */}
-                    <nav className="navbar navbar-expand-lg  fixed-top" >
+                    <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
                         <div className="container">
                                             {/* NavLink is a react utility used for Routing and not loading a new refreshed page,
                                             rather loading the last rendered page with any new updates in components */}
