@@ -4,7 +4,14 @@
    
     margin-top: 5em;
 }
-
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    padding: 0 !important;
+}
 .bg-primary {
     background: #2c3e50  !important;
 }
