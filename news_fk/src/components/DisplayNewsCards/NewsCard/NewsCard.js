@@ -29,14 +29,14 @@ const NewsCard = (props) => {
                             <p className="maxLines">{props.description}...</p>
                             
                             <button type="button" 
-                                class="btn  mb-2" 
+                                className="btn  mb-2" 
                                 data-toggle="modal" 
                                 data-target={'#' + props.url}>
                                     <span>Share</span>
                             </button>
 
                             <button type="button" 
-                                class="btn mb-2"
+                                className="btn mb-2"
                                 onClick={() => {
                                     var win = window.open(props.url, '_blank');
                                     win.focus();

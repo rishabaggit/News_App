@@ -1,4 +1,4 @@
-import {API_PAGE_SIZE} from '../../constants';
+import {API_PAGE_SIZE,NEWS_API_KEY_1} from '../../constants';
 import * as actionTypes from './actionTypes';
 
 export const setShouldLoad = ( newVal ) => {
@@ -60,7 +60,7 @@ export const newsHandler = () => {
             //getState() = getState();
             if(!getState().newsFetchReducer.end_of_article) {
             dispatch(setShouldLoad(false));
-            const url = `http://newsapi.org/v2/top-headlines?country=${getState().newsFetchReducer.countrycode}&category=${getState().newsFetchReducer.newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().currpage}&apiKey=8115e82c195f445ebba7f0beeeb524e2`;
+            const url = `http://newsapi.org/v2/top-headlines?country=${getState().newsFetchReducer.countrycode}&category=${getState().newsFetchReducer.newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().newsFetchReducer.currpage}&apiKey=${NEWS_API_KEY_1}`;
             fetch(url)
               .then(response => {
                 return response.json();
