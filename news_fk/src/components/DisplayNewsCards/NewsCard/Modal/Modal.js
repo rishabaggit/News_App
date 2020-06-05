@@ -23,30 +23,34 @@ const Modal = (props) => {
                         <div className="center">
                             <p>{props.description}</p>
                         </div>
-                            <p>
+                            <p className="center">
                             <FacebookShareButton
-                                url={props.url}>
+                                url={props.url}
+                               >
                                 <FacebookIcon
                                 size={32}
-                                round />
+                                round  />
                             </FacebookShareButton>
 
                             <TwitterShareButton
-                                url={props.url}>
+                                url={props.url}
+                                style={{marginLeft:'3px'}}>
                                 <TwitterIcon
                                 size={32}
                                 round />
                             </TwitterShareButton>
                             
                             <RedditShareButton
-                                url={props.url}>
+                                url={props.url}
+                                style={{marginLeft:'3px'}}>
                                 <RedditIcon
                                 size={32}
                                 round />
                             </RedditShareButton>
 
                             <WhatsappShareButton
-                                url={props.url}>
+                                url={props.url}
+                                style={{marginLeft:'3px'}}>
                                 <WhatsappIcon
                                 size={32}
                                 round />

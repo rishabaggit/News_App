@@ -21,12 +21,14 @@ const DisplayNewsCards = (props) => {
                          props.articles.map((newsitem,idx) => {
                                     //  Calling NewsCard for Every Element of articles Array as newsitem with uniques key idx,
                                     //  passing in props the image, url, title, description and key attached with speicfic news artice.
+                                    // console.log(props.cookies);
                             return <NewsCard
                                 img={newsitem.urlToImage}
                                 url={newsitem.url}
                                 title={newsitem.title}
                                 description={newsitem.description}
                                 key={idx}
+                                cookies={props.cookies}
                             />
                         })
 

@@ -9,11 +9,35 @@ import Modal from './Modal/Modal';
 
 //-----------------------------------------------------------------------------------------------------------------
 
+class NewsCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLiked: ((this.props.cookies).get('Like')).includes(this.props.url)
+        };
+    }
 
-const NewsCard = (props) => {
-    return (
+    likePost = () => {
+        (this.props.cookies).set('Like',[...(this.props.cookies).get('Like'),this.props.url])
+        this.setState({
+            isLiked: true
+        })
+    }
+    unlikePost = () => {
+        var likedPosts = (this.props.cookies).get('Like')
+        const index = likedPosts.indexOf(this.props.url);
+        if (index > -1) {
+            likedPosts.splice(index, 1);
+        }
+        (this.props.cookies).set('Like',likedPosts)
+        this.setState({
+            isLiked: false
+        })
+    }
 
-        <div className="column thumbnail col-lg-4 col-md-6 col-xs-1pic">
+    render() {
+        return (
+            <div className="column thumbnail col-lg-4 col-md-6 col-xs-1pic">
                             {/* Bootstrap used for scaling issues on various window sizes ranging from XS to Large 
                                 Container Used For Using only a fixed part of Window and Not Letting Card Flow Across the Screen*/}
             <div className="container" >
@@ -21,38 +45,45 @@ const NewsCard = (props) => {
                             To open a new window on every call of window.open(), used the special value _blank for windowName. */}
                 <div className="card">
                     {/* <object data={props.img} height="175" id="hello"> */}
-                        <img src={props.img} alt="" id="hello" height="175"/>
+                        {/* <img src={props.img} alt="" id="hello" height="175"/> */}
+                        <div className="iconoverimage">
+                                <img src={this.props.img} alt="" id="hello" height="175"/>
+                                {this.state.isLiked ? <i className="fa fa-gratipay" onClick={()=> this.unlikePost()}></i>: 
+                                                <i className="fa fa-heart" onClick={()=> this.likePost()}></i> }
+                                
+                            </div>
                     {/* </object> */}
 
                         <div className="container">
-                            <p className="title">{props.title}</p>
-                            <p className="maxLines">{props.description}...</p>
+                            <p className="title">{this.props.title}</p>
+                            <p className="maxLines">{this.props.description}...</p>
                             
                             <button type="button" 
                                 className="btn  mb-2" 
                                 data-toggle="modal" 
-                                data-target={'#' + props.url}>
+                                data-target={'#' + this.props.url}>
                                     <span>Share</span>
                             </button>
 
                             <button type="button" 
                                 className="btn mb-2"
                                 onClick={() => {
-                                    var win = window.open(props.url, '_blank');
+                                    var win = window.open(this.props.url, '_blank');
                                     win.focus();
                                 }}>
                                 <span>Read More</span>   
                             </button>
-                            <Modal {...props}/>
+                            <Modal {...this.props}/>
                         </div>
                 </div>
                 
             </div>
             
         </div>
-        
-    )
+        )
+    }
 }
+
 
 
 //---------------------------------------------------------------------------------------------------------------

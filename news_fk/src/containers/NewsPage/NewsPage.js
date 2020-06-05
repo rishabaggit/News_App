@@ -9,6 +9,14 @@ import {newsHandler} from '../../store/actions/index';
 // import NewsBulletin from '../../components/Content/NewsBulletin/NewsBulletin';
 
 class NewsPage extends Component {
+
+    constructor(props) {
+        super(props);
+        if((this.props.cookies).get('Like') === null || (this.props.cookies).get('Like') === undefined )
+          {
+            (this.props.cookies).set('Like',[],{path: '/'})
+          }
+    }
     onBottomHandler = () => {                     //Arrow Function Executed Upon Reaching the bottom of entire screen                   
         if(this.props.should_load && window.location.pathname === '/') {
             this.props.newsHandler();                //Invoke news handler if should_load is true because user has hit bottom for the first time.
@@ -43,13 +51,14 @@ class NewsPage extends Component {
       }
 
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
       initial_loading : state.newsFetchReducer.initial_loading,
       should_load : state.newsFetchReducer.should_load,
       newsarticles : state.newsFetchReducer.newsarticles,
       end_of_article : state.newsFetchReducer.end_of_article,
-      error_found : state.newsFetchReducer.error_found
+      error_found : state.newsFetchReducer.error_found,
+      cookies: ownProps.cookies,
     };
   };
   
