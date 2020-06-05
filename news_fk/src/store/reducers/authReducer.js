@@ -4,7 +4,8 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
-    loading: false
+    loading: false,
+    redirect_after_login : false
 };
 
 const authReducer = (state = initialState,action) => {
@@ -27,7 +28,8 @@ const authReducer = (state = initialState,action) => {
                 token: action.idToken,
                 userId: action.userId,
                 error: null,
-                loading: false
+                loading: false,
+                redirect_after_login : true
             } 
         case actionTypes.AUTH_FAIL:
             return{
@@ -35,7 +37,11 @@ const authReducer = (state = initialState,action) => {
                 error: action.error,
                 loading: false
             }
-        
+        case actionTypes.AUTH_REDIRECT_TOGGLE:
+            return {
+                ...state,
+                redirect_after_login: action.redirect_after_login
+            }
         default:
             return state;
     }

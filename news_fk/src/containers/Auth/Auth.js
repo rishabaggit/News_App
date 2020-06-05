@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {auth} from '../../store/actions/index';
+import {auth,authRedirectToggle} from '../../store/actions/index';
+import { Redirect } from 'react-router-dom';
 class Auth extends Component {
     state = {
         email:'',
@@ -20,6 +21,10 @@ class Auth extends Component {
     signInHandler = () => {this.setState({type : 'signIn'})};
     loginHandler = () => {this.setState({type : 'signUp'})};
     render() {
+        if(this.props.redirect) {
+            this.props.redirectTogFunc(false);
+            return <Redirect to="/" />;
+        };
         return (
             <div>
                 <br/>
@@ -55,7 +60,8 @@ const mapStateToProps = state => {
       token : state.auth.token,
       userId : state.auth.userId,
       error : state.auth.error,
-      loading: state.auth.loading
+      loading: state.auth.loading,
+      redirect : state.auth.redirect_after_login
     };
   };
 
@@ -63,7 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        auth :(email,pass,type) => dispatch(auth(email,pass,type))
+        auth :(email,pass,type) => dispatch(auth(email,pass,type)),
+        redirectTogFunc : (tog) => dispatch(authRedirectToggle(tog))
     }
   };
   

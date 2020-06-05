@@ -15,7 +15,12 @@ export const authSuccess = (token, userId) => {
         userId: userId
     };
 };
-
+export const authRedirectToggle = (tog) => {
+    return {
+        type: actionTypes.AUTH_REDIRECT_TOGGLE,
+        redirect_after_login : tog
+    };
+};
 export const authFail = (error) => {
     return {
         type: actionTypes.AUTH_FAIL,

@@ -1,5 +1,6 @@
 export {
-    auth 
+    auth,
+    authRedirectToggle
 } from './auth';
 export {
     newsHandler,
