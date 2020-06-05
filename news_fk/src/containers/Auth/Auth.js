@@ -4,7 +4,8 @@ import {auth} from '../../store/actions/index';
 class Auth extends Component {
     state = {
         email:'',
-        password:''
+        password:'',
+        type : 'signIn'
     }
     emailChangeHandler = (event) => {
         this.setState({email : event.target.value})
@@ -14,15 +15,18 @@ class Auth extends Component {
     }
     onSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(this.state.email,this.state.password);
-        this.props.auth(this.state.email,this.state.password);
+        this.props.auth(this.state.email,this.state.password,this.state.type);
     }
+    signInHandler = () => {this.setState({type : 'signIn'})};
+    loginHandler = () => {this.setState({type : 'signUp'})};
     render() {
         return (
             <div>
                 <br/>
                 <br/>
                 <br/>
+                <button onClick={this.signInHandler}>SIGN IN</button>
+                <button onClick={this.loginHandler}>LOGIN</button>
                 <form onSubmit={this.onSubmitHandler}>
                     <input
                         value={this.state.email}
@@ -30,13 +34,15 @@ class Auth extends Component {
                         placeholder='Enter your email ID'
                         onChange={this.emailChangeHandler}
                     />
+                    <br/>
                     <input
                         value={this.state.password}
                         type='password'
                         placeholder='Password'
                         onChange={this.passwordChangeHandler}
                     />
-                    <button>SUBMIT</button>
+                    <br/>
+                    <button>{this.state.type === 'signIn' ? 'SIGN IN' : 'LOGIN'}</button>
                 </form>
             </div>
         )
@@ -55,7 +61,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        auth : dispatch((email,pass) => auth(email,pass))
+        auth :(email,pass,type) => dispatch(auth(email,pass,type))
     }
   };
   
