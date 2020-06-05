@@ -84,8 +84,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-      countrycode : state.countrycode,
-      newscategory : state.newscategory,
+      countrycode : state.newsFetchReducer.countrycode,
+      newscategory : state.newsFetchReducer.newscategory,
     };
   };
 

@@ -1,4 +1,4 @@
-import * as actionTypes from './actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     initial_loading : true,
@@ -11,7 +11,7 @@ const initialState = {
     error_found : false
 }
 
-const reducer = (state = initialState,action) => {
+const newsFetchReducer = (state = initialState,action) => {
     switch(action.type){
         case actionTypes.SET_INITIAL_LOADING:
             return{
@@ -80,4 +80,4 @@ const reducer = (state = initialState,action) => {
     }
 }
 
-export default reducer;
+export default newsFetchReducer;
