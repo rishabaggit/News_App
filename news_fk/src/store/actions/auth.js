@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import {FIREBASE_API_KEY} from '../../constants';
 import axios from 'axios';
 
 export const authStart = () => {
@@ -28,22 +29,24 @@ export const logout = () => {
     };
 };
 
-export const auth = (email, password) => {
+export const auth = (email, password, type) => {
     return (dispatch, getState) => {
-        // dispatch(authStart());
+        dispatch(authStart());
         const authData = {
             email: email,
             password: password,
             returnSecureToken: true
         };
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y';
+        let type_ = type === 'signIn' ? 'signInWithPassword' : 'signUp';
+        let url = `https://identitytoolkit.googleapis.com/v1/accounts:${type_}?key=${FIREBASE_API_KEY}`;
+
         axios.post(url, authData)
             .then(response => {
                 console.log(response);
-                // dispatch(authSuccess(response.data.idToken, response.data.localId));
+                dispatch(authSuccess(response.data.idToken, response.data.localId));
             })
             .catch(err => {
-                console.log(err.response.data.error);
+                console.log(err.response.data.error.message);
             });
     };
 };
