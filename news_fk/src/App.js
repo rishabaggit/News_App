@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './containers/Header/Header';
 import {BrowserRouter,Route, Switch} from 'react-router-dom';
-import NewsBulletin from './components/Content/NewsBulletin/NewsBulletin';
+import NewsBulletin from './components/UI/NewsBulletin/NewsBulletin';
 import Info from './containers/Info/Info';
 import NewsPage from './containers/NewsPage/NewsPage';
 import { CookiesProvider } from 'react-cookie';

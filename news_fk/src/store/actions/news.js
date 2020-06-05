@@ -1,66 +1,56 @@
-import {API_PAGE_SIZE} from '../constants';
-
-export const SET_INITIAL_LOADING = 'SET_INITIAL_LOADING';
-export const SET_SHOULD_LOAD = 'SET_SHOULD_LOAD';
-export const SET_CURR_PAGE = 'SET_CURR_PAGE';
-export const SET_COUNTRY_CODE = 'SET_COUNTRY_CODE';
-export const SET_NEWS_CATEGORY = 'SET_NEWS_CATEGORY';
-export const SET_NEWS_ARTICLES = 'SET_NEWS_ARTICLES';
-export const SET_END_OF_ARTICLE = 'SET_END_OF_ARTICLE';
-export const SET_ERROR_FOUND = 'SET_ERROR_FOUND';
-export const COUNTRY_CHANGE = 'COUNTRY_CHANGE';
-export const CATEGORY_CHANGE = 'CATEGORY_CHANGE';
+import {API_PAGE_SIZE} from '../../constants';
+import * as actionTypes from './actionTypes';
 
 export const setShouldLoad = ( newVal ) => {
     return {
-        type: SET_SHOULD_LOAD,
+        type: actionTypes.SET_SHOULD_LOAD,
         val : newVal
     };
 }
 export const countryChangeHandler = ( newCountry ) => {
     return {
-        type: COUNTRY_CHANGE,
+        type: actionTypes.COUNTRY_CHANGE,
         newcnt : newCountry
     };
 }
 export const categoryChangeHandler = (newCategory) => {
     return {
-        type: CATEGORY_CHANGE,
+        type: actionTypes.CATEGORY_CHANGE,
         newcat : newCategory
     };
 }
 
 export const setInitialLoading = ( newVal ) => {
     return {
-        type: SET_INITIAL_LOADING,
+        type: actionTypes.SET_INITIAL_LOADING,
         val : newVal
     };
 }
 
 export const setNewsArticles= ( newVal ) => {
     return {
-        type: SET_NEWS_ARTICLES,
+        type: actionTypes.SET_NEWS_ARTICLES,
         val : newVal
     };
 }
 
 export const setEndOfArticle = ( newVal ) => {
     return {
-        type: SET_END_OF_ARTICLE,
+        type: actionTypes.SET_END_OF_ARTICLE,
         val : newVal
     };
 }
 
 export const setCurrPage = ( newVal ) => {
     return {
-        type: SET_CURR_PAGE,
+        type: actionTypes.SET_CURR_PAGE,
         val : newVal
     };
 }
 
 export const setErrorFound = ( newVal ) => {
     return {
-        type: SET_ERROR_FOUND,
+        type: actionTypes.SET_ERROR_FOUND,
         val : newVal
     };
 };

@@ -9,7 +9,7 @@ import {NavLink} from 'react-router-dom';
 import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as actionTypes from '../../store/actions/index';
 
 //---------------------------------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import BottomLoader from '../../components/Content/BottomLoader/BottomLoader';
-import DisplayNewsCards from '../../components/Content/DisplayNewsCards/DispalyNewsCards';
-import FetchErrorHandler from '../../components/Content/FetchErrorHandler/FetchErrorHandler';
-import InitialLoader from '../../components/Content/InitialLoader/InitialLoader';
+import BottomLoader from '../../components/UI/BottomLoader/BottomLoader';
+import DisplayNewsCards from '../../components/DisplayNewsCards/DispalyNewsCards';
+import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler';
+import InitialLoader from '../../components/UI/InitialLoader/InitialLoader';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
 import BottomScrollListener from 'react-bottom-scroll-listener';
+import {newsHandler} from '../../store/actions/index';
 // import NewsBulletin from '../../components/Content/NewsBulletin/NewsBulletin';
 
 class NewsPage extends Component {
@@ -58,7 +58,7 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-        newsHandler : () => dispatch(actionTypes.newsHandler())
+        newsHandler : () => dispatch(newsHandler())
     }
   };
   
