@@ -52,8 +52,10 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
     return {
-      countrycode : state.newsFetchReducer.countrycode,
-      newscategory : state.newsFetchReducer.newscategory,
+      token : state.auth.token,
+      userId : state.auth.userId,
+      error : state.auth.error,
+      loading: state.auth.loading
     };
   };
 

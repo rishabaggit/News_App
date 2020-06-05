@@ -5,12 +5,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './containers/Header/Header';
-import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import NewsBulletin from './components/UI/NewsBulletin/NewsBulletin';
 import Info from './containers/Info/Info';
 import NewsPage from './containers/NewsPage/NewsPage';
-import { CookiesProvider } from 'react-cookie';
 import Auth from './containers/Auth/Auth';
+import {Route, Switch} from 'react-router-dom';
 import { withCookies } from 'react-cookie';
 //-----------------------------------------------------------------------------------------------------------------
 //index.js is the traditional and actual entry point for all node apps. Here in react it just has code of what to render and where to render. 
@@ -18,8 +17,7 @@ import { withCookies } from 'react-cookie';
 class App extends Component {  
   render() {
     return (                                     //Component able to render and read routes should be wrapped in BrowserRouter Object.
-      <BrowserRouter>
-        <CookiesProvider>
+      <div>
           <Header/>
           <Route path="/" exact component={NewsBulletin}/>
           <Switch>
@@ -28,8 +26,7 @@ class App extends Component {
               <Route path='/auth' exact component={Auth}/>
               <Route render={() => <h2 style={{textAlign:"center", fontWeight:"bold"}}>Page Link Broken!</h2> } />
           </Switch>
-        </CookiesProvider>   
-      </BrowserRouter>
+        </div>
     );
   }
 }
