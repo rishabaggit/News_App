@@ -45,11 +45,11 @@ class NewsPage extends Component {
 }
 const mapStateToProps = state => {
     return {
-      initial_loading : state.initial_loading,
-      should_load : state.should_load,
-      newsarticles : state.newsarticles,
-      end_of_article : state.end_of_article,
-      error_found : state.error_found
+      initial_loading : state.newsFetchReducer.initial_loading,
+      should_load : state.newsFetchReducer.should_load,
+      newsarticles : state.newsFetchReducer.newsarticles,
+      end_of_article : state.newsFetchReducer.end_of_article,
+      error_found : state.newsFetchReducer.error_found
     };
   };
   
