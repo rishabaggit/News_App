@@ -45,6 +45,9 @@ class Header extends Component {
                         <NavLink className="nav-link l1" exact to="/info">
                             Team
                         </NavLink>
+                        <NavLink className="nav-link l1" exact to="/auth">
+                            Auth
+                        </NavLink>
                         <button className="navbar-toggler" 
                             type="button" 
                             data-toggle="collapse" 

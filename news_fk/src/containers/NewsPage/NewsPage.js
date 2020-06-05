@@ -6,6 +6,7 @@ import InitialLoader from '../../components/Content/InitialLoader/InitialLoader'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import BottomScrollListener from 'react-bottom-scroll-listener';
+// import NewsBulletin from '../../components/Content/NewsBulletin/NewsBulletin';
 
 class NewsPage extends Component {
     onBottomHandler = () => {                     //Arrow Function Executed Upon Reaching the bottom of entire screen                   
