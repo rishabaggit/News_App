@@ -4,7 +4,6 @@ const initialState = {
     userId: null,
     error: null,
     loading: false,
-    redirect_after_login : false
 };
 
 const authReducer = (state = initialState,action) => {
@@ -26,18 +25,12 @@ const authReducer = (state = initialState,action) => {
                 userId: action.userId,
                 error: null,
                 loading: false,
-                redirect_after_login : true
             } 
         case actionTypes.AUTH_FAIL:
             return{
                 ...state,
                 error: action.error,
                 loading: false
-            }
-        case actionTypes.AUTH_REDIRECT_TOGGLE:
-            return {
-                ...state,
-                redirect_after_login: action.redirect_after_login
             }
         default:
             return state;

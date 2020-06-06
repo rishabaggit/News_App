@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import {FIREBASE_API_KEY} from '../../constants';
 import axios from 'axios';
+import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
 
 export const authStart = () => {
     return {
@@ -12,12 +13,6 @@ export const authSuccess = (userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         userId: userId
-    };
-};
-export const authRedirectToggle = (tog) => {
-    return {
-        type: actionTypes.AUTH_REDIRECT_TOGGLE,
-        redirect_after_login : tog
     };
 };
 export const authFail = (error) => {
@@ -33,7 +28,7 @@ export const logout = () => {
     };
 };
 
-export const auth = (email, password, type) => {
+export const authWithEmail = (email, password, SignIn) => {
     return (dispatch, getState) => {
         dispatch(authStart());
         const authData = {
@@ -41,15 +36,27 @@ export const auth = (email, password, type) => {
             password: password,
             returnSecureToken: true
         };
-        let type_ = type === 'signIn' ? 'signInWithPassword' : 'signUp';
-        let url = `https://identitytoolkit.googleapis.com/v1/accounts:${type_}?key=${FIREBASE_API_KEY}`;
+        const type = SignIn? 'signInWithPassword' : 'signUp';
+        let url = `https://identitytoolkit.googleapis.com/v1/accounts:${type}?key=${FIREBASE_API_KEY}`;
 
         axios.post(url, authData)
             .then(response => {
                 dispatch(authSuccess(email));
             })
             .catch(err => {
-                console.log(err.response.data.error.message);
+                dispatch(authFail(err.response.data.error.message));
             });
     };
 };
+export const authWithFacebook = () => {
+    return dispatch => {
+        dispatch(authStart());
+        app.auth().signInWithPopup(facebookProvider)
+        .then(result => {
+            dispatch(authSuccess(result.additionalUserInfo.profile.email));
+        })
+        .catch(error => {
+            dispatch(authFail(error.message));
+        })
+    }
+  }

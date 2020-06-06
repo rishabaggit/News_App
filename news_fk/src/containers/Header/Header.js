@@ -26,6 +26,26 @@ class Header extends Component {
         this.props.categoryChangeHandler(event.target.value);
         this.props.newsHandler();
     }
+    userDropDown = (isAuthenticated) => {
+        if(isAuthenticated) {
+            return (
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link className="dropdown-item" exact to="/userProfile">My Profile</Link>
+                    <Link className="dropdown-item" exact to="/likedPosts">Liked Posts</Link>
+                    <div className="dropdown-divider"></div>
+                    <Link className="dropdown-item" exact to="/logout">Logout</Link>
+                </div>
+            );
+        }
+        else {
+            return (
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" exact to="/login">Log In</Link>
+                <Link className="dropdown-item" exact to="/signin">Sign In</Link>
+            </div>
+            );
+        }
+    }
     render() {
         return(
                 <div>
@@ -78,12 +98,13 @@ class Header extends Component {
                                         aria-expanded="false">
                                             <i className="fa fa-user" aria-hidden="true"></i>
                                     </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <Link className="dropdown-item" exact to="/auth">Login</Link>
                                         <Link className="dropdown-item" exact to="/auth">Another action</Link>
                                         <div className="dropdown-divider"></div>
                                         <Link className="dropdown-item" exact to="/auth">My Profile</Link>
-                                    </div>
+                                    </div> */}
+                                    {this.userDropDown(this.props.user)}
                                 </li>
                             </ul>
                         </div>
@@ -102,6 +123,7 @@ const mapStateToProps = state => {
     return {
       countrycode : state.newsFetchReducer.countrycode,
       newscategory : state.newsFetchReducer.newscategory,
+      user : state.auth.userId
     };
   };
 
