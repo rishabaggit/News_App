@@ -23,6 +23,21 @@
 
 }
 
+.fa {
+    padding: 8px !important;
+    font-size: 24px !important;
+    width: auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 2px;
+}
+
+@media screen and (max-width:500px) {
+    .fa {
+        display: none !important;
+    }
+}
 /* .nav-link {
     font-size: 24px !important;
     font-family: cursive;

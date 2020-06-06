@@ -17,7 +17,7 @@ const Info = (props) => {
         <React.Fragment>
                     {/* Return a React Fragment consiting of rows of info of team member that are rendered through <Person> */}
             <div className="container">
-                <div className="row">
+                <div className="row top-margin">
                                                 {/* Row class mainly used to hold columns that are rendered through "Person"
                                                     Containers are used to pad the content inside of them */}
                     <Person name='Harshavardhana' imageSrc = {Pic1} title='SDE Intern at Flipkart'/>

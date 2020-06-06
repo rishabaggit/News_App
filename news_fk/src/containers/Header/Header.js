@@ -11,6 +11,7 @@ import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
 
+
 //---------------------------------------------------------------------------------------------------------
 
 class Header extends Component {
@@ -45,9 +46,7 @@ class Header extends Component {
                         <NavLink className="nav-link l1" exact to="/info">
                             Team
                         </NavLink>
-                        <NavLink className="nav-link l1" exact to="/auth">
-                            Auth
-                        </NavLink>
+                        
                         <button className="navbar-toggler" 
                             type="button" 
                             data-toggle="collapse" 
@@ -70,8 +69,13 @@ class Header extends Component {
                                     category={this.props.newscategory} 
                                     categoryChangeHandler={this.categoryChangeHandler}  
                                     className="checking"/>
+                                
                             </ul>
                         </div>
+                        <NavLink className="nav-link l1" exact to="/auth">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </NavLink>
+                        
                         </div>
                     </nav>
                 </div>
