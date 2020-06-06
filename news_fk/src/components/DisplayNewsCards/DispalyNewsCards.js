@@ -29,6 +29,7 @@ const DisplayNewsCards = (props) => {
                                 description={newsitem.description}
                                 key={idx}
                                 cookies={props.cookies}
+                                colorsObj = {props.colorsObj}
                             />
                         })
 

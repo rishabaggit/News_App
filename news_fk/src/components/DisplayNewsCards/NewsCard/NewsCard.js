@@ -48,11 +48,11 @@ class NewsCard extends React.Component {
             <div className="container" >
                             {/* onClick function acts an a listener and renders the news in a new tab upon article clicking
                             To open a new window on every call of window.open(), used the special value _blank for windowName. */}
-                <div className="card" onDoubleClick={ this.state.isLiked ? () => this.unlikePost() : () => this.likePost()}>
+                <div className="card" style={{backgroundColor: this.props.colorsObj.cardColor}} onDoubleClick={ this.state.isLiked ? () => this.unlikePost() : () => this.likePost()}>
                     {/* <object data={props.img} height="175" id="hello"> */}
                         {/* <img src={props.img} alt="" id="hello" height="175"/> */}
                         <div className="iconoverimage">
-                                <img src={this.props.img} alt="" id="hello" height="175"/>
+                                <img src={this.props.img} alt="" id="hello" height="175" style = {{opacity: this.props.colorsObj.opacity}}/>
                                 {this.state.isLiked ? <i className="far fa-heart" id={'#' + this.props.url} onClick={()=> this.unlikePost()}></i>: 
                                                 <i className="fas fa-heart" id={'#' + this.props.url}  onClick={()=> this.likePost()}></i> }
                                 
@@ -60,18 +60,21 @@ class NewsCard extends React.Component {
                     {/* </object> */}
 
                         <div className="container">
-                            <p className="title">{this.props.title}</p>
-                            <p className="maxLines">{this.props.description}...</p>
+                            <p className="title" style={this.props.colorsObj.textStyleHigh}>{this.props.title}</p>
+                            <p className="maxLines" style={this.props.colorsObj.textStyleMedium}>{this.props.description}...</p>
                             
                             <button type="button" 
                                 className="btn  mb-2" 
                                 data-toggle="modal" 
-                                data-target={'#' + this.props.url}>
+                                data-target={'#' + this.props.url}
+                                style={{backgroundColor: this.props.colorsObj.cardButtonColor}}
+                                elevation >
                                     <span>Share</span>
                             </button>
 
                             <button type="button" 
                                 className="btn mb-2"
+                                style={{backgroundColor: this.props.colorsObj.cardButtonColor}}
                                 onClick={() => {
                                     var win = window.open(this.props.url, '_blank');
                                     win.focus();

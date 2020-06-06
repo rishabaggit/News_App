@@ -20,9 +20,9 @@ const Info = (props) => {
                 <div className="row top-margin">
                                                 {/* Row class mainly used to hold columns that are rendered through "Person"
                                                     Containers are used to pad the content inside of them */}
-                    <Person name='Harshavardhana' imageSrc = {Pic1} title='SDE Intern at Flipkart'/>
-                    <Person name='Mudreka Arif' imageSrc = {Pic2} title='SDE Intern at Flipkart'/>
-                    <Person name='Pranjal Tripathi' imageSrc = {Pic3} title='SDE Intern at Flipkart'/>
+                    <Person name='Harshavardhana' imageSrc = {Pic1} title='SDE Intern at Flipkart' colorsObj={props.colorsObj}/>
+                    <Person name='Mudreka Arif' imageSrc = {Pic2} title='SDE Intern at Flipkart' colorsObj={props.colorsObj}/>
+                    <Person name='Pranjal Tripathi' imageSrc = {Pic3} title='SDE Intern at Flipkart' colorsObj={props.colorsObj}/>
                 </div>
             </div>
 
