@@ -22,6 +22,7 @@ class NewsCard extends React.Component {
         this.setState({
             isLiked: true
         })
+        
     }
     unlikePost = () => {
         var likedPosts = (this.props.cookies).get('Like')
@@ -33,7 +34,11 @@ class NewsCard extends React.Component {
         this.setState({
             isLiked: false
         })
+       
+        
     }
+
+    
 
     render() {
         return (
@@ -43,13 +48,13 @@ class NewsCard extends React.Component {
             <div className="container" >
                             {/* onClick function acts an a listener and renders the news in a new tab upon article clicking
                             To open a new window on every call of window.open(), used the special value _blank for windowName. */}
-                <div className="card">
+                <div className="card" onDoubleClick={() => this.likePost()}>
                     {/* <object data={props.img} height="175" id="hello"> */}
                         {/* <img src={props.img} alt="" id="hello" height="175"/> */}
                         <div className="iconoverimage">
                                 <img src={this.props.img} alt="" id="hello" height="175"/>
-                                {this.state.isLiked ? <i className="fas fa-heart" onClick={()=> this.unlikePost()}></i>: 
-                                                <i className="far fa-heart" onClick={()=> this.likePost()}></i> }
+                                {this.state.isLiked ? <i className="fas fa-heart" id={'#' + this.props.url} onClick={()=> this.unlikePost()}></i>: 
+                                                <i className="far fa-heart" id={'#' + this.props.url}  onClick={()=> this.likePost()}></i> }
                                 
                             </div>
                     {/* </object> */}
