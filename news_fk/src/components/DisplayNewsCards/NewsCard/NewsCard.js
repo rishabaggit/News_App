@@ -48,7 +48,7 @@ class NewsCard extends React.Component {
             <div className="container" >
                             {/* onClick function acts an a listener and renders the news in a new tab upon article clicking
                             To open a new window on every call of window.open(), used the special value _blank for windowName. */}
-                <div className="card" onDoubleClick={() => this.likePost()}>
+                <div className="card" onDoubleClick={ this.state.isLiked ? () => this.unlikePost() : () => this.likePost()}>
                     {/* <object data={props.img} height="175" id="hello"> */}
                         {/* <img src={props.img} alt="" id="hello" height="175"/> */}
                         <div className="iconoverimage">
