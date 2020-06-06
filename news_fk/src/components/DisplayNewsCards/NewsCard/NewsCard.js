@@ -55,14 +55,15 @@ class NewsCard extends React.Component {
                     {/* </object> */}
 
                         <div className="container">
-                            <p className="title">{this.props.title}</p>
-                            <p className="maxLines">{this.props.description}...</p>
+                            <p className="title" style={this.props.colorsObj.textStyleHigh}>{this.props.title}</p>
+                            <p className="maxLines" style={this.props.colorsObj.textStyleMedium}>{this.props.description}...</p>
                             
                             <button type="button" 
                                 className="btn  mb-2" 
                                 data-toggle="modal" 
                                 data-target={'#' + this.props.url}
-                                style={{backgroundColor: this.props.colorsObj.cardButtonColor}}>
+                                style={{backgroundColor: this.props.colorsObj.cardButtonColor}}
+                                elevation >
                                     <span>Share</span>
                             </button>
 

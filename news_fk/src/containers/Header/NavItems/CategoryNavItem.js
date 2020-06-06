@@ -9,7 +9,7 @@ import {newsCategories} from '../../../constants'
 
 const CategoryNavItem = (props) => {
     return (
-        <li className="nav-item">                
+        <li className="nav-item" style = {{color:'black'}}>                
                                 {/* Display a navbar item for the select with the option in the dropdown for
                                     all the Available Categories which news is Available.  Invoke countryChangeHandler
                                     if option changed for the country. */}

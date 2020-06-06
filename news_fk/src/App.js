@@ -24,7 +24,7 @@ class App extends Component {
           <Route path="/" exact component={NewsBulletin}/>
           <Switch>
               <Route path="/" exact render={() => (<NewsPage cookies={this.props.cookies}/>)}/>
-              <Route path="/info" exact component={Info}/>
+              <Route path="/info" exact render = {() => <Info{...this.props}/>}/>
               <Route path='/auth' exact component={Auth}/>
               <Route render={() => <h2 style={{textAlign:"center", fontWeight:"bold"}}>Page Link Broken!</h2> } />
           </Switch>

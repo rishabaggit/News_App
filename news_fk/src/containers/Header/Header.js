@@ -10,6 +10,7 @@ import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 
 //---------------------------------------------------------------------------------------------------------
 
@@ -27,9 +28,9 @@ class Header extends Component {
     }
     render() {
         return(
-                <div style = {{backgroundColor: this.props.colorsObj.backgroundColor}}>
+                <div>
                                         {/* display navbar with the flexibility of scaling across the screen dimension change */}
-                    <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+                    <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={this.props.colorsObj.navBarStyle}>
                         <div className="container">
                                             {/* NavLink is a react utility used for Routing and not loading a new refreshed page,
                                             rather loading the last rendered page with any new updates in components */}
@@ -65,18 +66,29 @@ class Header extends Component {
                                 <CountryNavItem 
                                     country={this.props.countrycode} 
                                     countryChangeHandler={this.countryChangeHandler} 
-                                    className="checking" />
+                                    className="checking"
+                                    colorsObj={this.props.colorsObj} />
                                 <CategoryNavItem 
                                     category={this.props.newscategory} 
                                     categoryChangeHandler={this.categoryChangeHandler}  
-                                    className="checking"/>
+                                    className="checking"
+                                    colorsObj={this.props.colorsObj}/>
                             </ul>
                         </div>
                         <div>
-                            <button onClick={this.props.flipDarkMode}>
-                                Dark Mode
-                            </button>
+                            <BootstrapSwitchButton
+                                checked={this.props.darkMode}
+                                onlabel='On'
+                                offlabel='Off'
+                                onChange={(checked) => {
+                                    this.props.flipDarkMode();
+                                }}
+                            />
                         </div>
+                        {/* <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitches"/>
+                            <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+                        </div> */}
                         </div>
                     </nav>
                 </div>
