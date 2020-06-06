@@ -20,7 +20,8 @@ export const defaultColors = {
     textStyleMedium : {opacity: 1},
     textStyleLow : {opacity: 1},
     navBarStyle : {},
-    navItemStyle: {}
+    navItemStyle: {},
+    formColor: colors.white
 };
 
 export const darkModeColors = {
@@ -32,5 +33,6 @@ export const darkModeColors = {
     textStyleMedium : {color: colors.white,opacity: 0.6},
     textStyleLow : {color: colors.white,opacity: 0.38},
     navBarStyle : {backgroundColor: colors.orchid},
-    navItemStyle: {}
+    navItemStyle: {},
+    formColor: colors.charcoal
 };
