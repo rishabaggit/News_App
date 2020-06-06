@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {auth,authRedirectToggle} from '../../store/actions/index';
+import {auth,authRedirectToggle , authSuccess} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
+import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
 class Auth extends Component {
+    constructor(props) {
+        super(props)
+        this.authWithFacebook = this.authWithFacebook.bind(this);
+      }
     state = {
         email:'',
         password:'',
         type : 'signIn'
     }
+    authWithFacebook() {
+        app.auth().signInWithPopup(facebookProvider)
+          .then((result, error) => {
+            if (error) {
+              console.log('error');
+            } else {
+              console.log('logged in');
+              this.props.authSuccess(result.additionalUserInfo.profile.email);
+            }
+          })
+      }
     emailChangeHandler = (event) => {
         this.setState({email : event.target.value})
     }
@@ -21,10 +37,10 @@ class Auth extends Component {
     signInHandler = () => {this.setState({type : 'signIn'})};
     loginHandler = () => {this.setState({type : 'signUp'})};
     render() {
-        if(this.props.redirect) {
-            this.props.redirectTogFunc(false);
-            return <Redirect to="/" />;
-        };
+        // if(this.props.redirect) {
+        //     this.props.redirectTogFunc(false);
+        //     return <Redirect to="/" />;
+        // };
         return (
             <div>
                 <br/>
@@ -49,6 +65,8 @@ class Auth extends Component {
                     <br/>
                     <button>{this.state.type === 'signIn' ? 'SIGN IN' : 'LOGIN'}</button>
                 </form>
+                <button onClick={this.authWithFacebook} >LOGIN WITH FACEBOOK</button>
+                <h1>{this.props.userId}</h1>
             </div>
         )
     }
@@ -57,7 +75,6 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
     return {
-      token : state.auth.token,
       userId : state.auth.userId,
       error : state.auth.error,
       loading: state.auth.loading,
@@ -70,7 +87,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         auth :(email,pass,type) => dispatch(auth(email,pass,type)),
-        redirectTogFunc : (tog) => dispatch(authRedirectToggle(tog))
+        redirectTogFunc : (tog) => dispatch(authRedirectToggle(tog)),
+        authSuccess : (email) => dispatch(authSuccess(email))
     }
   };
   

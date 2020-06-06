@@ -1,42 +1,19 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import * as firebase from "firebase";
+import "firebase/auth"
+import Rebase from 're-base';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDQNUecG2-QMs4Me_H2m7b7l4YucewrjQQ",
-    authDomain: "newsfirebase-3eeff.firebaseapp.com",
-    databaseURL: "https://newsfirebase-3eeff.firebaseio.com",
-    projectId: "newsfirebase-3eeff",
-    storageBucket: "newsfirebase-3eeff.appspot.com",
-    messagingSenderId: "571174522411",
-    appId: "1:571174522411:web:111a2344140f117801646e",
-    measurementId: "G-63S2FXR93K"
-  };
+    apiKey: "AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y",
+    authDomain: "fknews-mph.firebaseapp.com",
+    databaseURL: "https://fknews-mph.firebaseio.com",
+    projectId: "fknews-mph",
+    storageBucket: "fknews-mph.appspot.com",
+    messagingSenderId: "686008179025",
+    appId: "1:686008179025:web:88fcfd6e1b756a6aa7db70",
+    measurementId: "G-6QTGB5Y95H"
+};
 
-// <!-- The core Firebase JS SDK is always required and must be listed first -->
-// <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
-
-// <!-- TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#available-libraries -->
-// <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
-
-// <script>
-//   // Your web app's Firebase configuration
-//   var firebaseConfig = {
-//     apiKey: "AIzaSyDQNUecG2-QMs4Me_H2m7b7l4YucewrjQQ",
-//     authDomain: "newsfirebase-3eeff.firebaseapp.com",
-//     databaseURL: "https://newsfirebase-3eeff.firebaseio.com",
-//     projectId: "newsfirebase-3eeff",
-//     storageBucket: "newsfirebase-3eeff.appspot.com",
-//     messagingSenderId: "571174522411",
-//     appId: "1:571174522411:web:111a2344140f117801646e",
-//     measurementId: "G-63S2FXR93K"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-// </script>
-
-firebase.initializeApp(firebaseConfig);
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+const app = firebase.initializeApp(firebaseConfig);
+const base = Rebase.createClass(app.database());
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
+export {app , base , facebookProvider , firebaseConfig};
