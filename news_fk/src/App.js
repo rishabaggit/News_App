@@ -9,6 +9,7 @@ import NewsBulletin from './components/UI/NewsBulletin/NewsBulletin';
 import Info from './containers/Info/Info';
 import NewsPage from './containers/NewsPage/NewsPage';
 import Login from './containers/Auth/LogIn';
+import LogOut from './containers/Auth/LogOut';
 import {Route, Switch} from 'react-router-dom';
 import { withCookies } from 'react-cookie';
 import SignIn from './containers/Auth/SignIn';
@@ -36,10 +37,10 @@ class App extends Component {
           <Route path="/" exact component={NewsBulletin}/>
           <Switch>
               <Route path="/" exact render={() => (<NewsPage cookies={this.props.cookies}/>)}/>
-              {/* <Route path="/info" exact component={Info}/> */}
               <Route path='/login' exact component={Login}/>
               <Route path='/signin' exact component={SignIn}/>
               <Route path="/info" exact render = {() => <Info{...this.props}/>}/>
+              <Route path='/logout' exact component={LogOut}/>
               <Route render={() => <h2 style={{textAlign:"center", fontWeight:"bold"}}>Page Link Broken!</h2> } />
           </Switch>
         </div>

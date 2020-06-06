@@ -2,8 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 import {defaultColors, darkModeColors} from '../../colors';
 
 const initialState = {
-    darkMode : true,
-    colorsObj : darkModeColors
+    darkMode : false,
+    colorsObj : defaultColors
 };
 
 const appModeReducer = (state = initialState,action) => {

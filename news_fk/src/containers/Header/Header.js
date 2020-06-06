@@ -11,6 +11,7 @@ import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
+import {Route, Switch} from 'react-router-dom';
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,15 +83,19 @@ class Header extends Component {
                         <div className="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ml-auto">
                                                 {/* Show Country List and Categories in two different list items of navbar */}
-                                <CountryNavItem 
-                                    country={this.props.countrycode} 
-                                    countryChangeHandler={this.countryChangeHandler} 
-                                    className="checking"
-                                    colorsObj={this.props.colorsObj} />
-                                <CategoryNavItem 
-                                    category={this.props.newscategory} 
-                                    categoryChangeHandler={this.categoryChangeHandler}  
-                                    className="checking"/>
+                                <Route path="/" exact render={() => (
+                                        <CountryNavItem 
+                                        country={this.props.countrycode} 
+                                        countryChangeHandler={this.countryChangeHandler} 
+                                        className="checking"
+                                        colorsObj={this.props.colorsObj} />
+                                )}/>
+                                <Route path="/" exact render={() => (
+                                        <CategoryNavItem 
+                                        category={this.props.newscategory} 
+                                        categoryChangeHandler={this.categoryChangeHandler}  
+                                        className="checking"/>
+                                )}/>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" 
                                         href="#" id="navbarDropdown"
