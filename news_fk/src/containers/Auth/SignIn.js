@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {authWithEmail} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
+import Avatar from '../../resources/Avatar.jpg'
+import './Login.css';
 class SignIn extends Component {
     state = {
         email:'',
@@ -26,24 +28,34 @@ class SignIn extends Component {
                 <br/>
                 <br/>
                 <br/>
-                {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'}
+                {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
+                
+                
                 <form onSubmit={this.onSubmitHandler}>
-                    <input
-                        value={this.state.email}
-                        type='email'
-                        placeholder='Enter your email ID'
-                        onChange={this.changeHandler}
-                    />
-                    <br/>
-                    <input
-                        value={this.state.password}
-                        type='password'
-                        placeholder='Password'
-                        onChange={this.changeHandler}
-                    />
-                    <br/>
+                    <div className="imgcontainer">
+                        <img src={Avatar} alt="Avatar" className="avatar"/>
+                    </div>
+                    <div className="container1">
+                        <label for="uname"><b>Username</b></label>
+                        <input
+                            value={this.state.email}
+                            type='email'
+                            placeholder='Enter your email ID'
+                            onChange={this.changeHandler}
+                            name="uname"
+                        />
+                        <label for="psw"><b>Password</b></label>
+                        <input
+                            value={this.state.password}
+                            type='password'
+                            placeholder='Password'
+                            onChange={this.changeHandler}
+                            name='psw'
+                        />
+                    
                     <button>SIGN IN</button>
-                </form>
+                    </div>
+                </form>  
             </div>
         )
     }

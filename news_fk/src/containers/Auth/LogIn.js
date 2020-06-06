@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {authWithEmail,authWithFacebook} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
+import './Login.css'
+import Avatar from '../../resources/Avatar.jpg'
 class LogIn extends Component {
     state = {
         email:'',
@@ -26,25 +28,34 @@ class LogIn extends Component {
                 <br/>
                 <br/>
                 <br/>
-                {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'}
+                {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 <form onSubmit={this.onSubmitHandler}>
-                    <input
+                    <div className="imgcontainer">
+                        <img src={Avatar} alt="Avatar" className="avatar"/>
+                    </div>
+                    <div className="container1">
+                        <label for="uname"><b>Username</b></label>
+                        <input
                         value={this.state.email}
                         type='email'
                         placeholder='Enter your email ID'
                         onChange={this.changeHandler}
-                    />
-                    <br/>
-                    <input
+                        name="uname"
+                        />
+
+                        <label for="psw"><b>Password</b></label>
+                        <input
                         value={this.state.password}
                         type='password'
                         placeholder='Password'
                         onChange={this.changeHandler}
-                    />
-                    <br/>
-                    <button>LOGIN</button>
+                        name="psw"
+                        />
+                        <button type="button">LOGIN</button>
+                        <button type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
+                    </div>
                 </form>
-                <button onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
+                
             </div>
         )
     }
