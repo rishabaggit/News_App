@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {logout} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
+import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 
 class LogOut extends Component {
     componentDidMount() {
@@ -9,7 +10,7 @@ class LogOut extends Component {
     }
     render() {
         if(this.props.userId) {
-            return (<div><br/><br/><br/><h1>LOGGING USER OUT</h1></div>);
+            return (<div><FullScreenLoader/></div>);
         }
         else {
             return <Redirect to="/" />;

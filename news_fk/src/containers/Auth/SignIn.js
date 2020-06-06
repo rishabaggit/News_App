@@ -4,6 +4,7 @@ import {authWithEmail} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import Avatar from '../../resources/Avatar.jpg'
 import './Login.css';
+import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 class SignIn extends Component {
     state = {
         email:'',
@@ -13,6 +14,7 @@ class SignIn extends Component {
         this.setState({[event.target.type] : event.target.value})
     }
     onSubmitHandler = (event) => {
+        console.log('SUBMIT');
         event.preventDefault();
         this.props.authWithEmail(this.state.email,this.state.password , true);
     }
@@ -21,7 +23,7 @@ class SignIn extends Component {
             return <Redirect to="/" />;
         };
         if(this.props.loading) {
-            return (<div><br/><br/><br/><h1>LOADING</h1></div>);
+            return (<FullScreenLoader/>);
         }
         return (
             <div>
@@ -31,7 +33,7 @@ class SignIn extends Component {
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 
                 
-                <form onSubmit={this.onSubmitHandler} style={{backgroundColor: this.props.colorsObj.formColor}} >
+                <form style={{backgroundColor: this.props.colorsObj.formColor}} >
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
@@ -53,7 +55,7 @@ class SignIn extends Component {
                             name='psw'
                         />
                     
-                    <button type='button' className='b1'>SIGN IN</button>
+                    <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>
                     </div>
                 </form>  
             </div>

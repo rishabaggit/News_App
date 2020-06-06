@@ -11,7 +11,7 @@ import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
-import {Route, Switch} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -105,12 +105,6 @@ class Header extends Component {
                                         aria-expanded="false">
                                             <i className="fa fa-user" aria-hidden="true"></i>
                                     </a>
-                                    {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <Link className="dropdown-item" exact to="/auth">Login</Link>
-                                        <Link className="dropdown-item" exact to="/auth">Another action</Link>
-                                        <div className="dropdown-divider"></div>
-                                        <Link className="dropdown-item" exact to="/auth">My Profile</Link>
-                                    </div> */}
                                     {this.userDropDown(this.props.user)}
                                 </li>
                                 <li className="nav-item dropdown">

@@ -4,15 +4,20 @@ import {authWithEmail,authWithFacebook} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import './Login.css'
 import Avatar from '../../resources/Avatar.jpg'
+import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 class LogIn extends Component {
     state = {
         email:'',
-        password:''
+        password:'',
+        password2:''
     }
     changeHandler = (event) => {
-        this.setState({[event.target.type] : event.target.value})
+        this.setState({[event.target.id] : event.target.value})
     }
     onSubmitHandler = (event) => {
+        if(this.state.password != this.state.password2) {
+            console.log('password not matching');
+        }
         event.preventDefault();
         this.props.authWithEmail(this.state.email,this.state.password , false);
     }
@@ -21,7 +26,7 @@ class LogIn extends Component {
             return <Redirect to="/" />;
         };
         if(this.props.loading) {
-            return (<div><br/><br/><br/><h1>LOADING</h1></div>);
+            return (<FullScreenLoader/>);
         }
         return (
             <div>
@@ -36,6 +41,7 @@ class LogIn extends Component {
                     <div className="container1">
                         <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
                         <input
+                        id='email'
                         value={this.state.email}
                         type='email'
                         placeholder='Enter your email ID'
@@ -45,13 +51,23 @@ class LogIn extends Component {
 
                         <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
+                        id='password'
                         value={this.state.password}
                         type='password'
                         placeholder='Password'
                         onChange={this.changeHandler}
                         name="psw"
                         />
-                        <button className='b1' type="button">LOGIN</button>
+                        <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Re-enter Password</b></label>
+                        <input
+                        id='password2'
+                        value={this.state.password2}
+                        type='password'
+                        placeholder='Re-enter Password'
+                        onChange={this.changeHandler}
+                        name="psw"
+                        />
+                        <button onClick={this.onSubmitHandler} className='b1' type="button">LOGIN</button>
                         <button className='b1' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
                     </div>
                 </form>
