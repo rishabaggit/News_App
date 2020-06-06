@@ -12,7 +12,7 @@ const CountryNavItem = (props) => {
                                     {/* Display a navbar item for the select with the option in the dropdown for
                                     all the Available Countries for which news is Available.  Invoke countryChangeHandler
                                     if option changed for the country. */}
-        <select value={props.country} onChange={props.countryChangeHandler} className="dropdown custom-select">
+        <select value={props.country} onChange={props.countryChangeHandler} className="dropdown custom-select check1">
             {countryList.map((cnt) => {
                 return(
                 <option key={cnt.country} value={cnt.code}>

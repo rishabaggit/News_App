@@ -12,6 +12,7 @@ class NewsPage extends Component {
 
     constructor(props) {
         super(props);
+        
         if((this.props.cookies).get('Like') === null || (this.props.cookies).get('Like') === undefined )
           {
             (this.props.cookies).set('Like',[],{path: '/'})

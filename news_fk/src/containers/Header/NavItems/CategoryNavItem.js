@@ -13,7 +13,7 @@ const CategoryNavItem = (props) => {
                                 {/* Display a navbar item for the select with the option in the dropdown for
                                     all the Available Categories which news is Available.  Invoke countryChangeHandler
                                     if option changed for the country. */}
-            <select value={props.category} onChange={props.categoryChangeHandler} className="dropdown custom-select">
+            <select value={props.category} onChange={props.categoryChangeHandler} className="dropdown custom-select check">
             {newsCategories.map((cat) => {
                     return(
                     <option key={cat} value={cat}>
