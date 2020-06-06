@@ -98,4 +98,17 @@ l1 a.active .collapse {
             font-family: cursive;
             color: white;
         }
+        
     }
+
+@media screen and (min-width: 990px){
+    .custom-select {
+        margin-top: 10%;
+    }
+    
+    .dropdown.custom-select.check1 {
+        margin-top: 11.5%;
+    }
+        
+}
+

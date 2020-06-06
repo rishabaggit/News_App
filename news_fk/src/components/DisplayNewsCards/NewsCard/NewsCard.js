@@ -53,8 +53,8 @@ class NewsCard extends React.Component {
                         {/* <img src={props.img} alt="" id="hello" height="175"/> */}
                         <div className="iconoverimage">
                                 <img src={this.props.img} alt="" id="hello" height="175"/>
-                                {this.state.isLiked ? <i className="fas fa-heart" id={'#' + this.props.url} onClick={()=> this.unlikePost()}></i>: 
-                                                <i className="far fa-heart" id={'#' + this.props.url}  onClick={()=> this.likePost()}></i> }
+                                {this.state.isLiked ? <i className="far fa-heart" id={'#' + this.props.url} onClick={()=> this.unlikePost()}></i>: 
+                                                <i className="fas fa-heart" id={'#' + this.props.url}  onClick={()=> this.likePost()}></i> }
                                 
                             </div>
                     {/* </object> */}

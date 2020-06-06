@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import './Header.css';
-import {NavLink} from 'react-router-dom';
+import {Link , NavLink} from 'react-router-dom';
 import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
@@ -69,12 +69,24 @@ class Header extends Component {
                                     category={this.props.newscategory} 
                                     categoryChangeHandler={this.categoryChangeHandler}  
                                     className="checking"/>
-                                
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" 
+                                        href="#" id="navbarDropdown"
+                                        role="button" 
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true" 
+                                        aria-expanded="false">
+                                            <i className="fa fa-user" aria-hidden="true"></i>
+                                    </a>
+                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <Link className="dropdown-item" exact to="/auth">Login</Link>
+                                        <Link className="dropdown-item" exact to="/auth">Another action</Link>
+                                        <div className="dropdown-divider"></div>
+                                        <Link className="dropdown-item" exact to="/auth">My Profile</Link>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
-                        <NavLink className="nav-link l1" exact to="/auth">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </NavLink>
                         
                         </div>
                     </nav>
