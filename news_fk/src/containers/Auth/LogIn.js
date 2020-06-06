@@ -29,12 +29,12 @@ class LogIn extends Component {
                 <br/>
                 <br/>
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
-                <form onSubmit={this.onSubmitHandler}>
+                <form onSubmit={this.onSubmitHandler} style={{backgroundColor: this.props.colorsObj.formColor}}>
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
                     <div className="container1">
-                        <label for="uname"><b>Username</b></label>
+                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
                         <input
                         value={this.state.email}
                         type='email'
@@ -43,7 +43,7 @@ class LogIn extends Component {
                         name="uname"
                         />
 
-                        <label for="psw"><b>Password</b></label>
+                        <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
                         value={this.state.password}
                         type='password'
@@ -66,7 +66,9 @@ const mapStateToProps = state => {
     return {
       userId : state.auth.userId,
       error : state.auth.error,
-      loading: state.auth.loading
+      loading: state.auth.loading,
+      darkMode: state.appModeReducer.darkMode,
+      colorsObj: state.appModeReducer.colorsObj
     };
   };
 
