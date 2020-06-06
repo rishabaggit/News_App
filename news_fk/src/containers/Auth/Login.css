@@ -20,7 +20,7 @@
   }
   
   /* Set a style for all buttons */
-  button {
+ .b1 {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -32,7 +32,7 @@
   }
   
   /* Add a hover effect for buttons */
-  button:hover {
+  .b1:hover {
     opacity: 0.8;
   }
   

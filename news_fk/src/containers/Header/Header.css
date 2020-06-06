@@ -33,11 +33,11 @@
     margin: 5px 2px;
 }
 
-@media screen and (max-width:500px) {
+/* @media screen and (max-width:500px) {
     .fa {
         display: none !important;
     }
-}
+} */
 /* .nav-link {
     font-size: 24px !important;
     font-family: cursive;
@@ -108,6 +108,11 @@ l1 a.active .collapse {
     
     .dropdown.custom-select.check1 {
         margin-top: 11.5%;
+    }
+
+    .switch.btn {
+        border-color: rgba(0, 0, 0, .15);
+        margin-top: 25%;
     }
         
 }

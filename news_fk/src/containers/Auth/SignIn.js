@@ -53,7 +53,7 @@ class SignIn extends Component {
                             name='psw'
                         />
                     
-                    <button>SIGN IN</button>
+                    <button type='button' className='b1'>SIGN IN</button>
                     </div>
                 </form>  
             </div>

@@ -113,17 +113,21 @@ class Header extends Component {
                                     </div> */}
                                     {this.userDropDown(this.props.user)}
                                 </li>
+                                <li className="nav-item dropdown">
+                                        <BootstrapSwitchButton
+                                        
+                                        checked={this.props.darkMode}
+                                        onlabel='On'
+                                        offlabel='Off'
+                                        onChange={(checked) => {
+                                            this.props.flipDarkMode();
+                                        }}
+                                    />
+                                </li>
                             </ul>
                         </div>
                         <div>
-                            <BootstrapSwitchButton
-                                checked={this.props.darkMode}
-                                onlabel='On'
-                                offlabel='Off'
-                                onChange={(checked) => {
-                                    this.props.flipDarkMode();
-                                }}
-                            />
+                            
                         </div>
                         {/* <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="customSwitches"/>

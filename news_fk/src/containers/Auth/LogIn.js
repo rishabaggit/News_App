@@ -51,8 +51,8 @@ class LogIn extends Component {
                         onChange={this.changeHandler}
                         name="psw"
                         />
-                        <button type="button">LOGIN</button>
-                        <button type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
+                        <button className='b1' type="button">LOGIN</button>
+                        <button className='b1' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
                     </div>
                 </form>
                 
