@@ -27,9 +27,9 @@ class Header extends Component {
     }
     render() {
         return(
-                <div>
+                <div style = {{backgroundColor: this.props.colorsObj.backgroundColor}}>
                                         {/* display navbar with the flexibility of scaling across the screen dimension change */}
-                    <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
+                    <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                         <div className="container">
                                             {/* NavLink is a react utility used for Routing and not loading a new refreshed page,
                                             rather loading the last rendered page with any new updates in components */}
@@ -86,6 +86,8 @@ const mapStateToProps = state => {
     return {
       countrycode : state.newsFetchReducer.countrycode,
       newscategory : state.newsFetchReducer.newscategory,
+      darkMode: state.appModeReducer.darkMode,
+      colorsObj: state.appModeReducer.colorsObj
     };
   };
 

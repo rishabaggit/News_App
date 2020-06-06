@@ -32,7 +32,7 @@ class NewsPage extends Component {
         else {                                      //Render DispalyNewsCards to display news article and BottomLoader to display loader in other cases
           return (
             <div>
-                <DisplayNewsCards articles={this.props.newsarticles} cookies={this.props.cookies}/>  
+                <DisplayNewsCards articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
                 <BottomLoader load={!this.props.end_of_article} />
             </div>
           );
@@ -58,7 +58,8 @@ const mapStateToProps = (state, ownProps) => {
       newsarticles : state.newsFetchReducer.newsarticles,
       end_of_article : state.newsFetchReducer.end_of_article,
       error_found : state.newsFetchReducer.error_found,
-      cookies: ownProps.cookies,
+      colorsObj : state.appModeReducer.colorsObj,
+      cookies: ownProps.cookies
     };
   };
   
