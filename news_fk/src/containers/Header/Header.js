@@ -10,6 +10,7 @@ import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,7 +51,7 @@ class Header extends Component {
         return(
                 <div>
                                         {/* display navbar with the flexibility of scaling across the screen dimension change */}
-                    <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
+                    <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={this.props.colorsObj.navBarStyle}>
                         <div className="container">
                                             {/* NavLink is a react utility used for Routing and not loading a new refreshed page,
                                             rather loading the last rendered page with any new updates in components */}
@@ -84,7 +85,8 @@ class Header extends Component {
                                 <CountryNavItem 
                                     country={this.props.countrycode} 
                                     countryChangeHandler={this.countryChangeHandler} 
-                                    className="checking" />
+                                    className="checking"
+                                    colorsObj={this.props.colorsObj} />
                                 <CategoryNavItem 
                                     category={this.props.newscategory} 
                                     categoryChangeHandler={this.categoryChangeHandler}  
@@ -108,7 +110,20 @@ class Header extends Component {
                                 </li>
                             </ul>
                         </div>
-                        
+                        <div>
+                            <BootstrapSwitchButton
+                                checked={this.props.darkMode}
+                                onlabel='On'
+                                offlabel='Off'
+                                onChange={(checked) => {
+                                    this.props.flipDarkMode();
+                                }}
+                            />
+                        </div>
+                        {/* <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitches"/>
+                            <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+                        </div> */}
                         </div>
                     </nav>
                 </div>
@@ -123,7 +138,9 @@ const mapStateToProps = state => {
     return {
       countrycode : state.newsFetchReducer.countrycode,
       newscategory : state.newsFetchReducer.newscategory,
-      user : state.auth.userId
+      user : state.auth.userId,
+      darkMode: state.appModeReducer.darkMode,
+      colorsObj: state.appModeReducer.colorsObj
     };
   };
 
@@ -133,7 +150,8 @@ const mapDispatchToProps = dispatch => {
     return {
         newsHandler : () => dispatch(actionTypes.newsHandler()),
         countryChangeHandler : (newCountry) => dispatch(actionTypes.countryChangeHandler(newCountry)),
-        categoryChangeHandler : (newCategory) => dispatch(actionTypes.categoryChangeHandler(newCategory))
+        categoryChangeHandler : (newCategory) => dispatch(actionTypes.categoryChangeHandler(newCategory)),
+        flipDarkMode: () => dispatch(actionTypes.flipDarkMode())
     }
   };
   

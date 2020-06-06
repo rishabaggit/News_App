@@ -12,11 +12,11 @@ const Person = (props) => {
                     // Scaling issues resolved for screen width through col- md, sm, xs
                     // Each column shall contain a card with Image, Name of Team Member
     <div className='column col-md-4 col-sm-6 col-xs-12'>
-        <div className='card'>
+        <div className='card' style={{backgroundColor: props.colorsObj.cardColor}}>
         <img className='image'  src={props.imageSrc} alt=''/>
             <div className='container'>
-                <h2>{props.name}</h2>
-                <p className='title'>{props.title}</p>
+                <h2 style={props.colorsObj.textStyleHigh}>{props.name}</h2>
+                <p className='title' style={props.colorsObj.textStyleLow}>{props.title}</p>
             </div>
         </div>
     </div>
