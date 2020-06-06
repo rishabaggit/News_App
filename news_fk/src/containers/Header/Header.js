@@ -72,6 +72,11 @@ class Header extends Component {
                                     className="checking"/>
                             </ul>
                         </div>
+                        <div>
+                            <button onClick={this.props.flipDarkMode}>
+                                Dark Mode
+                            </button>
+                        </div>
                         </div>
                     </nav>
                 </div>
@@ -97,7 +102,8 @@ const mapDispatchToProps = dispatch => {
     return {
         newsHandler : () => dispatch(actionTypes.newsHandler()),
         countryChangeHandler : (newCountry) => dispatch(actionTypes.countryChangeHandler(newCountry)),
-        categoryChangeHandler : (newCategory) => dispatch(actionTypes.categoryChangeHandler(newCategory))
+        categoryChangeHandler : (newCategory) => dispatch(actionTypes.categoryChangeHandler(newCategory)),
+        flipDarkMode: () => dispatch(actionTypes.flipDarkMode())
     }
   };
   
