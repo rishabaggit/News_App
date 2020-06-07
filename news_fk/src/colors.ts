@@ -1,5 +1,5 @@
 const colors = {
-    blue: '#213458',
+    blue:'#213458',
     white: '#FFF',
     charcoal: '#353C51',
     darkBlue: '#081B33',
@@ -8,7 +8,8 @@ const colors = {
     darkGrey: '#121212',
     lightViolet: '#8A2BE2',
     darkOrange: '#FF8C00',
-    orchid: '#DA70D6'
+    orchid: '#DA70D6',
+    lightYellow : '	#CCCC00'
 };
 
 export const defaultColors = {
@@ -19,7 +20,7 @@ export const defaultColors = {
     textStyleHigh : {opacity: 1},
     textStyleMedium : {opacity: 1},
     textStyleLow : {opacity: 1},
-    navBarStyle : {},
+    navBarStyle : {backgroundColor: colors.lightYellow},
     navItemStyle: {},
     formColor: colors.white
 };

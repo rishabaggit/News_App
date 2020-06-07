@@ -10,14 +10,17 @@ import './BottomLoader.css'
 
 //---------------------------------------------------------------------------------------------------------------
 
+interface BottomLoaderProps{
+  load: boolean;
+}
 
-const BottomLoader = (props) => {
+const BottomLoader: React.FC<BottomLoaderProps> = ({load}) => {
     return (
         <div className = 'center'>
                                                       {/* Ball Beat Loaded only if end_of_article is true and color describes a rgb value assigned to it */}
           <BallBeat
             color={'#123abc'}
-            loading={props.load}
+            loading={load}
           />
         </div>
     );

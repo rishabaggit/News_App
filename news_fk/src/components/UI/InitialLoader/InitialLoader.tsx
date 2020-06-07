@@ -6,8 +6,11 @@
 import React from 'react';
 
 //-----------------------------------------------------------------------------------------------------------------
+interface InitialLoaderProps{
 
-const InitialLoader = (props) => {
+}
+
+const InitialLoader: React.FC<InitialLoaderProps> = (props) => {
     return (
         /* <h1>INITIAL LOADER</h1> */
         <div className="text-danger d-flex justify-content-center">
