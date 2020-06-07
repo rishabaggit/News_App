@@ -14,9 +14,12 @@ class SignIn extends Component {
         this.setState({[event.target.type] : event.target.value})
     }
     onSubmitHandler = (event) => {
-        console.log('SUBMIT');
         event.preventDefault();
-        this.props.authWithEmail(this.state.email,this.state.password , true);
+        const userData = {
+            email:this.state.email,
+            password:this.state.password
+        }
+        this.props.authWithEmail(userData  , true);
     }
     render() {
         if(this.props.userId) {
@@ -78,7 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        authWithEmail :(email,pass,type) => dispatch(authWithEmail(email,pass,type))
+        authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type))
     }
   };
   

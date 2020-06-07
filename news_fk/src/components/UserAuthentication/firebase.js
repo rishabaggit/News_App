@@ -16,4 +16,8 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const base = Rebase.createClass(app.database());
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
-export {app , base , facebookProvider , firebaseConfig};
+const db = firebase.firestore();
+db.settings({
+    timestampsInSnapshots: true
+});
+export {app , base , facebookProvider , firebaseConfig, db};

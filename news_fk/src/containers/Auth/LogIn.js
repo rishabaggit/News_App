@@ -9,17 +9,22 @@ class LogIn extends Component {
     state = {
         email:'',
         password:'',
-        password2:''
+        password2:'',
+        fname: '',
+        lname: ''
     }
     changeHandler = (event) => {
         this.setState({[event.target.id] : event.target.value})
     }
     onSubmitHandler = (event) => {
-        if(this.state.password != this.state.password2) {
-            console.log('password not matching');
-        }
         event.preventDefault();
-        this.props.authWithEmail(this.state.email,this.state.password , false);
+        const userData = {
+            email:this.state.email,
+            password:this.state.password,
+            fname: this.state.fname,
+            lname: this.state.lname
+        }
+        this.props.authWithEmail(userData , false);
     }
     render() {
         if(this.props.userId) {
@@ -35,6 +40,7 @@ class LogIn extends Component {
                 <br/>
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 <form onSubmit={this.onSubmitHandler} style={{backgroundColor: this.props.colorsObj.formColor}}>
+                    <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
@@ -48,7 +54,24 @@ class LogIn extends Component {
                         onChange={this.changeHandler}
                         name="uname"
                         />
-
+                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>First Name</b></label>
+                        <input
+                        id='fname'
+                        value={this.state.fname}
+                        type='text'
+                        placeholder='First Name'
+                        onChange={this.changeHandler}
+                        name="uname"
+                        />
+                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>Last Name</b></label>
+                        <input
+                        id='lname'
+                        value={this.state.lname}
+                        type='text'
+                        placeholder='Last Name'
+                        onChange={this.changeHandler}
+                        name="uname"
+                        />
                         <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
                         id='password'
@@ -67,8 +90,11 @@ class LogIn extends Component {
                         onChange={this.changeHandler}
                         name="psw"
                         />
-                        <button onClick={this.onSubmitHandler} className='b1' type="button">LOGIN</button>
-                        <button className='b1' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
+                        <button 
+                            disabled={this.state.password !== this.state.password2} 
+                            onClick={this.onSubmitHandler} 
+                            className='b1' 
+                            type="button">LOGIN</button>
                     </div>
                 </form>
                 
@@ -92,7 +118,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        authWithEmail :(email,pass,type) => dispatch(authWithEmail(email,pass,type)),
+        authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type)),
         authWithFacebook : () => dispatch(authWithFacebook())
     }
   };

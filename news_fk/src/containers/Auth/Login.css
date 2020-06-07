@@ -10,7 +10,7 @@
   }
   
   /* Full-width inputs */
-  input[type=email], input[type=password] {
+  input[type=email], input[type=password], input[type=text]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -30,11 +30,35 @@
     width: 100%;
     margin-bottom: 2px !important;
   }
-  
+  .b2 {
+    background-color: #3b5998;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 2px !important;
+  }
+  .b2:hover {
+    opacity: 0.8;
+  }
   /* Add a hover effect for buttons */
   .b1:hover {
     opacity: 0.8;
   }
+  b1:disabled,
+ button[disabled]{
+  background-color: rgba(228, 56, 13, 0.808);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 2px !important;
+}
+
   
  
   /* Center the avatar image inside this container */
