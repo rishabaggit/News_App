@@ -1,13 +1,9 @@
 import {db} from '../UserAuthentication/firebase';
 
-const userget = (uid) => {
-    db.collection('users').doc(uid).get()
-    .then(doc => {
-        console.log(doc.data())
-    })
-      .catch(console.log('error'))
+async function userget(uid){
+    let res  = await db.collection('users').doc(uid).get();
+    return res.data();
     }
-
 
 const newUser = (uid, fname ,lname) => {
     db.collection('users').doc(uid).set({
