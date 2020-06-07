@@ -8,8 +8,10 @@ import errorSign from '../../../resources/ErrorSign.png'
 import './FetchErrorHandler.css'
 
 //-----------------------------------------------------------------------------------------------------------------
+interface FetchErrorHandlerProps{
+}
 
-const FetchErrorHandler = (props) => {
+const FetchErrorHandler: React.FC<FetchErrorHandlerProps> = () => {
     return (
                     // Container is used to pad content inside of them
                     // Image from within Resources folder used in case if unable to load page
