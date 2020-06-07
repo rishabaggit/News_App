@@ -9,7 +9,12 @@ const colors = {
     lightViolet: '#8A2BE2',
     darkOrange: '#FF8C00',
     orchid: '#DA70D6',
-    lightYellow : '	#CCCC00'
+    lightYellow : '	#CCCC00',
+    blackShade : '#1E1E30',
+    lightGray: '#6C757D',
+    shadeGray: '#161625',
+    black: '#000',
+
 };
 
 export const defaultColors = {
@@ -22,18 +27,22 @@ export const defaultColors = {
     textStyleLow : {opacity: 1},
     navBarStyle : {backgroundColor: colors.lightYellow},
     navItemStyle: {},
-    formColor: colors.white
+    formColor: colors.white,
+    navLinkStyle: {color: colors.white, opacity:1},
+    dropdown: {color: colors.black},
 };
 
 export const darkModeColors = {
-    backgroundColor: colors.darkGrey,
-    cardButtonColor: colors.lightViolet,
+    backgroundColor: colors.shadeGray,
+    cardButtonColor: colors.blackShade,
     cardColor: colors.charcoal,
     opacity: 0.75,
-    textStyleHigh : {color: colors.white, opacity: 0.87},
-    textStyleMedium : {color: colors.white,opacity: 0.6},
+    textStyleHigh : {color: colors.white, opacity: 1},
+    textStyleMedium : {color: colors.white,opacity: 0.8},
     textStyleLow : {color: colors.white,opacity: 0.38},
-    navBarStyle : {backgroundColor: colors.orchid},
+    navBarStyle : {backgroundColor: colors.blackShade},
     navItemStyle: {},
-    formColor: colors.charcoal
+    formColor: colors.lightGray,
+    navLinkStyle: {color: colors.lightGray, opacity:1},
+    dropdown: {color: colors.white},
 };

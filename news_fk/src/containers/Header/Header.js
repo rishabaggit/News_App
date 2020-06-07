@@ -56,7 +56,7 @@ class Header extends Component {
                         <div className="container">
                                             {/* NavLink is a react utility used for Routing and not loading a new refreshed page,
                                             rather loading the last rendered page with any new updates in components */}
-                        <NavLink className="nav-link l2" exact to="/">
+                        <NavLink className="nav-link l2" exact to="/" style={this.props.colorsObj.navLinkStyle}>
                                                             {/* Font Awesome CDN used to display Globe giphy in Navbar Brand */}
                             <i className="fa fa-globe" 
                                 aria-hidden="true">
@@ -65,7 +65,7 @@ class Header extends Component {
                         </NavLink>
                                                 {/* NavLink is used to choose the currently selected link. Currently selected link
                                                 has a className "active" in it  */}
-                        <NavLink className="nav-link l1" exact to="/info">
+                        <NavLink className="nav-link l1" exact to="/info" style={this.props.colorsObj.navLinkStyle}>
                             Team
                         </NavLink>
                         
@@ -77,7 +77,8 @@ class Header extends Component {
                             data-target="#navbarNavDropdown" 
                             aria-controls="navbarNavDropdown" 
                             aria-expanded="false" 
-                            aria-label="Toggle navigation">
+                            aria-label="Toggle navigation"
+                            >
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavDropdown">
@@ -103,20 +104,15 @@ class Header extends Component {
                                         data-toggle="dropdown" 
                                         aria-haspopup="true" 
                                         aria-expanded="false">
-                                            <i className="fa fa-user" aria-hidden="true"></i>
+                                            <i className="fa fa-user" aria-hidden="true"  style={this.props.colorsObj.dropdown}></i>
                                     </a>
                                     {this.userDropDown(this.props.user)}
                                 </li>
                                 <li className="nav-item dropdown">
-                                        <BootstrapSwitchButton
                                         
-                                        checked={this.props.darkMode}
-                                        onlabel='On'
-                                        offlabel='Off'
-                                        onChange={(checked) => {
-                                            this.props.flipDarkMode();
-                                        }}
-                                    />
+                                        {this.props.darkMode ? <i class="fa fa-sun-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>:
+                                            <i class="fa fa-moon-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>
+}
                                 </li>
                             </ul>
                         </div>

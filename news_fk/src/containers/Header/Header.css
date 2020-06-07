@@ -114,6 +114,18 @@ l1 a.active .collapse {
         border-color: rgba(0, 0, 0, .15);
         margin-top: 25%;
     }
-        
+     
+    .fa-moon-o {
+        margin-top: 13px !important;
+    }
+
+    .fa-sun-o {
+        color: darkorange;
+        margin-top: 13px !important;
+    }
 }
 
+.fa-sun-o {
+    color: darkorange;
+    
+}

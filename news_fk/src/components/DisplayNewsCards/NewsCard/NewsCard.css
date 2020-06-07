@@ -56,7 +56,7 @@
     /* cursor: pointer; */
   }
   .card:hover {
-    background-color: lightgrey !important;
+    background-color: lightgrey;
     
   }
 

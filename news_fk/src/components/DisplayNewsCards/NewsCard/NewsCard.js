@@ -69,7 +69,7 @@ class NewsCard extends React.Component {
                                 data-target={'#' + this.props.url}
                                 style={{backgroundColor: this.props.colorsObj.cardButtonColor}}
                                 elevation >
-                                    <span>Share</span>
+                                    <span style={this.props.colorsObj.textStyleMedium}>Share</span>
                             </button>
 
                             <button type="button" 
@@ -79,7 +79,7 @@ class NewsCard extends React.Component {
                                     var win = window.open(this.props.url, '_blank');
                                     win.focus();
                                 }}>
-                                <span>Read More</span>   
+                                <span style={this.props.colorsObj.textStyleMedium}>Read More</span>   
                             </button>
                             <Modal {...this.props}/>
                         </div>
