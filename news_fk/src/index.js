@@ -5,9 +5,9 @@ import App from './App';
 import {createStore, applyMiddleware, combineReducers ,compose} from 'redux'
 import registerServiceWorker from './registerServiceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import newsFetchReducer from './store/reducers/newsFetchReducer';
+import newsFetchReducer from './store/news/reducer';
 import authReducer from './store/reducers/authReducer';
-import appModeReducer from './store/reducers/appModeReducer';
+import appModeReducer from './store/appMode/reducer';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import { CookiesProvider } from 'react-cookie';
