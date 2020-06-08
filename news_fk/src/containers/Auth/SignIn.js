@@ -10,6 +10,18 @@ class SignIn extends Component {
         email:'',
         password:''
     }
+
+    showPassword = (event) => {
+        
+        var x = document.getElementById('myInput');
+        
+        if(x.type === 'password') {
+            x.type = 'text';
+        }
+        else if(x.type === 'text') {
+            x.type = 'password';
+        }
+    }
     changeHandler = (event) => {
         this.setState({[event.target.type] : event.target.value})
     }
@@ -56,8 +68,9 @@ class SignIn extends Component {
                             placeholder='Password'
                             onChange={this.changeHandler}
                             name='psw'
+                            id='myInput'
                         />
-                    
+                        <input type="checkbox" onClick={this.showPassword}/><span> Show Password</span>
                     <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>
                     </div>
                 </form>  
