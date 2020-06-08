@@ -6,11 +6,23 @@
 import React from 'react';
 import "./NewsCard.css"
 import Modal from './Modal/Modal';
-
 //-----------------------------------------------------------------------------------------------------------------
 
-class NewsCard extends React.Component {
-    constructor(props) {
+interface NewsCardProps{
+    cookies:any;
+    url:any;
+    colorsObj:any;
+    img:any;
+    title:string;
+    description:string;
+}
+
+interface NewsCardState{
+    isLiked : boolean;
+}
+
+class NewsCard extends React.Component<NewsCardProps, NewsCardState> {
+    constructor(props : NewsCardProps) {
         super(props);
         this.state = {
             isLiked: ((this.props.cookies).get('Like')).includes(this.props.url)
@@ -68,7 +80,7 @@ class NewsCard extends React.Component {
                                 data-toggle="modal" 
                                 data-target={'#' + this.props.url}
                                 style={{backgroundColor: this.props.colorsObj.cardButtonColor}}
-                                elevation >
+                            >
                                     <span style={this.props.colorsObj.textStyleMedium}>Share</span>
                             </button>
 

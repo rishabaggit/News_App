@@ -1,11 +1,16 @@
 import React from 'react';
 import { TwitterShareButton, TwitterIcon, FacebookShareButton, FacebookIcon, RedditShareButton, RedditIcon, WhatsappShareButton, WhatsappIcon} from 'react-share';
 
+interface ModalProps{
+    url:string;
+    description:string;
+    title:string;
+    img:any;
+}
 
-
-const Modal = (props) => {
+const Modal:React.FC<ModalProps> = (props) => {
     return (
-        <div className="modal fade" id={props.url} tabIndex="-1" role="dialog" aria-hidden="true">
+        <div className="modal fade" id={props.url}  role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-lg" role="document">
                 <div className="modal-content">
                 <div className="modal-header">

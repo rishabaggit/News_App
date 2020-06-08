@@ -8,10 +8,24 @@ import NewsCardDB from './NewsCard/NewsCardDB'
 import NewsCard from './NewsCard/NewsCard'
 import {connect} from 'react-redux';
 import "./DisplayNewsCards.css"
+import {RootState} from '../../index'
 
 //-----------------------------------------------------------------------------------------------------------------
+interface DisplayNewsCardsProps{
+    userId: any;
+    cookies: any;
+    colorsObj: any;
+    articles:any;
+}
+interface newsitemI{
+    urlToImage: any;
+    url:string;
+    title:string;
+    description:string;
+}
 
-class DisplayNewsCards extends React.Component {
+
+class DisplayNewsCards extends React.Component<DisplayNewsCardsProps>  {
     render() {
         if(this.props.userId) {
             return(
@@ -22,7 +36,7 @@ class DisplayNewsCards extends React.Component {
                         
                             {
                                             // articles is alias name for news_articles array in store
-                                 this.props.articles.map((newsitem,idx) => {
+                                 this.props.articles.map((newsitem : newsitemI,idx : number) => {
                                             //  Calling NewsCard for Every Element of articles Array as newsitem with uniques key idx,
                                             //  passing in props the image, url, title, description and key attached with speicfic news artice.
                                             // console.log(props.cookies);
@@ -51,7 +65,7 @@ class DisplayNewsCards extends React.Component {
                 
                     {
                                     // articles is alias name for news_articles array in store
-                         this.props.articles.map((newsitem,idx) => {
+                         this.props.articles.map((newsitem : newsitemI ,idx : number) => {
                                     //  Calling NewsCard for Every Element of articles Array as newsitem with uniques key idx,
                                     //  passing in props the image, url, title, description and key attached with speicfic news artice.
                                     // console.log(props.cookies);
@@ -77,7 +91,7 @@ class DisplayNewsCards extends React.Component {
  //---------------------------------------------------------------------------------------------------------------
 //Exporting as default DisplayNewsCards
 
-const mapStateToProps = state => {
+const mapStateToProps = (state : RootState) => {
     return {
       userId : state.auth.userId
     };

@@ -19,7 +19,10 @@ const rootReducer = combineReducers({
     appModeReducer : appModeReducer
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export type RootState = ReturnType<typeof rootReducer>
+
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 
 const store = createStore(rootReducer,  composeEnhancers(applyMiddleware(thunk)));
 ReactDOM.render(<Provider store={store}>
