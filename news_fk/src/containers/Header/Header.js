@@ -10,7 +10,6 @@ import CountryNavItem from './NavItems/CountryNavItem.js'
 import CategoryNavItem from './NavItems/CategoryNavItem.js'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
-import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 import {Route} from 'react-router-dom';
 
 
@@ -99,7 +98,7 @@ class Header extends Component {
                                 )}/>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" 
-                                        href="#" id="navbarDropdown"
+                                        href="#/" id="navbarDropdown"
                                         role="button" 
                                         data-toggle="dropdown" 
                                         aria-haspopup="true" 
