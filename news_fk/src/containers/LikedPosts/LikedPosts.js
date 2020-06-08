@@ -1,3 +1,5 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable react/prop-types */
 // PURPOSE: Component is called in App.js and is responsible for Rendering of News Articles stored in newsarticles array
 
 //-----------------------------------------------------------------------------------------------------------------
@@ -7,91 +9,91 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import NewsCardDB from '../../components/DisplayNewsCards/NewsCard/NewsCardDB';
 import {connect} from 'react-redux';
-import "../../components/DisplayNewsCards/DisplayNewsCards.css";
+import '../../components/DisplayNewsCards/DisplayNewsCards.css';
 import {userget , addLike , removeLike}from '../../components/UserData/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
 //-----------------------------------------------------------------------------------------------------------------
 class LikedPosts extends React.Component {
-    componentDidMount() {
-        if(this.props.userId === null) {
-            return <Redirect to="/signin" />;
-        }
-        else {
-            console.log('CALLED', this.props.userId)
-            userget(this.props.userId).then(
-                doc => {
-                    console.log('REACHED', doc)
-                    if(doc && doc.liked) {
-                        this.setState({LikedArray : doc.liked});
-                    }
-                    else {
-                        this.setState({LikedArray : []});
-                    }
-                }
-            )
-            .catch(error => console.log(error));
-        }
-    }
+	componentDidMount() {
+		if(this.props.userId === null) {
+			return <Redirect to="/signin" />;
+		}
+		else {
+			console.log('CALLED', this.props.userId);
+			userget(this.props.userId).then(
+				doc => {
+					console.log('REACHED', doc);
+					if(doc && doc.liked) {
+						this.setState({LikedArray : doc.liked});
+					}
+					else {
+						this.setState({LikedArray : []});
+					}
+				}
+			)
+				.catch(error => console.log(error));
+		}
+	}
     state = {
-        LikedArray : null
+    	LikedArray : null
     }
     likePost = (newsItem) => {
-        let likedPosts = [...this.state.LikedArray , newsItem];
-        this.setState({LikedArray : likedPosts})
-        addLike(this.props.userId ,newsItem);
+    	let likedPosts = [...this.state.LikedArray , newsItem];
+    	this.setState({LikedArray : likedPosts});
+    	addLike(this.props.userId ,newsItem);
     }
     unlikePost = (newsItem) => {
-        let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
-        this.setState({LikedArray : likedPosts})
-        removeLike(this.props.userId ,newsItem);
+    	let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url);
+    	this.setState({LikedArray : likedPosts});
+    	removeLike(this.props.userId ,newsItem);
     }
     render() {
-        if(!this.props.userId) {
-            return <Redirect to="/signin" />;
-        }
-        if(this.state.LikedArray) {
-            return(
-                <div style={{marginTop : "50px"}}>
-                <div className="container">
-                    <div className="row">
-                            {
-                                 this.state.LikedArray.map((newsitem,idx) => {
-                                    return <NewsCardDB
-                                        img={newsitem.urlToImage}
-                                        url={newsitem.url}
-                                        title={newsitem.title}
-                                        description={newsitem.description}
-                                        key={idx}
-                                        colorsObj = {this.props.colorsObj}
-                                        Liked = {this.state.LikedArray.find(obj => obj.url === newsitem.url)}
-                                        newsItem={newsitem}
-                                        likePost = {this.likePost}
-                                        unlikePost = {this.unlikePost}
-                                    />
-                                })
+    	if(!this.props.userId) {
+    		return <Redirect to="/signin" />;
+    	}
+    	if(this.state.LikedArray) {
+    		return(
+    			<div style={{marginTop : '50px'}}>
+    				<div className="container">
+    					<div className="row">
+    						{
+    							this.state.LikedArray.map((newsitem,idx) => {
+    								return <NewsCardDB
+    									img={newsitem.urlToImage}
+    									url={newsitem.url}
+    									title={newsitem.title}
+    									description={newsitem.description}
+    									key={idx}
+    									colorsObj = {this.props.colorsObj}
+    									Liked = {this.state.LikedArray.find(obj => obj.url === newsitem.url)}
+    									newsItem={newsitem}
+    									likePost = {this.likePost}
+    									unlikePost = {this.unlikePost}
+    								/>;
+    							})
         
-                            }                
-                    </div>
-                </div>
-                </div>
+    						}                
+    					</div>
+    				</div>
+    			</div>
                 
-            );
-            }
-            else {
-                return <FullScreenLoader/>;
-        }
+    		);
+    	}
+    	else {
+    		return <FullScreenLoader/>;
+    	}
     }
- }
+}
  
- //---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
 //Exporting as default DisplayNewsCards
 
 const mapStateToProps = (state) => {
-    return {
-      userId : state.auth.userId,
-      colorsObj : state.appModeReducer.colorsObj
-    };
-  };
+	return {
+		userId : state.auth.userId,
+		colorsObj : state.appModeReducer.colorsObj
+	};
+};
 
 //mapDispatchToProps() is a utility which will help your component to fire an action event
 

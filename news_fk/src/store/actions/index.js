@@ -1,14 +1,14 @@
 export {
-    authWithEmail,
-    authSuccess,
-    authWithFacebook,
-    logout
+	authWithEmail,
+	authSuccess,
+	authWithFacebook,
+	logout
 } from './auth';
 export {
-    newsHandler,
-    countryChangeHandler,
-    categoryChangeHandler
+	newsHandler,
+	countryChangeHandler,
+	categoryChangeHandler
 } from './news';
 export{
-    flipDarkMode
-} from './darkMode'
+	flipDarkMode
+} from './darkMode';
