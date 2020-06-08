@@ -13,6 +13,21 @@ class LogIn extends Component {
         fname: '',
         lname: ''
     }
+
+    validate = (event) => {
+        var pass = event.target.value;
+        var reg =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;;
+        var test = reg.test(pass);
+        var message = document.getElementById('nwl');
+        if (!test) {
+            message.style.color="red";
+            message.style.fontSize="12px";
+            message.innerHTML = "Password between 7 to 15 characters, One Numeric & One Special Character";
+        }   
+        else{
+            message.innerHTML = "";
+        }        
+    }
     changeHandler = (event) => {
         this.setState({[event.target.id] : event.target.value})
     }
@@ -79,8 +94,10 @@ class LogIn extends Component {
                         type='password'
                         placeholder='Password'
                         onChange={this.changeHandler}
+                        onInput={this.validate}
                         name="psw"
                         />
+                        <div id="nwl"></div>
                         <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Re-enter Password</b></label>
                         <input
                         id='password2'
