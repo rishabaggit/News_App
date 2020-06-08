@@ -3,6 +3,26 @@ import {FIREBASE_API_KEY} from '../../constants';
 import axios from 'axios';
 import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
 import { newUser } from 'components/UserData/FirestoreUtil';
+import { RootState } from 'index';
+
+
+interface authStartAction{
+    type: typeof actionTypes.AUTH_START;
+};
+
+interface authSuccessAction{
+    type: typeof actionTypes.AUTH_SUCCESS;
+    userId: string;
+};
+
+interface authFailAction{
+    type: typeof actionTypes.AUTH_FAIL;
+    error: any;
+};
+
+interface logoutAction{
+    type: typeof actionTypes.AUTH_LOGOUT;
+};
 
 export const authStart = () => {
     return {
@@ -10,13 +30,13 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (userId) => {
+export const authSuccess = (userId:string) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         userId: userId
     };
 };
-export const authFail = (error) => {
+export const authFail = (error:any) => {
     return {
         type: actionTypes.AUTH_FAIL,
         error: error
@@ -29,8 +49,8 @@ export const logout = () => {
     };
 };
 
-export const authWithEmail = (userData, SignIn) => {
-    return (dispatch, getState) => {
+export const authWithEmail = (userData: any, SignIn: any) => {
+    return (dispatch:any) => {
         dispatch(authStart());
         const authData = {
             email: userData.email,
@@ -52,15 +72,17 @@ export const authWithEmail = (userData, SignIn) => {
             });
     };
 };
+
+
 export const authWithFacebook = () => {
-    return dispatch => {
+    return (dispatch:any) => {
         dispatch(authStart());
         app.auth().signInWithPopup(facebookProvider)
         .then(result => {
-            newUser(result.additionalUserInfo.profile.email,
-                result.additionalUserInfo.profile.first_name,
-                result.additionalUserInfo.profile.last_name);
-            dispatch(authSuccess(result.additionalUserInfo.profile.email));
+            newUser((result.additionalUserInfo.profile as any).email,
+                (result.additionalUserInfo.profile as any).first_name,
+                (result.additionalUserInfo.profile as any).last_name);
+            dispatch(authSuccess((result.additionalUserInfo.profile as any).email));
         })
         .catch(error => {
             console.log(error);
@@ -68,3 +90,5 @@ export const authWithFacebook = () => {
         })
     }
 }
+
+export type authAction = authStartAction | authFailAction | authSuccessAction | logoutAction;

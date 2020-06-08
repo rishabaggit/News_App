@@ -6,7 +6,11 @@ import React from 'react';
 import {countryList} from '../../../constants'
 
 //---------------------------------------------------------------------------------------------------------
-const CountryNavItem = (props) => {
+interface CountryNavItemProps{
+    country: any;
+    countryChangeHandler: any;
+}
+const CountryNavItem: React.FC<CountryNavItemProps> = (props) => {
     return (
         <li className="nav-item">   
                                     {/* Display a navbar item for the select with the option in the dropdown for

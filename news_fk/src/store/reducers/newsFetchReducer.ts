@@ -1,6 +1,18 @@
 import * as actionTypes from '../actions/actionTypes';
+import { newsFetchAction } from 'store/actions/news';
 
-const initialState = {
+interface newsFetchState{
+    initial_loading: boolean;
+    should_load: boolean;
+    currpage: number;
+    countrycode: string;
+    newscategory: string;
+    newsarticles: any;
+    end_of_article: boolean;
+    error_found: boolean;
+}
+
+const initialState: newsFetchState = {
     initial_loading : true,
     should_load : false,
     currpage : 1,
@@ -11,7 +23,7 @@ const initialState = {
     error_found : false
 }
 
-const newsFetchReducer = (state = initialState,action) => {
+const newsFetchReducer = (state = initialState,action : newsFetchAction) => {
     switch(action.type){
         case actionTypes.SET_INITIAL_LOADING:
             return{
@@ -28,16 +40,16 @@ const newsFetchReducer = (state = initialState,action) => {
                 ...state,
                 currpage : action.val
             }    
-        case actionTypes.SET_COUNTRY_CODE:
-            return{
-                ...state,
-                countrycode : action.val
-            } 
-        case actionTypes.SET_NEWS_CATEGORY:
-            return{
-                ...state,
-                newscategory : action.val
-            } 
+        // case actionTypes.SET_COUNTRY_CODE:
+        //     return{
+        //         ...state,
+        //         countrycode : action.val
+        //     } 
+        // case actionTypes.SET_NEWS_CATEGORY:
+        //     return{
+        //         ...state,
+        //         newscategory : action.val
+        //     } 
         case actionTypes.SET_NEWS_ARTICLES:
             return{
                 ...state,

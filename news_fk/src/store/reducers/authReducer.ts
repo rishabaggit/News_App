@@ -1,12 +1,18 @@
 import * as actionTypes from '../actions/actionTypes';
+import { authAction } from 'store/actions/auth';
 
-const initialState = {
+interface authState{
+    userId: string;
+    error: any;
+    loading: boolean;
+}
+const initialState: authState = {
     userId: null,
     error: null,
     loading: false,
 };
 
-const authReducer = (state = initialState,action) => {
+const authReducer = (state = initialState,action: authAction) => {
     switch(action.type){
         case actionTypes.AUTH_START:
             return{
