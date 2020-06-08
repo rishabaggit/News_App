@@ -49,7 +49,7 @@ class UserProfile extends Component {
             // </div>
             <div className="container">
                 <div className="row">
-                    <div className="column col-md-4">
+                    <div className="column col-md-4 col-12">
                         <div class="card c1">
                             <img src={Avatar} alt="Avatar" style={{width:'100%'}}/>
                             <h1>{this.state.userData.first_name}</h1>
@@ -63,11 +63,19 @@ class UserProfile extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className="column col-md-8">
+                    <div className="column col-md-8 col-12">
                         <div className="vertically-center">
-                            <h1 className="bannerUser">Hi {this.state.userData.first_name} {this.state.userData.last_name}</h1 >
-                            <p>We hope and expect, your user experience till now must have extremely good.</p>
-                            <p>In case of any queries, please contact <NavLink to="/info" exact className="nav-link">here</NavLink></p>
+                            <h1 className="bannerUser" 
+                            style={this.props.colorsObj.textStyleHigh}>
+                            Hi {this.state.userData.first_name} {this.state.userData.last_name}
+                            </h1 >
+                            <p style={this.props.colorsObj.textStyleHigh}>
+                            We hope and expect, your user experience till now must have been extremely good.
+                            </p>
+                            <p style={this.props.colorsObj.textStyleHigh}>
+                            In case of any queries, please contact 
+                            <NavLink to="/info" exact className="nav-link l5">here</NavLink>
+                            </p>
                         </div>
                         
                     </div>

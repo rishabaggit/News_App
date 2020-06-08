@@ -19,15 +19,33 @@
     text-align: center;
   }
 
-  .vertically-center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    margin-left: 20% !important;
+  @media screen and (min-width: 990px){
+    .vertically-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        margin-left: 20% !important;
+      }
+    
   }
 
+  @media screen and (max-width: 990px){
+    .vertically-center {
+        margin-top: 10%;
+        position: absolute;
+        
+      }
+
+      .l5 {
+        font-size: 20px !important;
+        font-family: cursive;
+        color: lightslategray;
+    }
+    
+  }
+  
   .bannerUser {
       font-family: 'Sofia';
       color: black;
