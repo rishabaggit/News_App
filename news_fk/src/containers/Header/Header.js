@@ -6,8 +6,8 @@
 import React, { Component } from 'react';
 import './Header.css';
 import {Link , NavLink} from 'react-router-dom';
-import CountryNavItem from './NavItems/CountryNavItem.js'
-import CategoryNavItem from './NavItems/CategoryNavItem.js'
+import CountryNavItem from './NavItems/CountryNavItem.tsx'
+import CategoryNavItem from './NavItems/CategoryNavItem.tsx'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
 import {Route} from 'react-router-dom';

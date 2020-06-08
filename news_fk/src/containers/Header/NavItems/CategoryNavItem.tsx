@@ -6,8 +6,12 @@ import React from 'react';
 import {newsCategories} from '../../../constants'
 
 //---------------------------------------------------------------------------------------------------------
+interface CategoryNavItemProps{
+    category: any;
+    categoryChangeHandler: any;
+}
 
-const CategoryNavItem = (props) => {
+const CategoryNavItem:React.FC<CategoryNavItemProps>= (props) => {
     return (
         <li className="nav-item" style = {{color:'black'}}>                
                                 {/* Display a navbar item for the select with the option in the dropdown for

@@ -1,12 +1,18 @@
 import * as actionTypes from '../actions/actionTypes';
 import {defaultColors, darkModeColors} from '../../colors';
+import {appModeAction} from '../actions/darkMode'
 
-const initialState = {
+interface appModeState{
+    darkMode: boolean;
+    colorsObj: any;
+}
+
+const initialState: appModeState = {
     darkMode : false,
     colorsObj : defaultColors
 };
 
-const appModeReducer = (state = initialState,action) => {
+const appModeReducer = (state:appModeState = initialState, action: appModeAction) => {
     switch(action.type){
         case actionTypes.FLIP_DARK_MODE:
             return{
