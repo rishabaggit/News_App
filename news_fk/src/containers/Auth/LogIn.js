@@ -83,12 +83,12 @@ class LogIn extends Component {
                 />
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 <form onSubmit={this.onSubmitHandler} style={{backgroundColor: this.props.colorsObj.formColor}}>
-                    {/* <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button> */}
+                    <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
                     <div className="container1">
-                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
+                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
                         <input
                         id='email'
                         value={this.state.email}
@@ -97,7 +97,7 @@ class LogIn extends Component {
                         onChange={this.changeHandler}
                         name="uname"
                         />
-                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>First Name</b></label>
+                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>First Name</b></label>
                         <input
                         id='fname'
                         value={this.state.fname}
@@ -106,7 +106,7 @@ class LogIn extends Component {
                         onChange={this.changeHandler}
                         name="uname"
                         />
-                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>Last Name</b></label>
+                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Last Name</b></label>
                         <input
                         id='lname'
                         value={this.state.lname}
@@ -115,7 +115,7 @@ class LogIn extends Component {
                         onChange={this.changeHandler}
                         name="uname"
                         />
-                        <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
+                        <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
                         id='password'
                         value={this.state.password}
@@ -126,7 +126,7 @@ class LogIn extends Component {
                         name="psw"
                         />
                         <div id="nwl"></div>
-                        <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Re-enter Password</b></label>
+                        <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Re-enter Password</b></label>
                         <input
                         id='password2'
                         value={this.state.password2}

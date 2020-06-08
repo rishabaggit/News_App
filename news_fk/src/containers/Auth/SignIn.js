@@ -80,7 +80,7 @@ class SignIn extends Component {
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
                     <div className="container1">
-                        <label for="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
+                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
                         <input
                             value={this.state.email}
                             type='email'
@@ -88,7 +88,7 @@ class SignIn extends Component {
                             onChange={this.changeHandler}
                             name="uname"
                         />
-                        <label for="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
+                        <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
                             value={this.state.password}
                             type='password'

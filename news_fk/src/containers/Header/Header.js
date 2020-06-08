@@ -109,8 +109,8 @@ class Header extends Component {
                                 </li>
                                 <li className="nav-item dropdown">
                                         
-                                        {this.props.darkMode ? <i class="fa fa-sun-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>:
-                                            <i class="fa fa-moon-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>
+                                        {this.props.darkMode ? <i className="fa fa-sun-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>:
+                                            <i className="fa fa-moon-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>
 }
                                 </li>
                             </ul>

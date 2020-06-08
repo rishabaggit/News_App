@@ -30,7 +30,10 @@ class DisplayNewsCards extends React.Component {
                     }
                 }
             )
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                this.setState({LikedArray : [], loading : false});
+            });
         }
     }
     state = {
