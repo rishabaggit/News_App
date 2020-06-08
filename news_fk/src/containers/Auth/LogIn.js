@@ -40,7 +40,7 @@ class LogIn extends Component {
                 <br/>
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 <form onSubmit={this.onSubmitHandler} style={{backgroundColor: this.props.colorsObj.formColor}}>
-                    <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
+                    {/* <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button> */}
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>

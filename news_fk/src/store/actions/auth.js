@@ -57,9 +57,11 @@ export const authWithFacebook = () => {
         dispatch(authStart());
         app.auth().signInWithPopup(facebookProvider)
         .then(result => {
-            newUser(result.additionalUserInfo.profile.email,
-                result.additionalUserInfo.profile.first_name,
-                result.additionalUserInfo.profile.last_name);
+            // if(result.additionalUserInfo.isNewUser) {
+            //     newUser(result.additionalUserInfo.profile.email,
+            //         result.additionalUserInfo.profile.first_name,
+            //         result.additionalUserInfo.profile.last_name);
+            // }
             dispatch(authSuccess(result.additionalUserInfo.profile.email));
         })
         .catch(error => {

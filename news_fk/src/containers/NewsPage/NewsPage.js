@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BottomLoader from '../../components/UI/BottomLoader/BottomLoader';
-import DisplayNewsCards from '../../components/DisplayNewsCards/DispalyNewsCards';
+import DisplayNewsCardsDB from '../../components/DisplayNewsCards/DisplayNewsCardsDB';
+import DisplayNewsCards from '../../components/DisplayNewsCards/DisplayNewsCards';
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler';
 import InitialLoader from '../../components/UI/InitialLoader/InitialLoader';
 import {connect} from 'react-redux';
@@ -31,12 +32,22 @@ class NewsPage extends Component {
           return <InitialLoader/>;
         }
         else {                                      //Render DispalyNewsCards to display news article and BottomLoader to display loader in other cases
-          return (
-            <div>
-                <DisplayNewsCards articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
-                <BottomLoader load={!this.props.end_of_article} />
-            </div>
-          );
+          if(this.props.userId) {
+            return (
+              <div>
+                  <DisplayNewsCardsDB articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
+                  <BottomLoader load={!this.props.end_of_article} />
+              </div>
+            );
+          }
+          else {
+            return (
+              <div>
+                  <DisplayNewsCards articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
+                  <BottomLoader load={!this.props.end_of_article} />
+              </div>
+            );
+          }
         }
       }
       render() {
@@ -60,7 +71,8 @@ const mapStateToProps = (state, ownProps) => {
       end_of_article : state.newsFetchReducer.end_of_article,
       error_found : state.newsFetchReducer.error_found,
       colorsObj : state.appModeReducer.colorsObj,
-      cookies: ownProps.cookies
+      cookies: ownProps.cookies,
+      userId : state.auth.userId
     };
   };
   
