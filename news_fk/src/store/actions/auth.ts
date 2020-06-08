@@ -24,6 +24,10 @@ interface logoutAction{
     type: typeof actionTypes.AUTH_LOGOUT;
 };
 
+interface authRefreshAction{
+    type: typeof actionTypes.AUTH_REFRESH;
+};
+
 export const authStart = () => {
     return {
         type: actionTypes.AUTH_START
@@ -40,6 +44,11 @@ export const authFail = (error:any) => {
     return {
         type: actionTypes.AUTH_FAIL,
         error: error
+    };
+};
+export const authRefresh = () => {
+    return {
+        type: actionTypes.AUTH_REFRESH
     };
 };
 
@@ -93,4 +102,4 @@ export const authWithFacebook = () => {
     }
 }
 
-export type authAction = authStartAction | authFailAction | authSuccessAction | logoutAction;
+export type authAction = authStartAction | authFailAction | authSuccessAction | logoutAction | authRefreshAction;

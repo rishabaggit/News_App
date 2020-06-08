@@ -2,7 +2,8 @@ export {
     authWithEmail,
     authSuccess,
     authWithFacebook,
-    logout
+    logout,
+    authRefresh
 } from './auth';
 export {
     newsHandler,

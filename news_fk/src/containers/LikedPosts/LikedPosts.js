@@ -5,39 +5,34 @@
 
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import NewsCardDev from './NewsCard/NewsCardDB';
+import NewsCardDB from '../../components/DisplayNewsCards/NewsCard/NewsCardDB';
 import {connect} from 'react-redux';
-import "./DisplayNewsCards.css";
-import {userget , addLike , removeLike}from '../UserData/FirestoreUtil';
-import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
+import "../../components/DisplayNewsCards/DisplayNewsCards.css";
+import {userget , addLike , removeLike}from '../../components/UserData/FirestoreUtil';
+import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
 //-----------------------------------------------------------------------------------------------------------------
-class DisplayNewsCards extends React.Component {
+class LikedPosts extends React.Component {
     componentDidMount() {
         if(this.props.userId === null) {
             return <Redirect to="/signin" />;
         }
         else {
-            this.setState({loading : true})
+            console.log('CALLED', this.props.userId)
             userget(this.props.userId).then(
                 doc => {
+                    console.log('REACHED', doc)
                     if(doc && doc.liked) {
-                        this.setState({LikedArray : doc.liked,
-                            loading : false
-                        });
+                        this.setState({LikedArray : doc.liked.reverse()});
                     }
                     else {
-                        this.setState({LikedArray : [], loading : false});
+                        this.setState({LikedArray : []});
                     }
                 }
             )
-            .catch(error => {
-                console.log(error);
-                this.setState({LikedArray : [], loading : false});
-            });
+            .catch(error => console.log(error));
         }
     }
     state = {
-        loading : true,
         LikedArray : null
     }
     likePost = (newsItem) => {
@@ -54,16 +49,14 @@ class DisplayNewsCards extends React.Component {
         if(!this.props.userId) {
             return <Redirect to="/signin" />;
         }
-        if(this.state.loading) {
-            return <FullScreenLoader/>;
-        }
         if(this.state.LikedArray) {
             return(
+                <div style={{marginTop : "50px"}}>
                 <div className="container">
                     <div className="row">
                             {
-                                 this.props.articles.map((newsitem,idx) => {
-                                    return <NewsCardDev
+                                 this.state.LikedArray.map((newsitem,idx) => {
+                                    return <NewsCardDB
                                         img={newsitem.urlToImage}
                                         url={newsitem.url}
                                         title={newsitem.title}
@@ -80,6 +73,7 @@ class DisplayNewsCards extends React.Component {
                             }                
                     </div>
                 </div>
+                </div>
                 
             );
             }
@@ -94,7 +88,8 @@ class DisplayNewsCards extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-      userId : state.auth.userId
+      userId : state.auth.userId,
+      colorsObj : state.appModeReducer.colorsObj
     };
   };
 
@@ -108,6 +103,6 @@ const mapStateToProps = (state) => {
 //-----------------------------------------------------------------------------------------------------------------
 //Using Default Export as App with Connect being an higher order component which provides data to Component and functions it can dispatch to store.
 
-export default connect(mapStateToProps, null)(DisplayNewsCards);
+export default connect(mapStateToProps, null)(LikedPosts);
 
 //---------------------------------------------------------------------------------------------------------------
