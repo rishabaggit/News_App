@@ -53,8 +53,8 @@ class UserProfile extends Component {
                         <div class="card c1">
                             <img src={Avatar} alt="Avatar" style={{width:'100%'}}/>
                             <h1>{this.state.userData.first_name}</h1>
-                            <p class="title">Student</p>
-                            <p>MNNIT Allahabad</p>
+                            <p class="title">PROFESSION</p>
+                            <p>INSTITUTION</p>
                             <p>
                                 <a href="#/"><i className="fa fa-dribbble fa1"></i></a>
                                 <a href="#/"><i className="fa fa-twitter fa1"></i></a>

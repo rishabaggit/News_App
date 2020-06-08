@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {authWithEmail,authWithFacebook,authRefresh} from '../../store/actions/index';
-import { Redirect } from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 import './Login.css'
 import Avatar from '../../resources/Avatar.jpg'
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
@@ -16,6 +16,7 @@ class LogIn extends Component {
         fname: '',
         lname: ''
     }
+
 
     validate = (event) => {
         var pass = event.target.value;
@@ -142,7 +143,6 @@ class LogIn extends Component {
                             type="button">LOGIN</button>
                     </div>
                 </form>
-                
             </div>
         )
     }

@@ -22,7 +22,7 @@ class LikedPosts extends React.Component {
                 doc => {
                     console.log('REACHED', doc)
                     if(doc && doc.liked) {
-                        this.setState({LikedArray : doc.liked});
+                        this.setState({LikedArray : doc.liked.reverse()});
                     }
                     else {
                         this.setState({LikedArray : []});
