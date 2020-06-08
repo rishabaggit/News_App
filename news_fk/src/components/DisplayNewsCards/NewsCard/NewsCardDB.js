@@ -17,13 +17,13 @@ class NewsCard extends React.Component {
             <div className="container" >
                             {/* onClick function acts an a listener and renders the news in a new tab upon article clicking
                             To open a new window on every call of window.open(), used the special value _blank for windowName. */}
-                <div className="card" style={{backgroundColor: this.props.colorsObj.cardColor}} onDoubleClick={ this.props.Liked ? () => this.props.unlikePost(this.props.url) : () => this.props.likePost(this.props.url)}>
+                <div className="card" style={{backgroundColor: this.props.colorsObj.cardColor}} onDoubleClick={ this.props.Liked ? () => this.props.unlikePost(this.props.newsItem) : () => this.props.likePost(this.props.newsItem)}>
                     {/* <object data={props.img} height="175" id="hello"> */}
                         {/* <img src={props.img} alt="" id="hello" height="175"/> */}
                         <div className="iconoverimage">
                                 <img src={this.props.img} alt="" id="hello" height="175" style = {{opacity: this.props.colorsObj.opacity}}/>
-                                {this.props.Liked ? <i className="far fa-heart" id={'#' + this.props.url} onClick={()=> this.props.unlikePost(this.props.url)}></i>: 
-                                                <i className="fas fa-heart" id={'#' + this.props.url}  onClick={()=> this.props.likePost(this.props.url)}></i> }
+                                {this.props.Liked ? <i className="far fa-heart" id={'#' + this.props.url} onClick={()=> this.props.unlikePost(this.props.newsItem)}></i>: 
+                                                <i className="fas fa-heart" id={'#' + this.props.url}  onClick={()=> this.props.likePost(this.props.newsItem)}></i> }
                                 
                             </div>
                     {/* </object> */}

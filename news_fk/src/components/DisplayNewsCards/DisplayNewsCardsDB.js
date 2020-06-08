@@ -35,19 +35,19 @@ class DisplayNewsCards extends React.Component {
     state = {
         LikedArray : null
     }
-    likePost = (url) => {
-        let likedPosts = [...this.state.LikedArray , url];
+    likePost = (newsItem) => {
+        let likedPosts = [...this.state.LikedArray , newsItem];
         this.setState({LikedArray : likedPosts})
-        addLike(this.props.userId ,url);
+        addLike(this.props.userId ,newsItem);
     }
-    unlikePost = (url) => {
+    unlikePost = (newsItem) => {
         let likedPosts = this.state.LikedArray;
-        const index = likedPosts.indexOf(url);
+        const index = likedPosts.indexOf(newsItem);
         if (index > -1) {
             likedPosts.splice(index, 1);
         }
         this.setState({LikedArray : likedPosts})
-        removeLike(this.props.userId ,url);
+        removeLike(this.props.userId ,newsItem);
     }
     render() {
         if(!this.props.userId) {
@@ -66,7 +66,8 @@ class DisplayNewsCards extends React.Component {
                                         description={newsitem.description}
                                         key={idx}
                                         colorsObj = {this.props.colorsObj}
-                                        Liked = {this.state.LikedArray.includes(newsitem.url)}
+                                        Liked = {this.state.LikedArray.find(obj => obj.url === newsitem.url)}
+                                        newsItem={newsitem}
                                         likePost = {this.likePost}
                                         unlikePost = {this.unlikePost}
                                     />
