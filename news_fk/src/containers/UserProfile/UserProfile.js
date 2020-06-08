@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import {userget}from '../../components/UserData/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import Avatar from '../../resources/Avatar.jpg'
+import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler'
 
 class UserProfile extends Component {
     state =  {
@@ -11,12 +12,17 @@ class UserProfile extends Component {
         userData : {}
     }
     componentDidMount() {
-       userget(this.props.userId).then(
-           doc => {
-               console.log(doc);
-               this.setState({loading : false, userData : doc});
-           }
-       )
+        if(this.props.userId === null) {
+            console.log('PLease sign in')
+        }
+        else {
+            userget(this.props.userId).then(
+                doc => {
+                    this.setState({loading : false, userData : doc});
+                }
+            )
+            .catch(error => console.log(error));
+        }
     }
     render() {
         if(this.props.userId === null) {
@@ -24,6 +30,10 @@ class UserProfile extends Component {
         }
         if(this.state.loading) {
             return <FullScreenLoader/>;
+        }
+        if(!this.state.userData) {
+            console.log('ERROR PAGE');
+            return <FetchErrorHandler />
         }
         return (
             <div>
@@ -34,10 +44,6 @@ class UserProfile extends Component {
                 </div>
                 <h1>{this.state.userData.first_name}</h1>
                 <h1>{this.state.userData.last_name}</h1>
-                {/* <button onClick={(event) => {
-                    event.preventDefault();
-                    userset('blahblah');
-                    }}>ADD USER</button> */}
             </div>
         );
     }
