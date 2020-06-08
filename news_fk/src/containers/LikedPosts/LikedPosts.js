@@ -41,11 +41,7 @@ class LikedPosts extends React.Component {
         addLike(this.props.userId ,newsItem);
     }
     unlikePost = (newsItem) => {
-        let likedPosts = this.state.LikedArray;
-        const index = likedPosts.indexOf(newsItem);
-        if (index > -1) {
-            likedPosts.splice(index, 1);
-        }
+        let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
         this.setState({LikedArray : likedPosts})
         removeLike(this.props.userId ,newsItem);
     }
