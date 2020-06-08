@@ -9,7 +9,7 @@ import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorH
 class UserProfile extends Component {
     state =  {
         loading : true,
-        userData : {}
+        userData : null
     }
     componentDidMount() {
         if(this.props.userId === null) {
