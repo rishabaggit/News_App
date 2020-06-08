@@ -13,6 +13,6 @@ export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
-export const AUTH_REDIRECT_TOGGLE = 'AUTH_REDIRECT_TOGGLE';
+export const AUTH_REFRESH = 'AUTH_REFRESH';
 
 export const FLIP_DARK_MODE = 'FLIP_DARK_MODE';

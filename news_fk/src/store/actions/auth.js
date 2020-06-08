@@ -22,6 +22,11 @@ export const authFail = (error) => {
         error: error
     };
 };
+export const authRefresh = (error) => {
+    return {
+        type: actionTypes.AUTH_REFRESH
+    };
+};
 
 export const logout = () => {
     return {

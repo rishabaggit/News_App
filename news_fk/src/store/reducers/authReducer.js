@@ -32,6 +32,11 @@ const authReducer = (state = initialState,action) => {
                 error: action.error,
                 loading: false
             }
+        case actionTypes.AUTH_REFRESH:
+            return{
+                ...state,
+                error: null
+            }
         default:
             return state;
     }

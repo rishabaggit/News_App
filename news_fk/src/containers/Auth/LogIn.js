@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {authWithEmail,authWithFacebook} from '../../store/actions/index';
+import {authWithEmail,authWithFacebook,authRefresh} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import './Login.css'
 import Avatar from '../../resources/Avatar.jpg'
@@ -61,6 +61,9 @@ class LogIn extends Component {
                 draggable: true,
                 progress: undefined,
                 });
+                this.props.authRefresh();
+                this.forceUpdate();
+            
         }
         return (
             <div>
@@ -161,7 +164,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type)),
-        authWithFacebook : () => dispatch(authWithFacebook())
+        authWithFacebook : () => dispatch(authWithFacebook()),
+        authRefresh : () => dispatch(authRefresh())
     }
   };
   
