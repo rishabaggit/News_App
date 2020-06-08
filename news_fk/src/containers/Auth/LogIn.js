@@ -5,6 +5,9 @@ import { Redirect } from 'react-router-dom';
 import './Login.css'
 import Avatar from '../../resources/Avatar.jpg'
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 class LogIn extends Component {
     state = {
         email:'',
@@ -33,11 +36,33 @@ class LogIn extends Component {
         if(this.props.loading) {
             return (<FullScreenLoader/>);
         }
+        if(this.props.error) {
+            toast.error(this.props.error, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }
         return (
             <div>
                 <br/>
                 <br/>
                 <br/>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 <form onSubmit={this.onSubmitHandler} style={{backgroundColor: this.props.colorsObj.formColor}}>
                     {/* <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button> */}

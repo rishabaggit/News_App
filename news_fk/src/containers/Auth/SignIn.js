@@ -5,6 +5,9 @@ import { Redirect } from 'react-router-dom';
 import Avatar from '../../resources/Avatar.jpg'
 import './Login.css';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 class SignIn extends Component {
     state = {
         email:'',
@@ -28,6 +31,17 @@ class SignIn extends Component {
         if(this.props.loading) {
             return (<FullScreenLoader/>);
         }
+        if(this.props.error) {
+            toast.error(this.props.error, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }
         return (
             <div>
                 <br/>
@@ -35,7 +49,17 @@ class SignIn extends Component {
                 <br/>
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
                 
-                
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <form style={{backgroundColor: this.props.colorsObj.formColor}} >
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar"/>
