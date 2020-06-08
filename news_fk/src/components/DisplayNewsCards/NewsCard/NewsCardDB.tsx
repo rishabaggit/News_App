@@ -7,8 +7,21 @@ import React from 'react';
 import "./NewsCard.css"
 import Modal from './Modal/Modal';
 //-----------------------------------------------------------------------------------------------------------------
+interface NewsCardProps{
+    cookies:any;
+    url:any;
+    colorsObj:any;
+    img:any;
+    title:string;
+    description:string;
+    Liked: boolean;
+    unlikePost: any;
+    likePost: any;
+    newsItem: any;
+}
 
-class NewsCard extends React.Component {
+
+class NewsCard extends React.Component<NewsCardProps> {
     render() {
         return (
             <div className="column thumbnail col-lg-4 col-md-6 col-xs-1pic">
@@ -37,7 +50,7 @@ class NewsCard extends React.Component {
                                 data-toggle="modal" 
                                 data-target={'#' + this.props.url}
                                 style={{backgroundColor: this.props.colorsObj.cardButtonColor}}
-                                elevation >
+                                 >
                                     <span style={this.props.colorsObj.textStyleMedium}>Share</span>
                             </button>
 

@@ -9,7 +9,7 @@ import "./DisplayNewsCards.css"
 
 //-----------------------------------------------------------------------------------------------------------------
 interface DisplayNewsCardsProps{
-    userId: any;
+    userId?: string;
     cookies: any;
     colorsObj: any;
     articles:any;

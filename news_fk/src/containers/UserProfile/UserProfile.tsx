@@ -7,9 +7,19 @@ import Avatar from '../../resources/Avatar.jpg'
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler'
 import './UserProfile.css'
 import {NavLink} from 'react-router-dom';
+import { RootState } from 'index';
 
-class UserProfile extends Component {
-    state =  {
+interface UserProfileProps{
+    userId: string;
+    colorsObj: any;
+
+}
+interface UserProfileState{
+    loading: boolean;
+    userData: any;
+}
+class UserProfile extends Component<UserProfileProps, UserProfileState> {
+    state: UserProfileState =  {
         loading : true,
         userData : null
     }
@@ -50,10 +60,10 @@ class UserProfile extends Component {
             <div className="container">
                 <div className="row">
                     <div className="column col-md-4 col-12">
-                        <div class="card c1">
+                        <div className="card c1">
                             <img src={Avatar} alt="Avatar" style={{width:'100%'}}/>
                             <h1>{this.state.userData.first_name}</h1>
-                            <p class="title">Student</p>
+                            <p className="title">Student</p>
                             <p>MNNIT Allahabad</p>
                             <p>
                                 <a href="#/"><i className="fa fa-dribbble fa1"></i></a>
@@ -85,7 +95,7 @@ class UserProfile extends Component {
         );
     }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState) => {
     return {
       userId : state.auth.userId,
       darkMode: state.appModeReducer.darkMode,

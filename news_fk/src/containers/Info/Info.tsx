@@ -8,10 +8,12 @@ import './Info.css'
 import Pic1 from '../../resources/Harshavardhana.jpeg'
 import Pic2 from '../../resources/Mudreka.png'
 import Pic3 from '../../resources/Pranjal.jpg'
-import Person from './Person.js'
+import Person from './Person'
 //-----------------------------------------------------------------------------------------------------------------
-
-const Info = (props) => {
+interface InfoProps{
+    colorsObj: any;
+}
+const Info: React.FC<InfoProps>= (props) => {
     return (
         // <h1>INFO</h1
         <React.Fragment>

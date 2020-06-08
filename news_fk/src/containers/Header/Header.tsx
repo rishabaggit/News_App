@@ -6,43 +6,62 @@
 import React, { Component } from 'react';
 import './Header.css';
 import {Link , NavLink} from 'react-router-dom';
-import CountryNavItem from './NavItems/CountryNavItem.tsx'
-import CategoryNavItem from './NavItems/CategoryNavItem.tsx'
+import CountryNavItem from './NavItems/CountryNavItem'
+import CategoryNavItem from './NavItems/CategoryNavItem'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
 import {Route} from 'react-router-dom';
+import { RootState } from 'index';
+import { newsFetchAction } from 'store/actions/news';
+import { appModeAction } from 'store/actions/darkMode';
 
 
 //---------------------------------------------------------------------------------------------------------
 
-class Header extends Component {
+interface HeaderProps{
+    countryChangeHandler: (newCountry:string) => newsFetchAction;
+    newsHandler: any;
+    categoryChangeHandler: (newCategory: string) => newsFetchAction;
+    colorsObj: any;
+    countrycode: string;
+    newscategory: string;
+    user: any;
+    darkMode: boolean;
+    flipDarkMode: () => appModeAction;
+}
+
+interface HeaderState{
+
+}
+
+class Header extends Component<HeaderProps, HeaderState> {
 
                     //function registered for listening to event and further for changing country in background and fetching news for same
-    countryChangeHandler = (event) => {
-        this.props.countryChangeHandler(event.target.value);
+    countryChangeHandler = (event : Event) => {
+        this.props.countryChangeHandler((event.target as any).value);
         this.props.newsHandler();
     }
                     //function registered for listening to event and further for changing category in background and fetching news for same
-    categoryChangeHandler = (event) => {
-        this.props.categoryChangeHandler(event.target.value);
+    categoryChangeHandler = (event : Event) => {
+        this.props.categoryChangeHandler((event.target as any).value);
         this.props.newsHandler();
     }
-    userDropDown = (isAuthenticated) => {
+    userDropDown = (isAuthenticated : boolean) => {
         if(isAuthenticated) {
             return (
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <Link className="dropdown-item" exact to="/userProfile">My Profile</Link>
-                    <Link className="dropdown-item" exact to="/likedPosts">Liked Posts</Link>
+                    <Link className="dropdown-item" to="/userProfile">My Profile</Link>
+                    <Link className="dropdown-item" to="/likedPosts">Liked Posts</Link>
                     <div className="dropdown-divider"></div>
-                    <Link className="dropdown-item" exact to="/logout">Logout</Link>
+                    <Link className="dropdown-item" to="/logout">Logout</Link>
                 </div>
             );
         }
         else {
             return (
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" exact to="/login">Log In</Link>
-                <Link className="dropdown-item" exact to="/signin">Sign In</Link>
+                <Link className="dropdown-item" to="/login">Log In</Link>
+                <Link className="dropdown-item" to="/signin">Sign In</Link>
             </div>
             );
         }
@@ -86,15 +105,14 @@ class Header extends Component {
                                 <Route path="/" exact render={() => (
                                         <CountryNavItem 
                                         country={this.props.countrycode} 
-                                        countryChangeHandler={this.countryChangeHandler} 
-                                        className="checking"
-                                        colorsObj={this.props.colorsObj} />
+                                        countryChangeHandler={this.countryChangeHandler}
+                                         />
                                 )}/>
                                 <Route path="/" exact render={() => (
                                         <CategoryNavItem 
                                         category={this.props.newscategory} 
                                         categoryChangeHandler={this.categoryChangeHandler}  
-                                        className="checking"/>
+                                    />
                                 )}/>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" 
@@ -109,8 +127,8 @@ class Header extends Component {
                                 </li>
                                 <li className="nav-item dropdown">
                                         
-                                        {this.props.darkMode ? <i class="fa fa-sun-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>:
-                                            <i class="fa fa-moon-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>
+                                        {this.props.darkMode ? <i className="fa fa-sun-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>:
+                                            <i className="fa fa-moon-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>
 }
                                 </li>
                             </ul>
@@ -132,7 +150,7 @@ class Header extends Component {
 //------------------------Redux Section----------------------------------------------------------------------------
 //mapStateToProps helps in getting the updated state from store in Header.js as props
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState) => {
     return {
       countrycode : state.newsFetchReducer.countrycode,
       newscategory : state.newsFetchReducer.newscategory,
@@ -144,11 +162,11 @@ const mapStateToProps = state => {
 
 //mapDispatchToProps() is a utility which will help your component to fire an action event
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         newsHandler : () => dispatch(actionTypes.newsHandler()),
-        countryChangeHandler : (newCountry) => dispatch(actionTypes.countryChangeHandler(newCountry)),
-        categoryChangeHandler : (newCategory) => dispatch(actionTypes.categoryChangeHandler(newCategory)),
+        countryChangeHandler : (newCountry:string) => dispatch(actionTypes.countryChangeHandler(newCountry)),
+        categoryChangeHandler : (newCategory:string) => dispatch(actionTypes.categoryChangeHandler(newCategory)),
         flipDarkMode: () => dispatch(actionTypes.flipDarkMode())
     }
   };

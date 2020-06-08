@@ -7,11 +7,25 @@ import InitialLoader from '../../components/UI/InitialLoader/InitialLoader';
 import {connect} from 'react-redux';
 import BottomScrollListener from 'react-bottom-scroll-listener';
 import {newsHandler} from '../../store/actions/index';
+import { RootState } from 'index';
 // import NewsBulletin from '../../components/Content/NewsBulletin/NewsBulletin';
 
-class NewsPage extends Component {
 
-    constructor(props) {
+interface NewsPageProps{
+  cookies:any;
+  should_load: boolean;
+  newsHandler: any;
+  error_found: boolean;
+  initial_loading: boolean;
+  userId: string;
+  newsarticles: any;
+  colorsObj: any;
+  end_of_article: boolean;
+}
+
+class NewsPage extends React.Component<NewsPageProps> {
+
+    constructor(props: NewsPageProps) {
         super(props);
         
         if((this.props.cookies).get('Like') === null || (this.props.cookies).get('Like') === undefined )
@@ -63,7 +77,7 @@ class NewsPage extends Component {
       }
 
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootState, ownProps: any) => {
     return {
       initial_loading : state.newsFetchReducer.initial_loading,
       should_load : state.newsFetchReducer.should_load,
@@ -79,7 +93,7 @@ const mapStateToProps = (state, ownProps) => {
   
   //mapDispatchToProps() is a utility which will help your component to fire an action event newshandler with action: newshandler() and no payload.
   
-  const mapDispatchToProps = dispatch => {
+  const mapDispatchToProps = (dispatch:any) => {
     return {
         newsHandler : () => dispatch(newsHandler())
     }

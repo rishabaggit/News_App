@@ -5,8 +5,13 @@ import React from 'react'
 import './Info.css'
 
 //-----------------------------------------------------------------------------------------------------------------
-
-const Person = (props) => {
+interface PersonProps{
+    colorsObj : any;
+    imageSrc : string;
+    name : string;
+    title: string;
+}
+const Person:React.FC<PersonProps> = (props) => {
     return (
                     // A column  in a row is assigned for each of the Person.
                     // Scaling issues resolved for screen width through col- md, sm, xs
