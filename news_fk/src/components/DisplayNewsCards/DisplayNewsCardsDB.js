@@ -17,15 +17,16 @@ class DisplayNewsCards extends React.Component {
             return <Redirect to="/signin" />;
         }
         else {
-            console.log('CALLED', this.props.userId)
+            this.setState({loading : true})
             userget(this.props.userId).then(
                 doc => {
-                    console.log('REACHED', doc)
                     if(doc && doc.liked) {
-                        this.setState({LikedArray : doc.liked});
+                        this.setState({LikedArray : doc.liked,
+                            loading : false
+                        });
                     }
                     else {
-                        this.setState({LikedArray : []});
+                        this.setState({LikedArray : [], loading : false});
                     }
                 }
             )
@@ -33,6 +34,7 @@ class DisplayNewsCards extends React.Component {
         }
     }
     state = {
+        loading : true,
         LikedArray : null
     }
     likePost = (newsItem) => {
@@ -41,17 +43,16 @@ class DisplayNewsCards extends React.Component {
         addLike(this.props.userId ,newsItem);
     }
     unlikePost = (newsItem) => {
-        let likedPosts = this.state.LikedArray;
-        const index = likedPosts.indexOf(newsItem);
-        if (index > -1) {
-            likedPosts.splice(index, 1);
-        }
+        let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
         this.setState({LikedArray : likedPosts})
         removeLike(this.props.userId ,newsItem);
     }
     render() {
         if(!this.props.userId) {
             return <Redirect to="/signin" />;
+        }
+        if(this.state.loading) {
+            return <FullScreenLoader/>;
         }
         if(this.state.LikedArray) {
             return(
