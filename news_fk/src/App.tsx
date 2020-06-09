@@ -42,7 +42,7 @@ class App extends Component<AppProps>{
   render() {
     return (                                     //Component able to render and read routes should be wrapped in BrowserRouter Object.
       <div>
-          <Header/>
+          <Header cookies={this.props.cookies}/>
           <Route path="/" exact component={NewsBulletin}/>
           <Switch>
               <Route path="/" exact render={() => (<NewsPage cookies={this.props.cookies}/>)}/>

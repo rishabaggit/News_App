@@ -25,6 +25,7 @@ interface HeaderProps{
     colorsObj: any;
     countrycode: string;
     newscategory: string;
+    cookies :any
     user: any;
     darkMode: boolean;
     flipDarkMode: () => appModeAction;
@@ -35,6 +36,22 @@ interface HeaderState{
 }
 
 class Header extends Component<HeaderProps, HeaderState> {
+
+    componentDidMount() {
+        console.log('HEADER MOUNT');
+        if((this.props.cookies).get('DarkMode') === null || (this.props.cookies).get('DarkMode') === undefined )
+          {
+            (this.props.cookies).set('DarkMode',false,{path: '/'})
+          }
+        const prevMode = (this.props.cookies).get('DarkMode') === "true";
+        if(prevMode !== this.props.darkMode) {
+            this.darkModeFlipper();
+        }
+    }
+    darkModeFlipper = () => {
+        (this.props.cookies).set('DarkMode',!this.props.darkMode,{path: '/'});
+        this.props.flipDarkMode();
+    }
 
                     //function registered for listening to event and further for changing country in background and fetching news for same
     countryChangeHandler = (event) => {
@@ -127,8 +144,8 @@ class Header extends Component<HeaderProps, HeaderState> {
                                 </li>
                                 <li className="nav-item dropdown">
                                         
-                                        {this.props.darkMode ? <i className="fa fa-sun-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>:
-                                            <i className="fa fa-moon-o" aria-hidden="true" onClick={(checked) => this.props.flipDarkMode()}></i>
+                                        {this.props.darkMode ? <i className="fa fa-sun-o" aria-hidden="true" onClick={this.darkModeFlipper}></i>:
+                                            <i className="fa fa-moon-o" aria-hidden="true" onClick={this.darkModeFlipper}></i>
 }
                                 </li>
                             </ul>
@@ -150,13 +167,14 @@ class Header extends Component<HeaderProps, HeaderState> {
 //------------------------Redux Section----------------------------------------------------------------------------
 //mapStateToProps helps in getting the updated state from store in Header.js as props
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: RootState , ownProps: any) => {
     return {
       countrycode : state.newsFetchReducer.countrycode,
       newscategory : state.newsFetchReducer.newscategory,
       user : state.auth.userId,
       darkMode: state.appModeReducer.darkMode,
-      colorsObj: state.appModeReducer.colorsObj
+      colorsObj: state.appModeReducer.colorsObj,
+      cookies: ownProps.cookies
     };
   };
 
