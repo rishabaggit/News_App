@@ -3,8 +3,16 @@ import { connect } from 'react-redux';
 import {logout} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
+import { authAction } from 'store/actions/auth';
+import { RootState } from 'index';
 
-class LogOut extends Component {
+
+interface LogOutProps{
+    logout: () => authAction;
+    userId: string;
+}
+
+class LogOut extends Component<LogOutProps> {
     componentDidMount() {
         setTimeout(this.props.logout,1000);
     }
@@ -18,7 +26,7 @@ class LogOut extends Component {
     }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState) => {
     return {
       userId : state.auth.userId
     };
@@ -26,7 +34,7 @@ const mapStateToProps = state => {
 
 //mapDispatchToProps() is a utility which will help your component to fire an action event
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         logout : () => dispatch(logout())
     }

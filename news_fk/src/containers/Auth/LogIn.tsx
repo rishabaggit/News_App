@@ -7,8 +7,20 @@ import Avatar from '../../resources/Avatar.jpg'
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { authAction } from 'store/actions/auth';
+import { RootState } from 'index';
 
-class LogIn extends Component {
+interface LogInProps{
+    authWithEmail: any;
+    userId: string;
+    loading: boolean;
+    error: any;
+    authRefresh: () => authAction;
+    colorsObj:any;
+    authWithFacebook: any;
+}
+
+class LogIn extends Component<LogInProps> {
     state = {
         email:'',
         password:'',
@@ -19,7 +31,7 @@ class LogIn extends Component {
 
 
     validate = (event) => {
-        var pass = event.target.value;
+        var pass = (event.target as any).value;
         var reg =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;;
         var test = reg.test(pass);
         var message = document.getElementById('nwl');
@@ -149,7 +161,7 @@ class LogIn extends Component {
 }
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state:RootState) => {
     return {
       userId : state.auth.userId,
       error : state.auth.error,
@@ -161,7 +173,7 @@ const mapStateToProps = state => {
 
 //mapDispatchToProps() is a utility which will help your component to fire an action event
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type)),
         authWithFacebook : () => dispatch(authWithFacebook()),

@@ -37,12 +37,12 @@ interface HeaderState{
 class Header extends Component<HeaderProps, HeaderState> {
 
                     //function registered for listening to event and further for changing country in background and fetching news for same
-    countryChangeHandler = (event : Event) => {
+    countryChangeHandler = (event) => {
         this.props.countryChangeHandler((event.target as any).value);
         this.props.newsHandler();
     }
                     //function registered for listening to event and further for changing category in background and fetching news for same
-    categoryChangeHandler = (event : Event) => {
+    categoryChangeHandler = (event) => {
         this.props.categoryChangeHandler((event.target as any).value);
         this.props.newsHandler();
     }

@@ -7,8 +7,23 @@ import './Login.css';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { authAction } from 'store/actions/auth';
 
-class SignIn extends Component {
+interface SignInProps{
+    authWithEmail: any;
+    userId: string;
+    loading: boolean;
+    error: any;
+    authRefresh: () => authAction;
+    colorsObj: any;
+}
+
+interface SignInState{
+    email: string;
+    password:string;
+    [x: number]:any;
+}
+class SignIn extends Component<SignInProps, SignInState> {
     state = {
         email:'',
         password:''
@@ -18,11 +33,11 @@ class SignIn extends Component {
         
         var x = document.getElementById('myInput');
         
-        if(x.type === 'password') {
-            x.type = 'text';
+        if((x as any).type === 'password') {
+            (x as any).type = 'text';
         }
-        else if(x.type === 'text') {
-            x.type = 'password';
+        else if((x as any).type === 'text') {
+            (x as any).type = 'password';
         }
     }
     changeHandler = (event) => {
