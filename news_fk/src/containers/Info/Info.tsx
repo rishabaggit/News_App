@@ -9,9 +9,10 @@ import Pic1 from '../../resources/Harshavardhana.jpeg'
 import Pic2 from '../../resources/Mudreka.png'
 import Pic3 from '../../resources/Pranjal.jpg'
 import Person from './Person'
+import { ModeColors } from 'colors';
 //-----------------------------------------------------------------------------------------------------------------
 interface InfoProps{
-    colorsObj: any;
+    colorsObj: ModeColors;
 }
 const Info: React.FC<InfoProps>= (props) => {
     return (

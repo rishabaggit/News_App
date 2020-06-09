@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authAction } from 'store/actions/auth';
 import { RootState } from 'index';
+import { ModeColors } from 'colors';
 
 interface LogInProps{
     authWithEmail: any;
@@ -16,7 +17,7 @@ interface LogInProps{
     loading: boolean;
     error: any;
     authRefresh: () => authAction;
-    colorsObj:any;
+    colorsObj: ModeColors;
     authWithFacebook: any;
 }
 

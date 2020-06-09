@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import BottomScrollListener from 'react-bottom-scroll-listener';
 import {newsHandler} from '../../store/actions/index';
 import { RootState } from 'index';
+import { ModeColors } from 'colors';
 // import NewsBulletin from '../../components/Content/NewsBulletin/NewsBulletin';
 
 
@@ -19,7 +20,7 @@ interface NewsPageProps{
   initial_loading: boolean;
   userId: string;
   newsarticles: any;
-  colorsObj: any;
+  colorsObj: ModeColors;
   end_of_article: boolean;
 }
 

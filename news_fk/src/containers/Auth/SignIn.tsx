@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { authAction } from 'store/actions/auth';
 import {forgetPassword} from '../../components/UserData/FirestoreUtil'
 import { analytics } from 'firebase';
+import { ModeColors } from 'colors';
 
 interface SignInProps{
     authWithEmail: any;
@@ -17,7 +18,7 @@ interface SignInProps{
     loading: boolean;
     error: any;
     authRefresh: () => authAction;
-    colorsObj: any;
+    colorsObj: ModeColors;
 }
 
 interface SignInState{
