@@ -27,4 +27,13 @@ const removeLike = (uid, url) => {
       .then(console.log('done'))
       .catch(err => console.log(err))
 }
-export {newUser , userget , addLike , removeLike};
+
+const forgetPassword =(email) => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(function (user) {
+        alert('Password link sent successfully to'+email);
+      }).catch(function (e) {
+        console.log(e)
+      })
+}
+export {newUser , userget , addLike , removeLike, forgetPassword};

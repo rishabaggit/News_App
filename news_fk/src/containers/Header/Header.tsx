@@ -77,8 +77,8 @@ class Header extends Component<HeaderProps, HeaderState> {
         else {
             return (
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/login">Log In</Link>
-                <Link className="dropdown-item" to="/signin">Sign In</Link>
+                <Link className="dropdown-item" to="/login">Sign Up</Link>
+                <Link className="dropdown-item" to="/signin">Log In</Link>
             </div>
             );
         }

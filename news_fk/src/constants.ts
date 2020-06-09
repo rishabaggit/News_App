@@ -42,7 +42,7 @@ export const newsCategories = [
 
 // API_PAGE_SIZE is used to set maximum no of news articles render at a page loading at a time, Also used to check for reaching end of all available news articles.
 export const API_PAGE_SIZE = 6;
-export const FIREBASE_API_KEY = 'AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y';
+export const FIREBASE_API_KEY = 'AIzaSyDEv--bVCc2YqWllHxhdDxF-VYbioHdR2w';
 export const NEWS_API_KEY_1 = '8115e82c195f445ebba7f0beeeb524e2';
 export const NEWS_API_KEY_2 = 'e004421173114bd5b890eb56590a9a12';
 //----------------------------------------------------------------------------------------------------

@@ -101,7 +101,7 @@ class LogIn extends Component<LogInProps> {
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
                     <div className="container1">
-                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
+                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Email ID</b></label>
                         <input
                         id='email'
                         value={this.state.email}

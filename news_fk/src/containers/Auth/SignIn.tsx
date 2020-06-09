@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {authWithEmail , authRefresh} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
@@ -8,6 +8,8 @@ import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoa
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authAction } from 'store/actions/auth';
+import {forgetPassword} from '../../components/UserData/FirestoreUtil'
+import { analytics } from 'firebase';
 
 interface SignInProps{
     authWithEmail: any;
@@ -40,9 +42,14 @@ class SignIn extends Component<SignInProps, SignInState> {
             (x as any).type = 'password';
         }
     }
+
+    
+    
+
     changeHandler = (event) => {
         this.setState({[event.target.type] : event.target.value})
     }
+    
     onSubmitHandler = (event) => {
         event.preventDefault();
         const userData = {
@@ -113,6 +120,8 @@ class SignIn extends Component<SignInProps, SignInState> {
                             id='myInput'
                         />
                         <input type="checkbox" onClick={this.showPassword}/><span> Show Password</span>
+                        <button type="button" onClick={() => forgetPassword(this.state.email)} className="b1">Reset Password</button>
+
                     <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>
                     </div>
                 </form>  
@@ -137,7 +146,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type)),
-        authRefresh : () => dispatch(authRefresh())
+        authRefresh : () => dispatch(authRefresh()),
     }
   };
   
