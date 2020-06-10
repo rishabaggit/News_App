@@ -34,7 +34,7 @@ class SignIn extends Component<SignInProps, SignInState> {
 
     showPassword = (event) => {
         
-        var x = document.getElementById('myInput');
+        var x = document.getElementById('password');
         
         if((x as any).type === 'password') {
             (x as any).type = 'text';
