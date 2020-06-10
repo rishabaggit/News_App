@@ -19,6 +19,7 @@ interface SignInProps{
     error: any;
     authRefresh: () => authAction;
     colorsObj: ModeColors;
+    cookies : any
 }
 
 interface SignInState{
@@ -31,7 +32,11 @@ class SignIn extends Component<SignInProps, SignInState> {
         email:'',
         password:''
     }
-
+    componentWillUnmount() {
+        if(this.props.userId) {
+            (this.props.cookies).set('PrevUser',this.props.userId,{path: '/'});
+        }
+    }
     showPassword = (event) => {
         
         var x = document.getElementById('password');

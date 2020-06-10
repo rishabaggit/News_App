@@ -48,10 +48,10 @@ class App extends Component<AppProps>{
           <Route path="/" exact component={NewsBulletin}/>
           <Switch>
               <Route path="/" exact render={() => (<NewsPage cookies={this.props.cookies}/>)}/>
-              <Route path='/login' exact component={Login}/>
-              <Route path='/signin' exact component={SignIn}/>
+              <Route path='/login' exact render={() => <Login cookies={this.props.cookies}/>}/>
+              <Route path='/signin' exact render={() => <SignIn cookies={this.props.cookies}/>}/>
               <Route path="/info" exact render = {() => <Info{...this.props}/>}/>
-              <Route path='/logout' exact component={LogOut}/>
+              <Route path='/logout' exact render={() => <LogOut cookies={this.props.cookies}/>}/>
               <Route path='/userProfile' exact component={UserProfile}/>
               <Route path='/likedPosts' exact component={LikedPosts}/>
               <Route path='/chat' exact component={Chat}/>

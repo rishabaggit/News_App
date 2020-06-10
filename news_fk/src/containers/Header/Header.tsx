@@ -14,7 +14,9 @@ import {Route} from 'react-router-dom';
 import { RootState } from 'index';
 import { newsFetchAction } from 'store/actions/news';
 import { appModeAction } from 'store/actions/darkMode';
+import { authAction} from 'store/actions/auth';
 import { ModeColors } from 'colors';
+import {authSuccess} from '../../store/actions/index';
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,6 +32,7 @@ interface HeaderProps{
     user: any;
     darkMode: boolean;
     flipDarkMode: () => appModeAction;
+    authSuccess : (email : string) => authAction;
 }
 
 interface HeaderState{
@@ -39,7 +42,6 @@ interface HeaderState{
 class Header extends Component<HeaderProps, HeaderState> {
 
     componentDidMount() {
-        console.log('HEADER MOUNT');
         if((this.props.cookies).get('DarkMode') === null || (this.props.cookies).get('DarkMode') === undefined )
           {
             (this.props.cookies).set('DarkMode',false,{path: '/'})
@@ -47,6 +49,12 @@ class Header extends Component<HeaderProps, HeaderState> {
         const prevMode = (this.props.cookies).get('DarkMode') === "true";
         if(prevMode !== this.props.darkMode) {
             this.darkModeFlipper();
+        }
+        console.log((this.props.cookies).get('PrevUser'));
+        if((this.props.cookies).get('PrevUser') !== null || 
+            (this.props.cookies).get('PrevUser') !== undefined ||
+            (this.props.cookies).get('PrevUser') !== '') {
+            this.props.authSuccess((this.props.cookies).get('PrevUser'));
         }
     }
     darkModeFlipper = () => {
@@ -188,7 +196,8 @@ const mapDispatchToProps = (dispatch: any) => {
         newsHandler : () => dispatch(actionTypes.newsHandler()),
         countryChangeHandler : (newCountry:string) => dispatch(actionTypes.countryChangeHandler(newCountry)),
         categoryChangeHandler : (newCategory:string) => dispatch(actionTypes.categoryChangeHandler(newCategory)),
-        flipDarkMode: () => dispatch(actionTypes.flipDarkMode())
+        flipDarkMode: () => dispatch(actionTypes.flipDarkMode()),
+        authSuccess : (email : string) => dispatch(authSuccess(email))
     }
   };
   

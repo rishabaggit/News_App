@@ -19,6 +19,7 @@ interface LogInProps{
     authRefresh: () => authAction;
     colorsObj: ModeColors;
     authWithFacebook: any;
+    cookies : any;
 }
 
 class LogIn extends Component<LogInProps> {
@@ -27,10 +28,14 @@ class LogIn extends Component<LogInProps> {
         password:'',
         password2:'',
         fname: '',
-        lname: ''
+        lname: '',
     }
 
-
+    componentWillUnmount() {
+        if(this.props.userId) {
+            (this.props.cookies).set('PrevUser',this.props.userId,{path: '/'});
+        }
+    }
     validate = (event) => {
         var pass = (event.target as any).value;
         var reg =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;;

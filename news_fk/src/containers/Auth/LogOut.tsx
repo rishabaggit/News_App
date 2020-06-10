@@ -10,11 +10,13 @@ import { RootState } from 'index';
 interface LogOutProps{
     logout: () => authAction;
     userId: string;
+    cookies : any
 }
 
 class LogOut extends Component<LogOutProps> {
     componentDidMount() {
-        setTimeout(this.props.logout,1000);
+        (this.props.cookies).set('PrevUser','',{path: '/'});
+        setTimeout(this.props.logout,500);
     }
     render() {
         if(this.props.userId) {
