@@ -152,7 +152,7 @@ class LogIn extends Component<LogInProps> {
                             disabled={this.state.password !== this.state.password2} 
                             onClick={this.onSubmitHandler} 
                             className='b1' 
-                            type="button">LOGIN</button>
+                            type="button">SIGN UP</button>
                     </div>
                 </form>
             </div>

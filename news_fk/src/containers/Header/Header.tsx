@@ -69,6 +69,7 @@ class Header extends Component<HeaderProps, HeaderState> {
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <Link className="dropdown-item" to="/userProfile">My Profile</Link>
                     <Link className="dropdown-item" to="/likedPosts">Liked Posts</Link>
+                    <Link className="dropdown-item" to="/chat">Chat</Link>
                     <div className="dropdown-divider"></div>
                     <Link className="dropdown-item" to="/logout">Logout</Link>
                 </div>
@@ -77,7 +78,8 @@ class Header extends Component<HeaderProps, HeaderState> {
         else {
             return (
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/login">Log In</Link>
+                <Link className="dropdown-item" to="/login">Sign Up</Link>
+                <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/signin">Sign In</Link>
             </div>
             );

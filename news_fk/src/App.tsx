@@ -17,6 +17,7 @@ import {connect} from 'react-redux';
 import UserProfile from './containers/UserProfile/UserProfile'
 import {RootState} from './index'
 import LikedPosts from 'containers/LikedPosts/LikedPosts';
+import Chat from 'containers/Chat/Chat'
 //-----------------------------------------------------------------------------------------------------------------
 //index.js is the traditional and actual entry point for all node apps. Here in react it just has code of what to render and where to render. 
 // App.js has the root component of the react app because every view and component are handled with hierarchy in React, where <App /> is the top most component in hierarchy. 
@@ -52,6 +53,7 @@ class App extends Component<AppProps>{
               <Route path='/logout' exact component={LogOut}/>
               <Route path='/userProfile' exact component={UserProfile}/>
               <Route path='/likedPosts' exact component={LikedPosts}/>
+              <Route path='/chat' exact component={Chat}/>
               <Route render={() => <h2 style={{textAlign:"center", fontWeight:"bold"}}>Page Link Broken!</h2> } />
           </Switch>
         </div>

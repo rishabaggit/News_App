@@ -23,7 +23,7 @@ interface NewsPageProps{
   end_of_article: boolean;
 }
 
-class NewsPage extends React.Component<NewsPageProps> {
+class NewsPage extends Component<NewsPageProps> {
 
     constructor(props: NewsPageProps) {
         super(props);

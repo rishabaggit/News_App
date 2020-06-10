@@ -41,7 +41,7 @@ class SignIn extends Component<SignInProps, SignInState> {
         }
     }
     changeHandler = (event) => {
-        this.setState({[event.target.type] : event.target.value})
+        this.setState({[event.target.id] : event.target.value})
     }
     onSubmitHandler = (event) => {
         event.preventDefault();
@@ -102,6 +102,7 @@ class SignIn extends Component<SignInProps, SignInState> {
                             placeholder='Enter your email ID'
                             onChange={this.changeHandler}
                             name="uname"
+                            id='email'
                         />
                         <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
@@ -110,7 +111,7 @@ class SignIn extends Component<SignInProps, SignInState> {
                             placeholder='Password'
                             onChange={this.changeHandler}
                             name='psw'
-                            id='myInput'
+                            id='password'
                         />
                         <input type="checkbox" onClick={this.showPassword}/><span> Show Password</span>
                     <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>

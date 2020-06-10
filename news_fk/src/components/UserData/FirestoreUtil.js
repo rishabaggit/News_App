@@ -27,4 +27,20 @@ const removeLike = (uid, url) => {
       .then(console.log('done'))
       .catch(err => console.log(err))
 }
-export {newUser , userget , addLike , removeLike};
+const newMessage = (uid,message) =>{
+    userget(uid).then( userData => {
+        console.log(userData);
+        const msg = {
+            username : userData.first_name + ' ' + userData.last_name,
+            message : message,
+            email : uid
+        }
+        db.collection('chat').doc('GroupChat').update({
+            CHAT : firebase.firestore.FieldValue.arrayUnion(msg)
+        })
+        .then(console.log('done'))
+        .catch(err => console.log(err))
+    }
+    )
+}
+export {newUser , userget , addLike , removeLike , newMessage};

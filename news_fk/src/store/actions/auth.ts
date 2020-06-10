@@ -3,8 +3,6 @@ import {FIREBASE_API_KEY} from '../../constants';
 import axios from 'axios';
 import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
 import { newUser } from 'components/UserData/FirestoreUtil';
-import { RootState } from 'index';
-
 
 interface authStartAction{
     type: typeof actionTypes.AUTH_START;
