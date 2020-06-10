@@ -14,6 +14,7 @@ import {Route} from 'react-router-dom';
 import { RootState } from 'index';
 import { newsFetchAction } from 'store/actions/news';
 import { appModeAction } from 'store/actions/darkMode';
+import { ModeColors } from 'colors';
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -22,7 +23,7 @@ interface HeaderProps{
     countryChangeHandler: (newCountry:string) => newsFetchAction;
     newsHandler: any;
     categoryChangeHandler: (newCategory: string) => newsFetchAction;
-    colorsObj: any;
+    colorsObj: ModeColors;
     countrycode: string;
     newscategory: string;
     cookies :any

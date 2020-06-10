@@ -17,7 +17,22 @@ const colors = {
 
 };
 
-export const defaultColors = {
+export interface ModeColors{
+    backgroundColor,
+    cardButtonColor,
+    cardColor,
+    opacity,
+    textStyleHigh,
+    textStyleMedium,
+    textStyleLow,
+    navBarStyle,
+    navItemStyle,
+    formColor,
+    navLinkStyle,
+    dropdown
+}
+
+export const defaultColors:ModeColors = {
     backgroundColor: colors.white,
     cardButtonColor: colors.darkOrange,
     cardColor: colors.white,
@@ -32,7 +47,7 @@ export const defaultColors = {
     dropdown: {color: colors.black},
 };
 
-export const darkModeColors = {
+export const darkModeColors:ModeColors = {
     backgroundColor: colors.shadeGray,
     cardButtonColor: colors.blackShade,
     cardColor: colors.charcoal,

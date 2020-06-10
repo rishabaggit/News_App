@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {authWithEmail , authRefresh} from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
@@ -8,6 +8,9 @@ import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoa
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authAction } from 'store/actions/auth';
+import {forgetPassword} from '../../components/UserData/FirestoreUtil'
+import { analytics } from 'firebase';
+import { ModeColors } from 'colors';
 
 interface SignInProps{
     authWithEmail: any;
@@ -15,7 +18,7 @@ interface SignInProps{
     loading: boolean;
     error: any;
     authRefresh: () => authAction;
-    colorsObj: any;
+    colorsObj: ModeColors;
 }
 
 interface SignInState{
@@ -40,9 +43,14 @@ class SignIn extends Component<SignInProps, SignInState> {
             (x as any).type = 'password';
         }
     }
+
+    
+    
+
     changeHandler = (event) => {
         this.setState({[event.target.id] : event.target.value})
     }
+    
     onSubmitHandler = (event) => {
         event.preventDefault();
         const userData = {
@@ -114,6 +122,8 @@ class SignIn extends Component<SignInProps, SignInState> {
                             id='password'
                         />
                         <input type="checkbox" onClick={this.showPassword}/><span> Show Password</span>
+                        <button type="button" onClick={() => forgetPassword(this.state.email)} className="b1">Reset Password</button>
+
                     <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>
                     </div>
                 </form>  
@@ -138,7 +148,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type)),
-        authRefresh : () => dispatch(authRefresh())
+        authRefresh : () => dispatch(authRefresh()),
     }
   };
   

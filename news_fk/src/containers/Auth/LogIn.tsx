@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authAction } from 'store/actions/auth';
 import { RootState } from 'index';
+import { ModeColors } from 'colors';
 
 interface LogInProps{
     authWithEmail: any;
@@ -16,7 +17,7 @@ interface LogInProps{
     loading: boolean;
     error: any;
     authRefresh: () => authAction;
-    colorsObj:any;
+    colorsObj: ModeColors;
     authWithFacebook: any;
 }
 
@@ -101,7 +102,7 @@ class LogIn extends Component<LogInProps> {
                         <img src={Avatar} alt="Avatar" className="avatar"/>
                     </div>
                     <div className="container1">
-                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
+                        <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Email ID</b></label>
                         <input
                         id='email'
                         value={this.state.email}

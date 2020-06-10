@@ -3,14 +3,15 @@ import "firebase/auth"
 import Rebase from 're-base';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y",
-    authDomain: "fknews-mph.firebaseapp.com",
-    databaseURL: "https://fknews-mph.firebaseio.com",
-    projectId: "fknews-mph",
-    storageBucket: "fknews-mph.appspot.com",
-    messagingSenderId: "686008179025",
-    appId: "1:686008179025:web:88fcfd6e1b756a6aa7db70",
-    measurementId: "G-6QTGB5Y95H"
+    apiKey: "AIzaSyDEv--bVCc2YqWllHxhdDxF-VYbioHdR2w",
+    authDomain: "news-api-cd082.firebaseapp.com",
+    databaseURL: "https://news-api-cd082.firebaseio.com",
+    projectId: "news-api-cd082",
+    storageBucket: "news-api-cd082.appspot.com",
+    messagingSenderId: "933585731891",
+    appId: "1:933585731891:web:c150a9be7832d9d73cfe46",
+    measurementId: "G-96Z974FVD0"
+
 };
 
 const app = firebase.initializeApp(firebaseConfig);

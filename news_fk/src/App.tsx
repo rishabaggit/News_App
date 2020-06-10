@@ -18,12 +18,13 @@ import UserProfile from './containers/UserProfile/UserProfile'
 import {RootState} from './index'
 import LikedPosts from 'containers/LikedPosts/LikedPosts';
 import Chat from 'containers/Chat/Chat'
+import { ModeColors } from 'colors';
 //-----------------------------------------------------------------------------------------------------------------
 //index.js is the traditional and actual entry point for all node apps. Here in react it just has code of what to render and where to render. 
 // App.js has the root component of the react app because every view and component are handled with hierarchy in React, where <App /> is the top most component in hierarchy. 
 
 interface AppProps{
-  colorsObj: any;
+  colorsObj: ModeColors;
   cookies: any;
 }
 

@@ -6,12 +6,13 @@
 import React from 'react';
 import NewsCard from './NewsCard/NewsCard'
 import "./DisplayNewsCards.css"
+import { ModeColors } from 'colors';
 
 //-----------------------------------------------------------------------------------------------------------------
 interface DisplayNewsCardsProps{
     userId?: string;
     cookies: any;
-    colorsObj: any;
+    colorsObj: ModeColors;
     articles:any;
 }
 interface newsitemI{

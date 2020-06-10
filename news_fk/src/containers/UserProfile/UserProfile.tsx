@@ -8,10 +8,11 @@ import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorH
 import './UserProfile.css'
 import {NavLink} from 'react-router-dom';
 import { RootState } from 'index';
+import { ModeColors } from 'colors';
 
 interface UserProfileProps{
     userId: string;
-    colorsObj: any;
+    colorsObj: ModeColors;
 
 }
 interface UserProfileState{

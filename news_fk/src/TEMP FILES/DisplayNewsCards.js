@@ -14,7 +14,7 @@
 // interface DisplayNewsCardsProps{
 //     userId: any;
 //     cookies: any;
-//     colorsObj: any;
+//     colorsObj: ModeColors;
 //     articles:any;
 // }
 // interface newsitemI{

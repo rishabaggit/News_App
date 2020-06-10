@@ -43,4 +43,13 @@ const newMessage = (uid,message) =>{
     }
     )
 }
-export {newUser , userget , addLike , removeLike , newMessage};
+const forgetPassword =(email) => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(function (user) {
+        alert('Password link sent successfully to'+email);
+      }).catch(function (e) {
+        console.log(e)
+      })
+}
+
+export {newUser , userget , addLike , removeLike , newMessage, forgetPassword};

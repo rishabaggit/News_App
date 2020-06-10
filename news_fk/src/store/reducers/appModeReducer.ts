@@ -1,10 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
-import {defaultColors, darkModeColors} from '../../colors';
+import {defaultColors, darkModeColors, ModeColors} from '../../colors';
 import {appModeAction} from '../actions/darkMode'
 
 interface appModeState{
     darkMode: boolean;
-    colorsObj: any;
+    colorsObj: ModeColors;
 }
 
 const initialState: appModeState = {

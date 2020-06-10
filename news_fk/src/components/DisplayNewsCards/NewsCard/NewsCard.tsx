@@ -6,12 +6,13 @@
 import React from 'react';
 import "./NewsCard.css"
 import Modal from './Modal/Modal';
+import { ModeColors } from 'colors';
 //-----------------------------------------------------------------------------------------------------------------
 
 interface NewsCardProps{
     cookies:any;
     url:any;
-    colorsObj:any;
+    colorsObj: ModeColors;
     img:any;
     title:string;
     description:string;
