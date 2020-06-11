@@ -55,8 +55,8 @@ class Chat extends Component {
             return <Redirect to = '/signin'/>
         }
         return(
-            <div style={{marginTop : "100px"}}>
-                
+            <div className="container" style={{marginTop : "80px"}}>
+                <div className="cchat">
                 {
                     this.state.listMessage.map(obj=> {
                         console.log(obj.email,this.props.userId)
@@ -68,6 +68,7 @@ class Chat extends Component {
                         }
                     })
                 }
+                </div>
                 <div className="container">
                     <div class="input-group">
                         

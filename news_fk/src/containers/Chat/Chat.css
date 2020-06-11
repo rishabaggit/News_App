@@ -37,3 +37,8 @@
       align-items: stretch;
     }
   }
+
+  .cchat {
+    max-height: 500px;
+    overflow: scroll;
+  }
