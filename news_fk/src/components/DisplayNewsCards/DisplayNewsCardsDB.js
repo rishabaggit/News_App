@@ -49,31 +49,48 @@ class DisplayNewsCards extends React.Component {
         LikedArray : null
     }
     likePost = (newsItem) => {
-        let likedPosts = [...this.state.LikedArray , newsItem];
-        this.setState({LikedArray : likedPosts})
         if(this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
-            (this.props.cookies).set('Like',likedPosts);
+            (this.props.cookies).set('Like',[...(this.props.cookies).get('Like'),newsItem.url])
+            // console.log((this.props.cookies).get('Like'))
+            this.setState({LikedArray : (this.props.cookies).get('Like')})
         }
         else {
-            // console.log('CALLED')
-            // console.log(this.props.userId)
+            let likedPosts = [...this.state.LikedArray , newsItem];
+            this.setState({LikedArray : likedPosts})
             addLike(this.props.userId ,newsItem);
         }
     }
     unlikePost = (newsItem) => {
-        let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
-        this.setState({LikedArray : likedPosts})
         if(this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
-            (this.props.cookies).set('Like',likedPosts);
+            var likedPosts2 = (this.props.cookies).get('Like')
+            const index = likedPosts2.indexOf(newsItem.url);
+            if (index > -1) {
+                likedPosts2.splice(index, 1);
+            }
+            (this.props.cookies).set('Like',likedPosts2)
+            console.log((this.props.cookies).get('Like'))
+            this.setState({LikedArray : (this.props.cookies).get('Like')})
         }
         else {
+            let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
+            this.setState({LikedArray : likedPosts})
             removeLike(this.props.userId ,newsItem);
         }
     }
+    isLiked = (newsitem) => {
+        if(this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
+            // console.log(this.state.LikedArray);
+            // console.log(newsitem.url);
+            // console.log(this.state.LikedArray.includes(newsitem.url))
+            return this.state.LikedArray.includes(newsitem.url)
+
+        }
+        else {
+            return this.state.LikedArray.find(obj => obj.url === newsitem.url)
+        } 
+                                        
+    }
     render() {
-        // if(!this.props.userId) {
-        //     return <Redirect to="/signin" />;
-        // }
         if(this.state.loading) {
             return <FullScreenLoader/>;
         }
@@ -90,7 +107,7 @@ class DisplayNewsCards extends React.Component {
                                         description={newsitem.description}
                                         key={idx}
                                         colorsObj = {this.props.colorsObj}
-                                        Liked = {this.state.LikedArray.find(obj => obj.url === newsitem.url)}
+                                        Liked = {this.isLiked(newsitem)}
                                         newsItem={newsitem}
                                         likePost = {this.likePost}
                                         unlikePost = {this.unlikePost}
