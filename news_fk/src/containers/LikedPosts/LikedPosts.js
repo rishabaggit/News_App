@@ -10,17 +10,18 @@ import {connect} from 'react-redux';
 import "../../components/DisplayNewsCards/DisplayNewsCards.css";
 import {userget , addLike , removeLike}from '../../components/UserData/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
+import { ToastContainer, toast } from 'react-toastify';
 //-----------------------------------------------------------------------------------------------------------------
 class LikedPosts extends React.Component {
     componentDidMount() {
         if(this.props.userId === null) {
             return <Redirect to="/signin" />;
-        }
+        } 
         else {
-            console.log('CALLED', this.props.userId)
+            // console.log('CALLED', this.props.userId)
             userget(this.props.userId).then(
                 doc => {
-                    console.log('REACHED', doc)
+                    // console.log('REACHED', doc)
                     if(doc && doc.liked) {
                         this.setState({LikedArray : doc.liked.reverse()});
                     }
@@ -36,11 +37,21 @@ class LikedPosts extends React.Component {
         LikedArray : null
     }
     likePost = (newsItem) => {
-        let likedPosts = [...this.state.LikedArray , newsItem];
+        let likedPosts = [ newsItem, ...this.state.LikedArray];
         this.setState({LikedArray : likedPosts})
         addLike(this.props.userId ,newsItem);
     }
     unlikePost = (newsItem) => {
+        toast.warn('UNDO', {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            onClick: () => this.likePost(newsItem)
+            });
         let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
         this.setState({LikedArray : likedPosts})
         removeLike(this.props.userId ,newsItem);
@@ -52,6 +63,17 @@ class LikedPosts extends React.Component {
         if(this.state.LikedArray) {
             return(
                 <div style={{marginTop : "50px"}}>
+                    <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <div className="container">
                     <div className="row">
                             {
