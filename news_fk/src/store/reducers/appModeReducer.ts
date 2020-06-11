@@ -1,6 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 import {defaultColors, darkModeColors, ModeColors} from '../../colors';
 import {appModeAction} from '../actions/darkMode'
+import { analytics } from 'components/UserAuthentication/firebase';
 
 interface appModeState{
     darkMode: boolean;
@@ -15,6 +16,7 @@ const initialState: appModeState = {
 const appModeReducer = (state:appModeState = initialState, action: appModeAction) => {
     switch(action.type){
         case actionTypes.FLIP_DARK_MODE:
+            (state.darkMode) ? analytics.logEvent('dark_mode_off') : analytics.logEvent('dark_mode_on');
             return{
                 ...state,
                 darkMode: !state.darkMode,
