@@ -13,7 +13,7 @@ import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
 //-----------------------------------------------------------------------------------------------------------------
 class DisplayNewsCards extends React.Component {
     componentDidMount() {
-        if(this.props.userId === null || this.props.userId === '') {
+        if(this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
             var likedPosts = (this.props.cookies).get('Like')
             if(likedPosts) {
                 this.setState({LikedArray : likedPosts,
@@ -51,17 +51,19 @@ class DisplayNewsCards extends React.Component {
     likePost = (newsItem) => {
         let likedPosts = [...this.state.LikedArray , newsItem];
         this.setState({LikedArray : likedPosts})
-        if(this.props.userId === null || this.props.userId === '') {
+        if(this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
             (this.props.cookies).set('Like',likedPosts);
         }
         else {
+            // console.log('CALLED')
+            // console.log(this.props.userId)
             addLike(this.props.userId ,newsItem);
         }
     }
     unlikePost = (newsItem) => {
         let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
         this.setState({LikedArray : likedPosts})
-        if(this.props.userId === null || this.props.userId === '') {
+        if(this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
             (this.props.cookies).set('Like',likedPosts);
         }
         else {

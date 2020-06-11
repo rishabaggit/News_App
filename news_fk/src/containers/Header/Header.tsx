@@ -50,7 +50,7 @@ class Header extends Component<HeaderProps, HeaderState> {
         if(prevMode !== this.props.darkMode) {
             this.darkModeFlipper();
         }
-        console.log((this.props.cookies).get('PrevUser'));
+        // console.log((this.props.cookies).get('PrevUser'));
         if((this.props.cookies).get('PrevUser') !== null || 
             (this.props.cookies).get('PrevUser') !== undefined ||
             (this.props.cookies).get('PrevUser') !== '') {
