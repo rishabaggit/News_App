@@ -1,11 +1,14 @@
 import React from 'react';
+import './Chat.css';
+import Avatar from '../../../resources/Avatar.jpg';
 
 const ChatRecievedMessage = (props) => {
     return (
-    <div>
-        <h5 style={{ color: 'red' }}>{props.username}</h5>
-        <p>{props.message}</p>
-    </div>
+        <div className="container3 container">
+            <img src={Avatar} alt="Avatar"></img>
+            <h5>{props.username}</h5>
+            <p>{props.message}</p>
+        </div>
     );
 }
 

@@ -1,11 +1,15 @@
 import React from 'react';
+import './Chat.css';
+import Avatar from '../../../resources/Avatar.jpg'
+
 
 const ChatSendMessage = (props) => {
     return (
-    <div>
-        <h5 style={{ color: 'green' }}>{props.username}</h5>
-        <p>{props.message}</p>
-    </div>
+        <div className="container3 container darker">
+            <img src={Avatar} alt="Avatar" className="right"></img>
+            <h5 className="sending">{props.username}</h5>
+            <p className="sending">{props.message}</p>
+        </div>
     );
 }
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ChatSendMessage from '../../components/UI/ChatMessage/ChatSendMessage'
 import ChatRecievedMessage from '../../components/UI/ChatMessage/ChatRecievedMessage';
 import {Redirect} from 'react-router-dom'
+import './Chat.css'
 
 class Chat extends Component {
     state = {
@@ -55,7 +56,7 @@ class Chat extends Component {
         }
         return(
             <div style={{marginTop : "100px"}}>
-                <h1>CHAT</h1>
+                
                 {
                     this.state.listMessage.map(obj=> {
                         console.log(obj.email,this.props.userId)
@@ -67,15 +68,32 @@ class Chat extends Component {
                         }
                     })
                 }
-                <form onSubmit={this.sendMessage}>
-                    <input 
-                    value={this.state.message}
-                    placeholder='Enter new message'
-                    type='text'
-                    onChange={this.changeHandler}
-                    id='message'/>
-                    <button>SEND</button>
-                </form>
+                <div className="container">
+                    <div class="input-group">
+                        
+                            <input 
+                            value={this.state.message}
+                            placeholder='Enter new message'
+                            className="form-control"
+                            type='text'
+                            onChange={this.changeHandler}
+                            id='message'
+                            aria-label="Recipient's username" 
+                            aria-describedby="basic-addon2"
+                            />
+                            
+                            <div class="input-group-append">
+                                <button class="btn"
+                                    type="button"
+                                    onClick={this.sendMessage}>
+                                    <i class="fa fa-paper-plane"
+                                    aria-hidden="true">
+                                    </i>
+                                </button>
+                            </div>
+                        
+                    </div>
+                </div>
             </div>
         )
     }
