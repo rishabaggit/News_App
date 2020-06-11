@@ -5,7 +5,7 @@
   }
   
   
-  /* Style the input fields */
+  
   .form-inline input {
     vertical-align: middle;
     margin: 5px 10px 5px 0;
@@ -14,7 +14,7 @@
     border: 1px solid #ddd;
   }
   
-  /* Style the submit button */
+  
   .form-inline button {
     padding: 10px 20px;
     background-color: dodgerblue;
@@ -26,7 +26,6 @@
     background-color: royalblue;
   }
   
-  /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
   @media (max-width: 800px) {
     .form-inline input {
       margin: 10px 0;
@@ -41,4 +40,7 @@
   .cchat {
     max-height: 500px;
     overflow: scroll;
+    border: 1px solid black;
   }
+
+  

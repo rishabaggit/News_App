@@ -55,7 +55,7 @@ class Chat extends Component {
             return <Redirect to = '/signin'/>
         }
         return(
-            <div className="container" style={{marginTop : "80px"}}>
+            <div className="container" style={{marginTop : "80px", maxHeight:"400px"}}>
                 <div className="cchat">
                 {
                     this.state.listMessage.map(obj=> {
