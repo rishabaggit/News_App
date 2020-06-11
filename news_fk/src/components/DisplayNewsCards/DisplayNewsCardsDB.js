@@ -4,7 +4,7 @@
 // Importing a named module or parameter to be used in DisplayNewsCards.js
 
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import NewsCardDev from './NewsCard/NewsCardDB';
 import {connect} from 'react-redux';
 import "./DisplayNewsCards.css";
@@ -13,8 +13,16 @@ import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
 //-----------------------------------------------------------------------------------------------------------------
 class DisplayNewsCards extends React.Component {
     componentDidMount() {
-        if(this.props.userId === null) {
-            return <Redirect to="/signin" />;
+        if(this.props.userId === null || this.props.userId === '') {
+            var likedPosts = (this.props.cookies).get('Like')
+            if(likedPosts) {
+                this.setState({LikedArray : likedPosts,
+                    loading : false
+                });
+            }
+            else {
+                this.setState({LikedArray : [], loading : false});
+            }
         }
         else {
             this.setState({loading : true})
@@ -43,17 +51,27 @@ class DisplayNewsCards extends React.Component {
     likePost = (newsItem) => {
         let likedPosts = [...this.state.LikedArray , newsItem];
         this.setState({LikedArray : likedPosts})
-        addLike(this.props.userId ,newsItem);
+        if(this.props.userId === null || this.props.userId === '') {
+            (this.props.cookies).set('Like',likedPosts);
+        }
+        else {
+            addLike(this.props.userId ,newsItem);
+        }
     }
     unlikePost = (newsItem) => {
         let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url)
         this.setState({LikedArray : likedPosts})
-        removeLike(this.props.userId ,newsItem);
+        if(this.props.userId === null || this.props.userId === '') {
+            (this.props.cookies).set('Like',likedPosts);
+        }
+        else {
+            removeLike(this.props.userId ,newsItem);
+        }
     }
     render() {
-        if(!this.props.userId) {
-            return <Redirect to="/signin" />;
-        }
+        // if(!this.props.userId) {
+        //     return <Redirect to="/signin" />;
+        // }
         if(this.state.loading) {
             return <FullScreenLoader/>;
         }

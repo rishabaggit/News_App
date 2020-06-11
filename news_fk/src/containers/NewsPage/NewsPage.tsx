@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BottomLoader from '../../components/UI/BottomLoader/BottomLoader';
 import DisplayNewsCardsDB from '../../components/DisplayNewsCards/DisplayNewsCardsDB';
-import DisplayNewsCards from '../../components/DisplayNewsCards/DisplayNewsCards';
+// import DisplayNewsCards from '../../components/DisplayNewsCards/DisplayNewsCards';
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler';
 import InitialLoader from '../../components/UI/InitialLoader/InitialLoader';
 import {connect} from 'react-redux';
@@ -47,7 +47,7 @@ class NewsPage extends Component<NewsPageProps> {
           return <InitialLoader/>;
         }
         else {                                      //Render DispalyNewsCards to display news article and BottomLoader to display loader in other cases
-          if(this.props.userId) {
+          if(true) {
             return (
               <div>
                   <DisplayNewsCardsDB articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
@@ -55,14 +55,14 @@ class NewsPage extends Component<NewsPageProps> {
               </div>
             );
           }
-          else {
-            return (
-              <div>
-                  <DisplayNewsCards articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
-                  <BottomLoader load={!this.props.end_of_article} />
-              </div>
-            );
-          }
+          // else {
+          //   return (
+          //     <div>
+          //         <DisplayNewsCards articles={this.props.newsarticles} cookies={this.props.cookies} colorsObj = {this.props.colorsObj}/>  
+          //         <BottomLoader load={!this.props.end_of_article} />
+          //     </div>
+          //   );
+          // }
         }
       }
       render() {
