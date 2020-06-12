@@ -3,7 +3,6 @@ import React from 'react';
 import './Chat.css';
 import Avatar from '../../../resources/Avatar.jpg';
 
-
 const ChatSendMessage = (props) => {
 	return (
 		<div className="container3 container darker">
