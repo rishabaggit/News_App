@@ -1,36 +1,25 @@
-// Purpose: To display the list of Categories for which News is Available, in the Dropdown present in Navbar
-//---------------------------------------------------------------------------------------------------------
-// Importing a named module or parameter to be used in CategoryNavItem.js
-
 import React from 'react';
-import {newsCategories} from '../../../constants'
+import { newsCategories } from '../../../constants'
 
-//---------------------------------------------------------------------------------------------------------
-interface CategoryNavItemProps{
-    category: any;
-    categoryChangeHandler: any;
+interface CategoryNavItemProps {
+    category: string;
+    categoryChangeHandler: (event: React.FormEvent<HTMLSelectElement>) => void;
 }
 
-const CategoryNavItem:React.FC<CategoryNavItemProps>= (props) => {
+const CategoryNavItem: React.FC<CategoryNavItemProps> = (props) => {
     return (
-        <li className="nav-item" style = {{color:'black'}}>                
-                                {/* Display a navbar item for the select with the option in the dropdown for
-                                    all the Available Categories which news is Available.  Invoke countryChangeHandler
-                                    if option changed for the country. */}
+        <li className="nav-item" style={{ color: 'black' }}>
             <select value={props.category} onChange={props.categoryChangeHandler} className="dropdown custom-select check">
-            {newsCategories.map((cat) => {
-                    return(
-                    <option key={cat} value={cat}>
-                        {cat}
-                    </option>)
-            })}
+                {newsCategories.map((cat) => {
+                    return (
+                        <option key={cat} value={cat}>
+                            {cat}
+                        </option>)
+                })}
             </select>
         </li>
 
     );
 }
-//----------------------Default Export as CategoryNavItem--------------------------------------------------
 
 export default CategoryNavItem;
-
-//--------------------------------------------------------------------------------------------------------
