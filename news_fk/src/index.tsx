@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { CookiesProvider } from 'react-cookie';
 import { Router } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import createHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import newsFetchReducer from './store/reducers/newsFetchReducer';
@@ -16,11 +16,10 @@ import authReducer from './store/reducers/authReducer';
 import appModeReducer from './store/reducers/appModeReducer';
 
 
-const history = createHistory();
+const history = createBrowserHistory();
 ReactGA.initialize('UA-169198289-2');
 history.listen((location, action) => {
     ReactGA.pageview(location.pathname + location.search);
-    console.log(location.pathname + location.search);
 });
 
 

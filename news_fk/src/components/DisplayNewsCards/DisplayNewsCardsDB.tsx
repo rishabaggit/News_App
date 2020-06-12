@@ -1,13 +1,31 @@
 /* eslint-disable no-unused-vars */
-
-import React from 'react';
-import { connect } from 'react-redux';
-import NewsCardDev from './NewsCard/NewsCardDB';
-import { userget, addLike, removeLike } from '../UserData/FirestoreUtil';
-import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
 import './DisplayNewsCards.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Cookies } from 'react-cookie';
+import { ModeColors } from '../../colors'
+import { userget, addLike, removeLike } from '../UserData/FirestoreUtil';
+import NewsCardDev from './NewsCard/NewsCardDB';
+import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
 
-class DisplayNewsCards extends React.Component {
+interface NewsArticle {
+	urlToImage: string;
+	url: string;
+	title: string;
+	description: string;
+}
+interface DisplayNewsCardsProps {
+	userId: string;
+	colorsObj: ModeColors;
+	cookies: Cookies;
+	articles: Array<NewsArticle>;
+}
+interface DisplayNewsCardsState {
+	LikedArray: Array<NewsArticle | string>;
+	loading: boolean;
+}
+
+class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCardsState> {
 	componentDidMount() {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			var likedPosts = (this.props.cookies).get('Like');
@@ -42,13 +60,11 @@ class DisplayNewsCards extends React.Component {
 				});
 		}
 	}
-
 	state = {
 		loading: true,
 		LikedArray: null
 	}
-
-	likePost = (newsItem) => {
+	likePost = (newsItem: NewsArticle) => {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			(this.props.cookies).set('Like', [...(this.props.cookies).get('Like'), newsItem.url]);
 			this.setState({ LikedArray: (this.props.cookies).get('Like') });
@@ -60,7 +76,7 @@ class DisplayNewsCards extends React.Component {
 		}
 	}
 
-	unlikePost = (newsItem) => {
+	unlikePost = (newsItem: NewsArticle) => {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			var likedPosts2 = (this.props.cookies).get('Like');
 			const index = likedPosts2.indexOf(newsItem.url);
@@ -68,7 +84,6 @@ class DisplayNewsCards extends React.Component {
 				likedPosts2.splice(index, 1);
 			}
 			(this.props.cookies).set('Like', likedPosts2);
-			console.log((this.props.cookies).get('Like'));
 			this.setState({ LikedArray: (this.props.cookies).get('Like') });
 		}
 		else {
@@ -77,18 +92,15 @@ class DisplayNewsCards extends React.Component {
 			removeLike(this.props.userId, newsItem);
 		}
 	}
-
-	isLiked = (newsitem) => {
+	isLiked = (newsitem: NewsArticle) => {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			return this.state.LikedArray.includes(newsitem.url);
 		}
 		else {
-			return this.state.LikedArray.find(obj => obj.url === newsitem.url);
+			return this.state.LikedArray.find((obj: NewsArticle) => obj.url === newsitem.url);
 		}
 
 	}
-
-
 	render() {
 		if (this.state.loading) {
 			return <FullScreenLoader />;
@@ -131,4 +143,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(DisplayNewsCards);
+export default connect(mapStateToProps)(DisplayNewsCards);
