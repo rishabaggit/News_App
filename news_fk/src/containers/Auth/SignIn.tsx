@@ -1,6 +1,6 @@
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {authWithEmail , authRefresh} from '../../store/actions/index';
+import { authWithEmail, authRefresh } from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import Avatar from '../../resources/Avatar.jpg'
 import './Login.css';
@@ -8,70 +8,71 @@ import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoa
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authAction } from 'store/actions/auth';
-import {forgetPassword} from '../../components/UserData/FirestoreUtil'
-// import { analytics } from 'firebase';
+import { forgetPassword } from '../../components/UserData/FirestoreUtil'
 import { ModeColors } from 'colors';
+import { Cookies } from 'react-cookie';
+import { RootState } from 'index';
 
-interface SignInProps{
-    authWithEmail: any;
-    userId: string;
-    loading: boolean;
-    error: any;
-    authRefresh: () => authAction;
-    colorsObj: ModeColors;
-    cookies : any
+interface Userdata {
+    email: string;
+    password: string;
 }
 
-interface SignInState{
+interface SignInProps {
+    authWithEmail: (userData: Userdata, type: boolean) => void;
+    userId: string;
+    loading: boolean;
+    error: string;
+    authRefresh: () => authAction;
+    colorsObj: ModeColors;
+    cookies: Cookies;
+}
+
+interface SignInState {
     email: string;
-    password:string;
-    [x: number]:any;
+    password: string;
+    [x: number]: any;
 }
 class SignIn extends Component<SignInProps, SignInState> {
     state = {
-        email:'',
-        password:''
+        email: '',
+        password: ''
     }
     componentWillUnmount() {
-        if(this.props.userId) {
-            (this.props.cookies).set('PrevUser',this.props.userId,{path: '/'});
+        if (this.props.userId) {
+            (this.props.cookies).set('PrevUser', this.props.userId, { path: '/' });
         }
     }
-    showPassword = (event) => {
-        
+    showPassword = () => {
         var x = document.getElementById('password');
-        
-        if((x as any).type === 'password') {
+        if ((x as any).type === 'password') {
             (x as any).type = 'text';
         }
-        else if((x as any).type === 'text') {
+        else if ((x as any).type === 'text') {
             (x as any).type = 'password';
         }
     }
 
-    
-    
-
     changeHandler = (event) => {
-        this.setState({[event.target.id] : event.target.value})
+        this.setState({ [event.target.id]: event.target.value });
     }
-    
-    onSubmitHandler = (event) => {
+
+    onSubmitHandler = (event: React.SyntheticEvent) => {
         event.preventDefault();
         const userData = {
-            email:this.state.email,
-            password:this.state.password
+            email: this.state.email,
+            password: this.state.password
         }
-        this.props.authWithEmail(userData , true);
+        this.props.authWithEmail(userData, true);
     }
     render() {
-        if(this.props.userId) {
+        if (this.props.userId) {
             return <Redirect to="/" />;
         };
-        if(this.props.loading) {
-            return (<FullScreenLoader/>);
+        if (this.props.loading) {
+            return (<FullScreenLoader />);
         }
-        if(this.props.error) {
+        if (this.props.error) {
             toast.error(this.props.error, {
                 position: "top-center",
                 autoClose: 5000,
@@ -80,18 +81,18 @@ class SignIn extends Component<SignInProps, SignInState> {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                });
-                this.props.authRefresh();
-                this.forceUpdate();
-                
+            });
+            this.props.authRefresh();
+            this.forceUpdate();
+
         }
         return (
             <div>
-                <br/>
-                <br/>
-                <br/>
+                <br />
+                <br />
+                <br />
                 {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
-                
+
                 <ToastContainer
                     position="top-center"
                     autoClose={5000}
@@ -103,9 +104,9 @@ class SignIn extends Component<SignInProps, SignInState> {
                     draggable
                     pauseOnHover
                 />
-                <form style={{backgroundColor: this.props.colorsObj.formColor}} >
+                <form onSubmit={this.onSubmitHandler} style={{ backgroundColor: this.props.colorsObj.formColor }} >
                     <div className="imgcontainer">
-                        <img src={Avatar} alt="Avatar" className="avatar"/>
+                        <img src={Avatar} alt="Avatar" className="avatar" />
                     </div>
                     <div className="container1">
                         <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Username</b></label>
@@ -126,37 +127,35 @@ class SignIn extends Component<SignInProps, SignInState> {
                             name='psw'
                             id='password'
                         />
-                        <input type="checkbox" onClick={this.showPassword}/><span> Show Password</span>
+                        <input type="checkbox" onClick={this.showPassword} /><span> Show Password</span>
                         <button type="button" onClick={() => forgetPassword(this.state.email)} className="b1">Reset Password</button>
 
-                    <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>
+                        <button type='button' onClick={this.onSubmitHandler} className='b1'>SIGN IN</button>
                     </div>
-                </form>  
+                </form>
             </div>
         )
     }
 }
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState) => {
     return {
-      userId : state.auth.userId,
-      error : state.auth.error,
-      loading: state.auth.loading,
-      darkMode: state.appModeReducer.darkMode,
-      colorsObj: state.appModeReducer.colorsObj
+        userId: state.auth.userId,
+        error: state.auth.error,
+        loading: state.auth.loading,
+        darkMode: state.appModeReducer.darkMode,
+        colorsObj: state.appModeReducer.colorsObj
     };
-  };
-
-//mapDispatchToProps() is a utility which will help your component to fire an action event
+};
 
 const mapDispatchToProps = dispatch => {
     return {
-        authWithEmail :(userData,type) => dispatch(authWithEmail(userData,type)),
-        authRefresh : () => dispatch(authRefresh()),
+        authWithEmail: (userData, type) => dispatch(authWithEmail(userData, type)),
+        authRefresh: () => dispatch(authRefresh()),
     }
-  };
-  
+};
+
 //-----------------------------------------------------------------------------------------------------------------
 //Using Default Export as App with Connect being an higher order component which provides data to Component and functions it can dispatch to store.
 
