@@ -23,11 +23,10 @@ class Chat extends Component {
 			.onSnapshot(
 				snapshot => {
 					snapshot.docChanges().forEach(change => {
-						console.log(change.doc.data().CHAT);
 						if (change.doc.data().CHAT === undefined)
 							this.setState({ listMessage: [] });
 						else
-							this.setState({ listMessage: change.doc.data().CHAT });
+							this.setState({ listMessage: change.doc.data().CHAT.reverse() });
 					});
 				},
 				err => {
@@ -38,19 +37,11 @@ class Chat extends Component {
 	sendMessage = (event) => {
 		event.preventDefault();
 		newMessage(this.props.userId, this.state.message);
-		// newMessage('mudreka@arif.com' , this.state.message);
 		this.resetMessage();
 	}
 	resetMessage = () => {
 		this.setState({ message: '' });
 	}
-	// renderChat = () => {
-	//     console.log('called')
-	//     return(
-
-	//     );
-
-	// }
 	render() {
 		if (!this.props.userId) {
 			return <Redirect to='/signin' />;
