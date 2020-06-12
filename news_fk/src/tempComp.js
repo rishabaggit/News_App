@@ -9,7 +9,7 @@ class tempComp extends React.Component {
   };
   
   news = () => {
-    axios.get(`https://api.cognitive.microsoft.com/bing/v7.0/news?mkt=en-IN&count=${this.state.count}&offset=${this.state.offset}&category=India` , {headers: { 'Ocp-Apim-Subscription-Key': 'c6d67c89ed214cb1ac89792869e11068' }})
+    axios.get(`https://api.cognitive.microsoft.com/bing/v7.0/news?mkt=en-IN&count=${this.state.count}&offset=${this.state.offset}&category=Business` , {headers: { 'Ocp-Apim-Subscription-Key': 'c6d67c89ed214cb1ac89792869e11068' }})
       .then(response => {
         console.log(response.data.value);
         this.setState({offset : this.state.offset + this.state.count});
