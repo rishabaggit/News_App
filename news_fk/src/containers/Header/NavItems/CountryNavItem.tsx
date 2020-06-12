@@ -3,7 +3,7 @@ import { countryList } from '../../../constants'
 
 interface CountryNavItemProps {
     country: string;
-    countryChangeHandler: any;
+    countryChangeHandler: (event: React.FormEvent<HTMLSelectElement>) => void;
 }
 const CountryNavItem: React.FC<CountryNavItemProps> = (props) => {
     return (

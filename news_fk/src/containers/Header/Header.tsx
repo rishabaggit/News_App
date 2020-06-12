@@ -49,11 +49,11 @@ class Header extends Component<HeaderProps> {
         this.props.flipDarkMode();
     }
 
-    countryChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    countryChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
         this.props.countryChangeHandler(event.currentTarget.value);
         this.props.newsHandler();
     }
-    categoryChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    categoryChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
         this.props.categoryChangeHandler(event.currentTarget.value);
         this.props.newsHandler();
     }
