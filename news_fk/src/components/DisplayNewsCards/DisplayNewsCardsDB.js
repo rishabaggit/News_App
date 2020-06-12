@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
-import NewsCardDev from './NewsCard/NewsCardDB';
 import { connect } from 'react-redux';
-import './DisplayNewsCards.css';
+import NewsCardDev from './NewsCard/NewsCardDB';
 import { userget, addLike, removeLike } from '../UserData/FirestoreUtil';
 import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
+import './DisplayNewsCards.css';
 
 class DisplayNewsCards extends React.Component {
 	componentDidMount() {

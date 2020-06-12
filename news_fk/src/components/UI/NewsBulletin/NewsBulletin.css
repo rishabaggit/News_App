@@ -1,7 +1,4 @@
 .jumbotron {
-    
-    /* color: #2c3e50; */
-    /* background-image: "../../resources/jumbotron.png"; */
     background-image: url("../../../resources/jumbotron.jpg");
     background-size: cover;
     margin-top: 5em;
