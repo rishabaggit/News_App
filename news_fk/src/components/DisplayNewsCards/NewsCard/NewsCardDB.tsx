@@ -3,19 +3,24 @@ import "./NewsCard.css"
 import Modal from './Modal/Modal';
 import { ModeColors } from 'colors';
 
+interface NewsArticle {
+    urlToImage: string,
+    url: string,
+    title: string,
+    description: string
+}
 interface NewsCardProps {
     key: number;
     url: string;
     colorsObj: ModeColors;
-    img: any;
+    img: string;
     title: string;
     description: string;
     Liked: boolean;
-    newsItem: Object;
-    unlikePost: (newsItem: Object) => void;
-    likePost: (newsItem: Object) => void;
+    newsItem: NewsArticle;
+    unlikePost: (newsItem: NewsArticle) => void;
+    likePost: (newsItem: NewsArticle) => void;
 }
-
 
 class NewsCard extends React.Component<NewsCardProps> {
     render() {
