@@ -20,7 +20,6 @@ const history = createHistory();
 ReactGA.initialize('UA-169198289-2');
 history.listen((location, action) => {
     ReactGA.pageview(location.pathname + location.search);
-    console.log(location.pathname + location.search);
 });
 
 

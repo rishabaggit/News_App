@@ -10,7 +10,12 @@ import DisplayNewsCardsDB from '../../components/DisplayNewsCards/DisplayNewsCar
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler';
 import InitialLoader from '../../components/UI/InitialLoader/InitialLoader';
 
-
+interface NewsArticle {
+  urlToImage: string,
+  url: string,
+  title: string,
+  description: string
+}
 interface NewsPageProps {
   cookies: Cookies;
   should_load: boolean;
@@ -18,7 +23,7 @@ interface NewsPageProps {
   error_found: boolean;
   initial_loading: boolean;
   userId: string;
-  newsarticles: Array<Object>;
+  newsarticles: Array<NewsArticle>;
   colorsObj: ModeColors;
   end_of_article: boolean;
 }

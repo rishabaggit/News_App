@@ -3,7 +3,11 @@ import React from 'react';
 import './Chat.css';
 import Avatar from '../../../resources/Avatar.jpg';
 
-const ChatRecievedMessage = (props) => {
+interface ChatProps {
+	username: string,
+	message: string
+}
+const ChatRecievedMessage = (props: ChatProps) => {
 	return (
 		<div className="container3 container">
 			<img src={Avatar} alt="Avatar"></img>
