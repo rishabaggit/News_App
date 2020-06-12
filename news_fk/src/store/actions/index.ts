@@ -10,6 +10,6 @@ export {
     countryChangeHandler,
     categoryChangeHandler
 } from './news';
-export{
+export {
     flipDarkMode
 } from './darkMode'

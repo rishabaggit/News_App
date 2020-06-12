@@ -7,7 +7,7 @@ import { ModeColors } from 'colors';
 import { Cookies } from 'react-cookie';
 
 interface NewsCardProps {
-    cookies: Cookies;
+    key: Number;
     url: string;
     colorsObj: ModeColors;
     img: any;

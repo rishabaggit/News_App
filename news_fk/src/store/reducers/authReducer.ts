@@ -1,9 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 import { authAction } from 'store/actions/auth';
 
-interface authState{
+interface authState {
     userId: string;
-    error: any;
+    error: string;
     loading: boolean;
 }
 const initialState: authState = {
@@ -12,34 +12,34 @@ const initialState: authState = {
     loading: false,
 };
 
-const authReducer = (state = initialState,action: authAction) => {
-    switch(action.type){
+const authReducer = (state = initialState, action: authAction) => {
+    switch (action.type) {
         case actionTypes.AUTH_START:
-            return{
+            return {
                 ...state,
-                error : null,
+                error: null,
                 loading: true
             }
         case actionTypes.AUTH_LOGOUT:
-            return{
+            return {
                 ...state,
-                userId: null 
+                userId: null
             }
         case actionTypes.AUTH_SUCCESS:
-            return{
+            return {
                 ...state,
                 userId: action.userId,
                 error: null,
                 loading: false,
-            } 
+            }
         case actionTypes.AUTH_FAIL:
-            return{
+            return {
                 ...state,
                 error: action.error,
                 loading: false
             }
         case actionTypes.AUTH_REFRESH:
-            return{
+            return {
                 ...state,
                 error: null
             }
