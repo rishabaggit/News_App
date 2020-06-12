@@ -1,13 +1,10 @@
-// PURPOSE: Component Called From DisplayNewsCard.js and Reposible for Rendering each News Article in a card visible in the home page
-
 import React from 'react';
 import "./NewsCard.css"
 import Modal from './Modal/Modal';
 import { ModeColors } from 'colors';
-import { Cookies } from 'react-cookie';
 
 interface NewsCardProps {
-    cookies: Cookies;
+    key: number;
     url: string;
     colorsObj: ModeColors;
     img: any;

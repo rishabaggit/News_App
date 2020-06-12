@@ -6,7 +6,7 @@ export const flipDarkMode = () => {
     };
 };
 
-interface flipDarkModeAction{
+interface flipDarkModeAction {
     type: typeof actionTypes.FLIP_DARK_MODE;
 };
 

@@ -31,6 +31,10 @@ module.exports = {
 		'semi': [
 			'error',
 			'always'
-		]
+		],
+		'camelcase':
+			[2,
+				{ 'properties': 'always' }
+			]
 	}
 };

@@ -1,28 +1,28 @@
 import * as actionTypes from './actionTypes';
-import {FIREBASE_API_KEY} from '../../constants';
+import { FIREBASE_API_KEY } from '../../constants';
 import axios from 'axios';
 import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
 import { newUser } from 'components/UserData/FirestoreUtil';
 
-interface authStartAction{
+interface authStartAction {
     type: typeof actionTypes.AUTH_START;
 };
 
-interface authSuccessAction{
+interface authSuccessAction {
     type: typeof actionTypes.AUTH_SUCCESS;
     userId: string;
 };
 
-interface authFailAction{
+interface authFailAction {
     type: typeof actionTypes.AUTH_FAIL;
     error: any;
 };
 
-interface logoutAction{
+interface logoutAction {
     type: typeof actionTypes.AUTH_LOGOUT;
 };
 
-interface authRefreshAction{
+interface authRefreshAction {
     type: typeof actionTypes.AUTH_REFRESH;
 };
 
@@ -32,13 +32,13 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (userId:string) => {
+export const authSuccess = (userId: string) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         userId: userId
     };
 };
-export const authFail = (error:any) => {
+export const authFail = (error: string) => {
     return {
         type: actionTypes.AUTH_FAIL,
         error: error
@@ -55,22 +55,27 @@ export const logout = () => {
         type: actionTypes.AUTH_LOGOUT
     };
 };
-
-export const authWithEmail = (userData: any, SignIn: any) => {
-    return (dispatch:any) => {
+interface userDataInterface {
+    email: string,
+    password: string,
+    fname: string,
+    lname: string
+}
+export const authWithEmail = (userData: userDataInterface, SignIn: boolean) => {
+    return (dispatch: any) => {
         dispatch(authStart());
         const authData = {
             email: userData.email,
             password: userData.password,
             returnSecureToken: true
         };
-        const type = SignIn? 'signInWithPassword' : 'signUp';
+        const type = SignIn ? 'signInWithPassword' : 'signUp';
         let url = `https://identitytoolkit.googleapis.com/v1/accounts:${type}?key=${FIREBASE_API_KEY}`;
 
         axios.post(url, authData)
             .then(response => {
-                if(!SignIn) {
-                    newUser(userData.email ,userData.fname , userData.lname );
+                if (!SignIn) {
+                    newUser(userData.email, userData.fname, userData.lname);
                 }
                 dispatch(authSuccess(userData.email));
             })
@@ -82,21 +87,26 @@ export const authWithEmail = (userData: any, SignIn: any) => {
 
 
 export const authWithFacebook = () => {
-    return (dispatch:any) => {
+    return (dispatch: any) => {
         dispatch(authStart());
+        interface ProfileInterface {
+            email: string,
+            first_name: string,
+            last_name: string,
+        }
         app.auth().signInWithPopup(facebookProvider)
-        .then(result => {
-            // if(result.additionalUserInfo.isNewUser) {
-            //     newUser(result.additionalUserInfo.profile.email,
-            //         result.additionalUserInfo.profile.first_name,
-            //         result.additionalUserInfo.profile.last_name);
-            // }
-            dispatch(authSuccess((result.additionalUserInfo.profile as any).email));
-        })
-        .catch(error => {
-            console.log(error);
-            dispatch(authFail(error.message));
-        })
+            .then(result => {
+                if (result.additionalUserInfo.isNewUser) {
+                    newUser((result.additionalUserInfo.profile as ProfileInterface).email,
+                        (result.additionalUserInfo.profile as ProfileInterface).first_name,
+                        (result.additionalUserInfo.profile as ProfileInterface).last_name);
+                }
+                dispatch(authSuccess((result.additionalUserInfo.profile as ProfileInterface).email));
+            })
+            .catch(error => {
+                console.log(error);
+                dispatch(authFail(error.message));
+            })
     }
 }
 

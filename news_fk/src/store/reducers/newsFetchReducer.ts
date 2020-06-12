@@ -1,91 +1,81 @@
 import * as actionTypes from '../actions/actionTypes';
 import { newsFetchAction } from 'store/actions/news';
 
-interface newsFetchState{
+interface newsFetchState {
     initial_loading: boolean;
     should_load: boolean;
     currpage: number;
     countrycode: string;
     newscategory: string;
-    newsarticles: any;
+    newsarticles: Array<Object>;
     end_of_article: boolean;
     error_found: boolean;
 }
 
 const initialState: newsFetchState = {
-    initial_loading : true,
-    should_load : false,
-    currpage : 1,
-    countrycode : "in",
-    newscategory : "General",
-    newsarticles : [],
-    end_of_article : false,
-    error_found : false
+    initial_loading: true,
+    should_load: false,
+    currpage: 1,
+    countrycode: 'in',
+    newscategory: 'General',
+    newsarticles: [],
+    end_of_article: false,
+    error_found: false
 }
 
-const newsFetchReducer = (state = initialState,action : newsFetchAction) => {
-    switch(action.type){
+const newsFetchReducer = (state = initialState, action: newsFetchAction) => {
+    switch (action.type) {
         case actionTypes.SET_INITIAL_LOADING:
-            return{
+            return {
                 ...state,
-                initial_loading : action.val
+                initial_loading: action.val
             }
         case actionTypes.SET_SHOULD_LOAD:
-            return{
+            return {
                 ...state,
-                should_load : action.val
+                should_load: action.val
             }
         case actionTypes.SET_CURR_PAGE:
-            return{
+            return {
                 ...state,
-                currpage : action.val
-            }    
-        // case actionTypes.SET_COUNTRY_CODE:
-        //     return{
-        //         ...state,
-        //         countrycode : action.val
-        //     } 
-        // case actionTypes.SET_NEWS_CATEGORY:
-        //     return{
-        //         ...state,
-        //         newscategory : action.val
-        //     } 
+                currpage: action.val
+            }
         case actionTypes.SET_NEWS_ARTICLES:
-            return{
+            return {
                 ...state,
-                newsarticles : action.val
-            }   
+                newsarticles: action.val
+            }
         case actionTypes.SET_END_OF_ARTICLE:
-            return{
+            return {
                 ...state,
-                end_of_article : action.val
+                end_of_article: action.val
             }
         case actionTypes.SET_ERROR_FOUND:
-            return{
+            return {
                 ...state,
-                error_found : action.val
+                error_found: action.val
             }
         case actionTypes.COUNTRY_CHANGE:
             return {
                 ...state,
-                initial_loading : true,
-                countrycode : action.newcnt,
-                currpage : 1,
-                newsarticles : [],
-                should_load : false,
-                end_of_article : false,
-                error_found : false
+                initial_loading: true,
+                countrycode: action.newcnt,
+                currpage: 1,
+                newsarticles: [],
+                should_load: false,
+                end_of_article: false,
+                error_found: false
             }
         case actionTypes.CATEGORY_CHANGE:
             return {
                 ...state,
-                initial_loading : true,
-                newscategory : action.newcat,
-                currpage : 1,
-                newsarticles : [],
-                should_load : false,
-                end_of_article : false,
-                error_found : false
+                initial_loading: true,
+                newscategory: action.newcat,
+                currpage: 1,
+                newsarticles: [],
+                should_load: false,
+                end_of_article: false,
+                error_found: false
             }
         default:
             return state;

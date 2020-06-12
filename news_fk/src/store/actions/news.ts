@@ -1,121 +1,119 @@
-import {API_PAGE_SIZE,NEWS_API_KEY_1} from '../../constants';
+import { API_PAGE_SIZE, NEWS_API_KEY_1 } from '../../constants';
 import * as actionTypes from './actionTypes';
 import { RootState } from 'index';
 
-interface setShouldLoadAction{
+interface setShouldLoadAction {
     type: typeof actionTypes.SET_SHOULD_LOAD;
-    val : boolean;
+    val: boolean;
 };
-interface countryChangeHandlerAction{
+interface countryChangeHandlerAction {
     type: typeof actionTypes.COUNTRY_CHANGE;
     newcnt: string;
 };
-interface categoryChangeHandlerAction{
+interface categoryChangeHandlerAction {
     type: typeof actionTypes.CATEGORY_CHANGE;
     newcat: string;
 };
-interface setInitialLoadingAction{
+interface setInitialLoadingAction {
     type: typeof actionTypes.SET_INITIAL_LOADING;
-    val:boolean;
+    val: boolean;
 };
-interface setNewsArticlesAction{
+interface setNewsArticlesAction {
     type: typeof actionTypes.SET_NEWS_ARTICLES;
     val: any;
 };
-interface setEndofArticleAction{
+interface setEndofArticleAction {
     type: typeof actionTypes.SET_END_OF_ARTICLE;
     val: boolean;
 };
-interface setCurrPageAction{
+interface setCurrPageAction {
     type: typeof actionTypes.SET_CURR_PAGE;
     val: number;
 };
-interface setErrorFoundAction{
+interface setErrorFoundAction {
     type: typeof actionTypes.SET_ERROR_FOUND;
     val: boolean;
 };
 
-export const setShouldLoad = ( newVal:boolean ) => {
+export const setShouldLoad = (newVal: boolean) => {
     return {
         type: actionTypes.SET_SHOULD_LOAD,
-        val : newVal
+        val: newVal
     };
 }
-export const countryChangeHandler = ( newCountry:string ) => {
+export const countryChangeHandler = (newCountry: string) => {
     return {
         type: actionTypes.COUNTRY_CHANGE,
-        newcnt : newCountry
+        newcnt: newCountry
     };
 }
-export const categoryChangeHandler = (newCategory:string) => {
+export const categoryChangeHandler = (newCategory: string) => {
     return {
         type: actionTypes.CATEGORY_CHANGE,
-        newcat : newCategory
+        newcat: newCategory
     };
 }
 
-export const setInitialLoading = ( newVal:boolean ) => {
+export const setInitialLoading = (newVal: boolean) => {
     return {
         type: actionTypes.SET_INITIAL_LOADING,
-        val : newVal
+        val: newVal
     };
 }
 
-export const setNewsArticles= ( newVal: any ) => {
+export const setNewsArticles = (newVal: Array<Object>) => {
     return {
         type: actionTypes.SET_NEWS_ARTICLES,
-        val : newVal
+        val: newVal
     };
 }
 
-export const setEndOfArticle = ( newVal:boolean ) => {
+export const setEndOfArticle = (newVal: boolean) => {
     return {
         type: actionTypes.SET_END_OF_ARTICLE,
-        val : newVal
+        val: newVal
     };
 }
 
-export const setCurrPage = ( newVal:number ) => {
+export const setCurrPage = (newVal: number) => {
     return {
         type: actionTypes.SET_CURR_PAGE,
-        val : newVal
+        val: newVal
     };
 }
 
-export const setErrorFound = ( newVal:boolean ) => {
+export const setErrorFound = (newVal: boolean) => {
     return {
         type: actionTypes.SET_ERROR_FOUND,
-        val : newVal
+        val: newVal
     };
 };
 
 export const newsHandler = () => {
-    return (dispatch:any, getState: () => RootState ) => {
-            //getState() = getState();
-            if(!getState().newsFetchReducer.end_of_article) {
+    return (dispatch: any, getState: () => RootState) => {
+        if (!getState().newsFetchReducer.end_of_article) {
             dispatch(setShouldLoad(false));
             const url = `http://newsapi.org/v2/top-headlines?country=${getState().newsFetchReducer.countrycode}&category=${getState().newsFetchReducer.newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().newsFetchReducer.currpage}&apiKey=${NEWS_API_KEY_1}`;
             fetch(url)
-              .then(response => {
-                return response.json();
-              })
-              .then(fin => {
-                dispatch(setInitialLoading(false));
-                dispatch(setNewsArticles([...getState().newsFetchReducer.newsarticles , ...fin.articles]));
-                dispatch(setShouldLoad(true));
-                if(fin.articles.length < API_PAGE_SIZE) {
-                    dispatch(setEndOfArticle(true));
-                    console.log("triggered");
-                }else{
-                    dispatch(setCurrPage(getState().newsFetchReducer.currpage + 1));
-                }
-              })
-              .catch(err => {
+                .then(response => {
+                    return response.json();
+                })
+                .then(fin => {
+                    dispatch(setInitialLoading(false));
+                    dispatch(setNewsArticles([...getState().newsFetchReducer.newsarticles, ...fin.articles]));
+                    dispatch(setShouldLoad(true));
+                    if (fin.articles.length < API_PAGE_SIZE) {
+                        dispatch(setEndOfArticle(true));
+                    } else {
+                        dispatch(setCurrPage(getState().newsFetchReducer.currpage + 1));
+                    }
+                })
+                .catch(err => {
                     dispatch(setErrorFound(true));
-              })
-            }
+                })
+        }
     }
 }
 
 export type newsFetchAction = setInitialLoadingAction | setShouldLoadAction | setCurrPageAction | setEndofArticleAction |
-                            setErrorFoundAction | setNewsArticlesAction | countryChangeHandlerAction | categoryChangeHandlerAction;
+    setErrorFoundAction | setNewsArticlesAction | countryChangeHandlerAction | categoryChangeHandlerAction;
