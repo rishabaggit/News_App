@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { db } from '../../components/UserAuthentication/firebase';
@@ -51,7 +52,6 @@ class Chat extends Component {
 				<div className="cchat">
 					{
 						this.state.listMessage.map(obj => {
-							console.log(obj.email, this.props.userId);
 							if (obj.email === this.props.userId) {
 								return <ChatSendMessage {...obj} />;
 							}
