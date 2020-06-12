@@ -1,48 +1,13 @@
-.form-inline {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-  }
-  
-  
-  
-  .form-inline input {
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-  }
-  
-  
-  .form-inline button {
-    padding: 10px 20px;
-    background-color: dodgerblue;
-    border: 1px solid #ddd;
-    color: white;
-  }
-  
-  .form-inline button:hover {
-    background-color: royalblue;
-  }
-  
-  @media (max-width: 800px) {
-    .form-inline input {
-      margin: 10px 0;
-    }
-  
-    .form-inline {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  }
-
-  .cchat {
-    max-height: 500px;
+.cchat {
+    max-height: 580px;
     overflow: auto;
-    border: 1px solid black;
+    border: 3px solid #f1f1f1;
     display: flex;
     flex-direction: column-reverse;
+    padding: 5px;
   }
+
+  
+  
 
   

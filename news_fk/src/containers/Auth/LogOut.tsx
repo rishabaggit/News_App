@@ -5,12 +5,13 @@ import { Redirect } from 'react-router-dom';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import { authAction } from 'store/actions/auth';
 import { RootState } from 'index';
+import { Cookies } from 'react-cookie';
 
 
 interface LogOutProps {
     logout: () => authAction;
-    userId: string;
-    cookies: any
+    userId: string,
+    cookies: Cookies
 }
 
 class LogOut extends Component<LogOutProps> {
