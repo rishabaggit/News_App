@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { RootState } from 'index';
 import { ModeColors } from 'colors';
 import * as actionTypes from '../../store/actions/index';
+import * as cookiesUtil from '../../Util/cookiesUtil'
 import { newsFetchAction } from 'store/actions/news';
 import { appModeAction } from 'store/actions/darkMode';
 import { authAction } from 'store/actions/auth';
@@ -30,22 +31,15 @@ interface HeaderProps {
 class Header extends Component<HeaderProps> {
 
     componentDidMount() {
-        if ((this.props.cookies).get('DarkMode') === null ||
-            (this.props.cookies).get('DarkMode') === undefined) {
-            (this.props.cookies).set('DarkMode', false, { path: '/' })
-        }
-        const prevMode = (this.props.cookies).get('DarkMode') === 'true';
+        cookiesUtil.initializeDarkMode(this.props.cookies);
+        const prevMode = cookiesUtil.getDarkMode(this.props.cookies) === 'true';
         if (prevMode !== this.props.darkMode) {
             this.darkModeFlipper();
         }
-        if ((this.props.cookies).get('PrevUser') !== null ||
-            (this.props.cookies).get('PrevUser') !== undefined ||
-            (this.props.cookies).get('PrevUser') !== '') {
-            this.props.authSuccess((this.props.cookies).get('PrevUser'));
-        }
+        cookiesUtil.checkSignIn(this.props.cookies, this.props.authSuccess)
     }
     darkModeFlipper = () => {
-        (this.props.cookies).set('DarkMode', !this.props.darkMode, { path: '/' });
+        cookiesUtil.setDarkMode(this.props.cookies, !this.props.darkMode);
         this.props.flipDarkMode();
     }
 

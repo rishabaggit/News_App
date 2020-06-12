@@ -5,7 +5,7 @@ import { Redirect, NavLink } from 'react-router-dom';
 import { RootState } from 'index';
 import { ModeColors } from 'colors';
 import Avatar from '../../resources/Avatar.jpg'
-import { userget } from '../../components/UserData/FirestoreUtil';
+import { userget } from '../../Util/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler'
 

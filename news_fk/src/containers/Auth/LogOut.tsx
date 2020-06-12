@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
+import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authAction } from 'store/actions/auth';
 import { RootState } from 'index';
 import { Cookies } from 'react-cookie';
@@ -16,7 +17,7 @@ interface LogOutProps {
 
 class LogOut extends Component<LogOutProps> {
     componentDidMount() {
-        (this.props.cookies).set('PrevUser', '', { path: '/' });
+        cookiesUtil.signOutHandler(this.props.cookies);
         setTimeout(this.props.logout, 500);
     }
     render() {

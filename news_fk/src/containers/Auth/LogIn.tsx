@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
 import { RootState } from 'index';
 import { ModeColors } from 'colors';
+import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authWithEmail, authWithFacebook, authRefresh } from '../../store/actions/index';
 import { authAction } from 'store/actions/auth';
 import Avatar from '../../resources/Avatar.jpg';
@@ -41,7 +42,7 @@ class LogIn extends Component<LogInProps> {
 
     componentWillUnmount() {
         if (this.props.userId) {
-            (this.props.cookies).set('PrevUser', this.props.userId, { path: '/' });
+            cookiesUtil.signInHandler(this.props.cookies, this.props.userId);
         }
     }
     validate = (event: React.FormEvent<HTMLInputElement>) => {
@@ -94,9 +95,7 @@ class LogIn extends Component<LogInProps> {
         }
         return (
             <div>
-                <br />
-                <br />
-                <br />
+                <br /><br /><br />
                 <ToastContainer
                     position="top-center"
                     autoClose={5000}
@@ -184,9 +183,9 @@ const mapStateToProps = (state: RootState) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        authWithEmail: (userData, type: boolean) => dispatch(authWithEmail(userData, type)),
+        authWithEmail: (userData: Userdata, type: boolean) => dispatch(authWithEmail(userData, type)),
         authWithFacebook: () => dispatch(authWithFacebook()),
         authRefresh: () => dispatch(authRefresh())
     }

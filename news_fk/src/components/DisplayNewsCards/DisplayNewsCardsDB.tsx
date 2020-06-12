@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Cookies } from 'react-cookie';
 import { ModeColors } from '../../colors'
-import { userget, addLike, removeLike } from '../UserData/FirestoreUtil';
+import { RootState } from 'index';
+import { userget, addLike, removeLike } from '../../Util/FirestoreUtil';
+import * as cookiesUtil from '../../Util/cookiesUtil'
 import NewsCardDev from './NewsCard/NewsCardDB';
 import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
 
@@ -28,7 +30,7 @@ interface DisplayNewsCardsState {
 class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCardsState> {
 	componentDidMount() {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
-			var likedPosts = (this.props.cookies).get('Like');
+			var likedPosts = cookiesUtil.getLikeArray(this.props.cookies);
 			if (likedPosts) {
 				this.setState({
 					LikedArray: likedPosts,
@@ -66,8 +68,8 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 	}
 	likePost = (newsItem: NewsArticle) => {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
-			(this.props.cookies).set('Like', [...(this.props.cookies).get('Like'), newsItem.url]);
-			this.setState({ LikedArray: (this.props.cookies).get('Like') });
+			cookiesUtil.addLike(this.props.cookies, newsItem);
+			this.setState({ LikedArray: cookiesUtil.getLikeArray(this.props.cookies) });
 		}
 		else {
 			let likedPosts = [...this.state.LikedArray, newsItem];
@@ -78,13 +80,8 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 
 	unlikePost = (newsItem: NewsArticle) => {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
-			var likedPosts2 = (this.props.cookies).get('Like');
-			const index = likedPosts2.indexOf(newsItem.url);
-			if (index > -1) {
-				likedPosts2.splice(index, 1);
-			}
-			(this.props.cookies).set('Like', likedPosts2);
-			this.setState({ LikedArray: (this.props.cookies).get('Like') });
+			cookiesUtil.removeLike(this.props.cookies, newsItem);
+			this.setState({ LikedArray: cookiesUtil.getLikeArray(this.props.cookies) });
 		}
 		else {
 			let likedPosts = this.state.LikedArray.filter(obj => obj.url !== newsItem.url);
@@ -137,7 +134,7 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
 	return {
 		userId: state.auth.userId
 	};

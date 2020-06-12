@@ -29,13 +29,6 @@ interface NewsPageProps {
 }
 
 class NewsPage extends Component<NewsPageProps> {
-
-  constructor(props: NewsPageProps) {
-    super(props);
-    if ((this.props.cookies).get('Like') === null || (this.props.cookies).get('Like') === undefined) {
-      (this.props.cookies).set('Like', [], { path: '/' })
-    }
-  }
   componentDidMount = () => {
     this.props.newsHandler();
   }

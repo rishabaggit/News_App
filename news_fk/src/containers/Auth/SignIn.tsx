@@ -7,8 +7,9 @@ import './Login.css';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authAction } from 'store/actions/auth';
-import { forgetPassword } from '../../components/UserData/FirestoreUtil'
+import { forgetPassword } from '../../Util/FirestoreUtil'
 import { ModeColors } from 'colors';
 import { Cookies } from 'react-cookie';
 import { RootState } from 'index';
@@ -40,7 +41,7 @@ class SignIn extends Component<SignInProps, SignInState> {
     }
     componentWillUnmount() {
         if (this.props.userId) {
-            (this.props.cookies).set('PrevUser', this.props.userId, { path: '/' });
+            cookiesUtil.signInHandler(this.props.cookies, this.props.userId);
         }
     }
     showPassword = () => {
@@ -88,11 +89,7 @@ class SignIn extends Component<SignInProps, SignInState> {
         }
         return (
             <div>
-                <br />
-                <br />
-                <br />
-                {/* {this.props.error ? <h1>{this.props.error}</h1> : 'Enter Credentials'} */}
-
+                <br /><br /><br />
                 <ToastContainer
                     position="top-center"
                     autoClose={5000}
@@ -149,14 +146,10 @@ const mapStateToProps = (state: RootState) => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        authWithEmail: (userData, type) => dispatch(authWithEmail(userData, type)),
+        authWithEmail: (userData: Userdata | any, type: boolean) => dispatch(authWithEmail(userData, type)),
         authRefresh: () => dispatch(authRefresh()),
     }
 };
-
-//-----------------------------------------------------------------------------------------------------------------
-//Using Default Export as App with Connect being an higher order component which provides data to Component and functions it can dispatch to store.
-
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

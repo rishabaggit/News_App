@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { db } from '../UserAuthentication/firebase';
+import { db } from '../components/UserAuthentication/firebase';
 import firebase from 'firebase';
 
 async function userget(uid: string) {

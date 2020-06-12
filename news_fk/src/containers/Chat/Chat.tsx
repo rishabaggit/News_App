@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { db } from '../../components/UserAuthentication/firebase';
-import { newMessage } from '../../components/UserData/FirestoreUtil';
+import { newMessage } from '../../Util/FirestoreUtil';
 import ChatSendMessage from '../../components/UI/ChatMessage/ChatSendMessage';
 import ChatRecievedMessage from '../../components/UI/ChatMessage/ChatRecievedMessage';
 

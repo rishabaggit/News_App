@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { ModeColors } from 'colors';
 import { RootState } from 'index';
 import NewsCardDB from '../../components/DisplayNewsCards/NewsCard/NewsCardDB';
-import { userget, addLike, removeLike } from '../../components/UserData/FirestoreUtil';
+import { userget, addLike, removeLike } from '../../Util/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
 
 interface LikedPostsProps {
