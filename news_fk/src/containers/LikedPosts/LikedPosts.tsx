@@ -26,10 +26,7 @@ interface LikedPostsState {
 }
 class LikedPosts extends React.Component<LikedPostsProps, LikedPostsState>{
 	componentDidMount() {
-		if (this.props.userId === null) {
-			return <Redirect to="/signin" />;
-		}
-		else {
+		if (this.props.userId !== null) {
 			userget(this.props.userId)
 				.then(
 					doc => {
