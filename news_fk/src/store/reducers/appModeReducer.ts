@@ -16,7 +16,6 @@ const initialState: appModeState = {
 const appModeReducer = (state:appModeState = initialState, action: appModeAction) => {
     switch(action.type){
         case actionTypes.FLIP_DARK_MODE:
-            (state.darkMode) ? analytics.logEvent('dark_mode_off') : analytics.logEvent('dark_mode_on');
             return{
                 ...state,
                 darkMode: !state.darkMode,

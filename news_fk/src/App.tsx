@@ -19,6 +19,7 @@ import {RootState} from './index'
 import LikedPosts from 'containers/LikedPosts/LikedPosts';
 import Chat from 'containers/Chat/Chat'
 import { ModeColors } from 'colors';
+import ReactGA from 'react-ga';
 //-----------------------------------------------------------------------------------------------------------------
 //index.js is the traditional and actual entry point for all node apps. Here in react it just has code of what to render and where to render. 
 // App.js has the root component of the react app because every view and component are handled with hierarchy in React, where <App /> is the top most component in hierarchy. 
@@ -32,6 +33,7 @@ class App extends Component<AppProps>{
 
   componentDidMount(){
     document.body.style.backgroundColor = this.props.colorsObj.backgroundColor;
+    ReactGA.pageview(window.location.pathname + window.location.search);
   };
   componentDidUpdate(){
     document.body.style.backgroundColor = this.props.colorsObj.backgroundColor;

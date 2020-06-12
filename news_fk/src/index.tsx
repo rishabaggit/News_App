@@ -11,7 +11,17 @@ import appModeReducer from './store/reducers/appModeReducer';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import { CookiesProvider } from 'react-cookie';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Router} from 'react-router-dom';
+import ReactGA from 'react-ga';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+ReactGA.initialize('UA-169198289-2');
+history.listen((location, action) => {
+    ReactGA.pageview(location.pathname + location.search);
+    console.log(location.pathname + location.search);
+});
+
 
 const rootReducer = combineReducers({
     newsFetchReducer : newsFetchReducer,
@@ -26,10 +36,10 @@ const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
 
 const store = createStore(rootReducer,  composeEnhancers(applyMiddleware(thunk)));
 ReactDOM.render(<Provider store={store}>
-                    <BrowserRouter>
+                    <Router history={history}>
                         <CookiesProvider>
                             <App />
                         </CookiesProvider>
-                    </BrowserRouter>
+                    </Router>
                 </Provider>, document.getElementById('root'));
 registerServiceWorker();
