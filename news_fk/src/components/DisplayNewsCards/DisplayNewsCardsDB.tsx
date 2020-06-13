@@ -9,6 +9,7 @@ import { userget, addLike, removeLike } from '../../Util/FirestoreUtil';
 import * as cookiesUtil from '../../Util/cookiesUtil'
 import NewsCardDev from './NewsCard/NewsCardDB';
 import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
+import ReactGA from 'react-ga';
 
 interface NewsArticle {
 	urlToImage: string;
@@ -67,6 +68,10 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 		LikedArray: null
 	}
 	likePost = (newsItem: NewsArticle) => {
+		ReactGA.event({
+			category: 'Post Interaction',
+			action: 'Liked a Post'
+		});
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			cookiesUtil.addLike(this.props.cookies, newsItem);
 			this.setState({ LikedArray: cookiesUtil.getLikeArray(this.props.cookies) });
@@ -79,6 +84,10 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 	}
 
 	unlikePost = (newsItem: NewsArticle) => {
+		ReactGA.event({
+			category: 'Post Interaction',
+			action: 'Unliked a Post'
+		});
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			cookiesUtil.removeLike(this.props.cookies, newsItem);
 			this.setState({ LikedArray: cookiesUtil.getLikeArray(this.props.cookies) });
