@@ -2,6 +2,7 @@ import React from 'react';
 import "./NewsCard.css"
 import Modal from './Modal/Modal';
 import { ModeColors } from 'colors';
+import ReactGA from 'react-ga';
 
 interface NewsArticle {
     urlToImage: string,
@@ -56,6 +57,12 @@ class NewsCard extends React.Component<NewsCardProps> {
                                 data-toggle="modal"
                                 data-target={'#' + this.props.url}
                                 style={{ backgroundColor: this.props.colorsObj.cardButtonColor }}
+                                onClick={() => {
+                                    ReactGA.event({
+                                        category: 'Post Interaction',
+                                        action: 'Share Button Clicked'
+                                    });
+                                }}
                             >
                                 <span style={this.props.colorsObj.textStyleMedium}>Share</span>
                             </button>
@@ -64,9 +71,14 @@ class NewsCard extends React.Component<NewsCardProps> {
                                 className="btn mb-2"
                                 style={{ backgroundColor: this.props.colorsObj.cardButtonColor }}
                                 onClick={() => {
+                                    ReactGA.event({
+                                        category: 'Post Interaction',
+                                        action: 'Read More Clicked'
+                                    });
                                     var win = window.open(this.props.url, '_blank');
                                     win.focus();
-                                }}>
+                                }}
+                            >
                                 <span style={this.props.colorsObj.textStyleMedium}>Read More</span>
                             </button>
                             <Modal {...this.props} />
