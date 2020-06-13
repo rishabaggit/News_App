@@ -1,5 +1,5 @@
 import React from 'react';
-import { countryList } from '../../../constants'
+import { countriesAndCategories } from '../../../constants'
 
 interface CountryNavItemProps {
     country: string;
@@ -10,12 +10,13 @@ const CountryNavItem: React.FC<CountryNavItemProps> = (props) => {
         <li className="nav-item">
             <select value={props.country} onChange={props.countryChangeHandler}
                 className="dropdown custom-select check1">
-                {countryList.map((cnt) => {
-                    return (
-                        <option key={cnt.country} value={cnt.code}>
-                            {cnt.country}
-                        </option>)
-                })}
+                {
+                    Object.keys(countriesAndCategories).map((countryName) => {
+                        return (
+                            <option key={countryName} value={countriesAndCategories[countryName].code}>
+                                {countriesAndCategories[countryName].country}
+                            </option>)
+                    })}
             </select>
         </li>
     );

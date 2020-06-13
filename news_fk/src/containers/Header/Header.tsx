@@ -109,6 +109,7 @@ class Header extends Component<HeaderProps> {
                                 <Route path="/" exact render={() => (
                                     <CategoryNavItem
                                         category={this.props.newscategory}
+                                        country={this.props.countrycode}
                                         categoryChangeHandler={this.categoryChangeHandler}
                                     />
                                 )} />

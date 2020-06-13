@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-
 import { Cookies } from "react-cookie";
 
 interface NewsArticle {

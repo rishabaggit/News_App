@@ -34,6 +34,7 @@ export const API_PAGE_SIZE = 6;
 export const FIREBASE_API_KEY = "AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y";
 export const NEWS_API_KEY_1 = '8115e82c195f445ebba7f0beeeb524e2';
 export const NEWS_API_KEY_2 = 'e004421173114bd5b890eb56590a9a12';
+export const NEWS_API_KEY_BING = 'c6d67c89ed214cb1ac89792869e11068';
 
 export const countriesAndCategories = {
     Australia: {
