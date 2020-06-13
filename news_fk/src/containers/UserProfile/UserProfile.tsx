@@ -40,6 +40,11 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                 .catch(error => console.log(error));
         }
     }
+
+    uploadpic = () => {
+        var click1 = document.getElementById('imageUpload');
+        click1.click();
+    }
     render() {
         if (this.props.userId === null) {
             return <Redirect to="/signin" />;
@@ -72,10 +77,10 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                     <form style={{ marginTop: 80, backgroundColor: this.props.colorsObj.formColor }} className='f1'>
                         <h1 style={{ color: 'black', fontFamily: 'Sofia' }}>Edit Your Detail</h1>
                         <div className="imgcontainer">
-                            <img src={Avatar} alt="Avatar" className="avatar" id='profilepic' />
-                            <input id="imageUpload" type="file"
-                                name="profile_photo" placeholder="Photo" required capture></input>
+                            <img src={Avatar} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} />
                         </div>
+                        <input id="imageUpload" type="file"
+                            name="profile_photo" placeholder="Photo" required capture ></input>
                         <div className="container1">
 
                             <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>First Name</b></label>

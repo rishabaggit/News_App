@@ -117,16 +117,7 @@
     opacity: 0.8;
   }
 
-  b1:disabled, button[disabled]{
-    background-color: rgba(228, 56, 13, 0.808);
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 2px !important;
-  }
+  
 
   .imgcontainer {
     text-align: center;
@@ -157,7 +148,7 @@
     }
   } 
 
-  #imageupload {
+  #imageUpload {
     display: none;
   }
 
