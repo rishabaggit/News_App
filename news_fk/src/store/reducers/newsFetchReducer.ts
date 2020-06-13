@@ -16,8 +16,8 @@ const initialState: newsFetchState = {
     initial_loading: true,
     should_load: false,
     currpage: 1,
-    countrycode: 'in',
-    newscategory: 'General',
+    countrycode: 'en-IN',
+    newscategory: 'Business',
     newsarticles: [],
     end_of_article: false,
     error_found: false
@@ -60,6 +60,7 @@ const newsFetchReducer = (state = initialState, action: newsFetchAction) => {
                 ...state,
                 initial_loading: true,
                 countrycode: action.newcnt,
+                newscategory: 'Business',
                 currpage: 1,
                 newsarticles: [],
                 should_load: false,

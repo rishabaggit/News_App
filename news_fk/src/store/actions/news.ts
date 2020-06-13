@@ -1,6 +1,7 @@
-import { API_PAGE_SIZE, NEWS_API_KEY_1 } from '../../constants';
+import { API_PAGE_SIZE, NEWS_API_KEY_BING } from '../../constants';
 import * as actionTypes from './actionTypes';
 import { RootState } from 'index';
+import axios from 'axios'
 
 interface setShouldLoadAction {
     type: typeof actionTypes.SET_SHOULD_LOAD;
@@ -93,19 +94,29 @@ export const newsHandler = () => {
     return (dispatch: any, getState: () => RootState) => {
         if (!getState().newsFetchReducer.end_of_article) {
             dispatch(setShouldLoad(false));
-            const url = `http://newsapi.org/v2/top-headlines?country=${getState().newsFetchReducer.countrycode}&category=${getState().newsFetchReducer.newscategory}&pageSize=${API_PAGE_SIZE}&page=${getState().newsFetchReducer.currpage}&apiKey=${NEWS_API_KEY_1}`;
-            fetch(url)
+            const url = `https://api.cognitive.microsoft.com/bing/v7.0/news?cc=${getState().newsFetchReducer.countrycode}&category=${getState().newsFetchReducer.newscategory}&count=${API_PAGE_SIZE}&offset=${getState().newsFetchReducer.currpage}&mkt=en-us HTTP/1.1`;
+            axios.get(url, { headers: { 'Ocp-Apim-Subscription-Key': NEWS_API_KEY_BING } })
                 .then(response => {
-                    return response.json();
+                    return response.data.value;
                 })
                 .then(fin => {
                     dispatch(setInitialLoading(false));
-                    dispatch(setNewsArticles([...getState().newsFetchReducer.newsarticles, ...fin.articles]));
+                    const articles = fin.map((obj: any) => {
+                        return (
+                            {
+                                urlToImage: obj.image.thumbnail.contentUrl,
+                                url: obj.url,
+                                title: obj.name,
+                                description: obj.description
+                            });
+
+                    })
+                    dispatch(setNewsArticles([...getState().newsFetchReducer.newsarticles, ...articles]));
                     dispatch(setShouldLoad(true));
-                    if (fin.articles.length < API_PAGE_SIZE) {
+                    if (fin.length < API_PAGE_SIZE) {
                         dispatch(setEndOfArticle(true));
                     } else {
-                        dispatch(setCurrPage(getState().newsFetchReducer.currpage + 1));
+                        dispatch(setCurrPage(getState().newsFetchReducer.currpage + API_PAGE_SIZE));
                     }
                 })
                 .catch(err => {
