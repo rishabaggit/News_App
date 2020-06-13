@@ -8,23 +8,37 @@ import Avatar from '../../resources/Avatar.jpg'
 import { userget } from '../../Util/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler'
+import { UpdateProfile } from '../../Util/FirestoreUtil';
+import { storage } from '../../components/UserAuthentication/firebase';
 
 interface UserProfileProps {
     userId: string;
     colorsObj: ModeColors;
 
 }
+interface UserData {
+    first_name: string,
+    last_name: string,
+    profession: string,
+    bio: string
+    imageURL: string
+}
 interface UserProfileState {
     loading: boolean;
-    userData: {
-        first_name: string,
-        last_name: string
-    } | any;
+    userData: UserData | any;
+    updatedUserData: UserData | any;
 }
 class UserProfile extends Component<UserProfileProps, UserProfileState> {
     state: UserProfileState = {
         loading: true,
-        userData: null
+        userData: null,
+        updatedUserData: {
+            firstName: "",
+            lastName: "",
+            profession: "",
+            bio: "",
+            imageURL: null
+        }
     }
     componentDidMount() {
         if (this.props.userId === null) {
@@ -34,13 +48,56 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
             userget(this.props.userId)
                 .then(
                     doc => {
-                        this.setState({ loading: false, userData: doc });
+                        this.setState({ loading: false, userData: doc, updatedUserData: doc });
                     }
                 )
                 .catch(error => console.log(error));
         }
     }
+    changeHandler = (event) => {
+        this.setState({
+            updatedUserData: {
+                ...this.state.updatedUserData,
+                [event.target.id]: event.target.value
+            }
+        });
+    }
+    imageChangeHandler = (event: any) => {
+        if (event.target.files[0]) {
+            this.setState({ loading: true });
+            const uploadTask = storage.ref(`Profile/${this.props.userId}`).put(event.target.files[0]);
+            uploadTask.on(
+                "state_changed",
+                snapshot => {
+                },
+                error => {
+                    console.log(error);
+                },
+                () => {
+                    storage
+                        .ref("Profile")
+                        .child(this.props.userId)
+                        .getDownloadURL()
+                        .then(url => {
+                            this.setState({
+                                updatedUserData: {
+                                    ...this.state.updatedUserData,
+                                    imageURL: url
+                                },
+                                loading: false
+                            })
+                        });
+                }
+            )
+        };
+    }
+    updateInfo = (event) => {
+        event.preventDefault();
 
+        UpdateProfile(this.props.userId, this.state.updatedUserData)
+            .then(() => this.setState({ userData: this.state.updatedUserData }))
+            .catch(e => console.log(e));
+    }
     uploadpic = () => {
         var click1 = document.getElementById('imageUpload');
         click1.click();
@@ -60,11 +117,11 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                 <div className="row">
                     <div className="column col-md-4 col-12">
                         <div className="card c1">
-                            <img src={Avatar} alt="Avatar" style={{ width: '100%' }} />
+                            <img src={this.state.userData.imageURL} alt="Avatar" style={{ width: '100%' }} />
 
                             <h1>{this.state.userData.first_name}</h1>
-                            <p className="title">PROFESSION</p>
-                            <p>INSTITUTION</p>
+                            <p className="title">{this.state.userData.profession}</p>
+                            <p>{this.state.userData.bio}</p>
                             <p>
                                 <a href="#/"><i className="fa fa-dribbble fa1"></i></a>
                                 <a href="#/"><i className="fa fa-twitter fa1"></i></a>
@@ -74,28 +131,36 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                         </div>
                     </div>
 
-                    <form style={{ marginTop: 80, backgroundColor: this.props.colorsObj.formColor }} className='f1'>
+                    <form style={{ marginTop: 80, backgroundColor: this.props.colorsObj.formColor }}
+                        className='f1'
+                        onSubmit={this.updateInfo}>
                         <h1 style={{ color: 'black', fontFamily: 'Sofia' }}>Edit Your Detail</h1>
                         <div className="imgcontainer">
-                            <img src={Avatar} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} />
+                            <img src={this.state.updatedUserData.imageURL} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} />
                         </div>
-                        <input id="imageUpload" type="file"
+                        <input id="imageUpload"
+                            type="file"
+                            onChange={this.imageChangeHandler}
                             name="profile_photo" placeholder="Photo" required capture ></input>
                         <div className="container1">
 
                             <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>First Name</b></label>
                             <input
-                                id='fname'
+                                id='first_name'
                                 type='text'
                                 placeholder={this.state.userData.first_name}
                                 name="uname"
+                                onChange={this.changeHandler}
+                                value={this.state.updatedUserData.first_name}
                             />
                             <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Last Name</b></label>
                             <input
-                                id='lname'
+                                id='last_name'
                                 type='text'
                                 placeholder={this.state.userData.last_name}
                                 name="uname"
+                                onChange={this.changeHandler}
+                                value={this.state.updatedUserData.last_name}
                             />
                             <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Profession</b></label>
                             <input
@@ -103,9 +168,20 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                                 type='text'
                                 placeholder='Profession'
                                 name="psw"
+                                onChange={this.changeHandler}
+                                value={this.state.updatedUserData.profession}
+                            />
+                            <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>About Me</b></label>
+                            <input
+                                id='bio'
+                                type='text'
+                                placeholder='About Me'
+                                name="psw"
+                                onChange={this.changeHandler}
+                                value={this.state.updatedUserData.bio}
                             />
                             <div id="nwl"></div>
-                            <button
+                            <button onClick={this.updateInfo}
                                 className='btn-primary b1'
                                 type="button">Submit Details</button>
                             <p style={this.props.colorsObj.textStyleHigh}>
@@ -120,19 +196,7 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                         </div>
                     </form>
                 </div>
-                {/* <div className="column col-md-8 col-12">
-                        <div className="vertically-center">
-                            <h1 className="bannerUser"
-                                style={this.props.colorsObj.textStyleHigh}>
-                                Hi {this.state.userData.first_name} {this.state.userData.last_name}
-                            </h1 >
-                            
-                            </p>
-                        </div>
-                    </div> */}
             </div>
-            // </div >
-
         );
     }
 }

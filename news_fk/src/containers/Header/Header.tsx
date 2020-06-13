@@ -11,7 +11,7 @@ import { newsFetchAction } from 'store/actions/news';
 import { appModeAction } from 'store/actions/darkMode';
 import { authAction } from 'store/actions/auth';
 import { authSuccess } from '../../store/actions/index';
-import CountryNavItem from './NavItems/CountryNavItem'
+// import CountryNavItem from './NavItems/CountryNavItem'
 import CategoryNavItem from './NavItems/CategoryNavItem'
 
 interface HeaderProps {
@@ -100,12 +100,12 @@ class Header extends Component<HeaderProps> {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ml-auto">
-                                <Route path="/" exact render={() => (
+                                {/* <Route path="/" exact render={() => (
                                     <CountryNavItem
                                         country={this.props.countrycode}
                                         countryChangeHandler={this.countryChangeHandler}
                                     />
-                                )} />
+                                )} /> */}
                                 <Route path="/" exact render={() => (
                                     <CategoryNavItem
                                         category={this.props.newscategory}

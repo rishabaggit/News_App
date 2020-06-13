@@ -56,5 +56,23 @@ const forgetPassword = (email: string) => {
 			console.log(e);
 		});
 };
-
-export { newUser, userget, addLike, removeLike, newMessage, forgetPassword };
+// const UpdateProfile = (email: string, Update: any) => {
+// 	console.log(Update)
+// 	db.collection('users').doc(email).update({
+// 		first_name: Update.first_name,
+// 		last_name: Update.last_name,
+// 		profession: Update.profession
+// 	})
+// 		.then()
+// 		.catch(err => console.log(err));
+// }
+async function UpdateProfile(email: string, Update: any) {
+	await db.collection('users').doc(email).update({
+		first_name: Update.first_name,
+		last_name: Update.last_name,
+		profession: Update.profession,
+		bio: Update.bio,
+		imageURL: Update.imageURL
+	});
+}
+export { newUser, userget, addLike, removeLike, newMessage, forgetPassword, UpdateProfile };
