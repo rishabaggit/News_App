@@ -41,7 +41,7 @@ const newMessage = (uid: string, message: string) => {
 			message: message,
 			email: uid,
 			time: utcDate,
-			image: userData.imageURL
+			image: (userData.imageURL ? userData.imageURL : null)
 		};
 		db.collection('chat').doc('GroupChat').update({
 			CHAT: firebase.firestore.FieldValue.arrayUnion(msg)
