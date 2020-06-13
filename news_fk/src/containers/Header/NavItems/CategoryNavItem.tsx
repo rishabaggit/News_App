@@ -15,7 +15,7 @@ const CategoryNavItem: React.FC<CategoryNavItemProps> = (props) => {
                     countriesAndCategories[Object.keys(countriesAndCategories).find(key => countriesAndCategories[key].code === props.country)].categories.map((cat) => {
                         return (
                             <option key={cat} value={cat}>
-                                {cat}
+                                {cat === 'ScienceAndTechnology' ? 'Science' : cat}
                             </option>)
                     })}
             </select>
