@@ -3,6 +3,7 @@ import { FIREBASE_API_KEY } from '../../constants';
 import axios from 'axios';
 import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
 import { newUser } from 'Util/FirestoreUtil';
+import ReactGA from 'react-ga';
 
 interface authStartAction {
     type: typeof actionTypes.AUTH_START;
@@ -76,7 +77,15 @@ export const authWithEmail = (userData: userDataInterface, SignIn: boolean) => {
             .then(response => {
                 if (!SignIn) {
                     newUser(userData.email, userData.fname, userData.lname);
+                    ReactGA.event({
+                        category: 'Authentication',
+                        action: 'New User Signed Up'
+                    });
                 }
+                ReactGA.event({
+                    category: 'Authentication',
+                    action: 'User Logged In'
+                });
                 dispatch(authSuccess(userData.email));
             })
             .catch(err => {
@@ -100,7 +109,15 @@ export const authWithFacebook = () => {
                     newUser((result.additionalUserInfo.profile as ProfileInterface).email,
                         (result.additionalUserInfo.profile as ProfileInterface).first_name,
                         (result.additionalUserInfo.profile as ProfileInterface).last_name);
+                    ReactGA.event({
+                        category: 'Authentication',
+                        action: 'New User Signed Up'
+                    });
                 }
+                ReactGA.event({
+                    category: 'Authentication',
+                    action: 'User Logged In'
+                });
                 dispatch(authSuccess((result.additionalUserInfo.profile as ProfileInterface).email));
             })
             .catch(error => {
