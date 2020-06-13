@@ -44,10 +44,12 @@ class Header extends Component<HeaderProps> {
     }
 
     countryChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
+        window.scrollTo(0,0);
         this.props.countryChangeHandler(event.currentTarget.value);
         this.props.newsHandler();
     }
     categoryChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
+        window.scrollTo(0,0);
         this.props.categoryChangeHandler(event.currentTarget.value);
         this.props.newsHandler();
     }
