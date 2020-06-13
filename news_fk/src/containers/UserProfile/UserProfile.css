@@ -28,6 +28,17 @@
         transform: translateY(-50%);
         margin-left: 20% !important;
       }
+
+      .f1 {
+        margin-top: 50px ;
+        border: 3px solid #f1f1f1;
+        align-self: center;
+        margin: 50px auto 0 auto;
+        width:60% !important;
+        max-height: auto;
+      }
+
+
     
   }
 
@@ -44,9 +55,112 @@
         color: lightslategray;
     }
     
+    .c1 {
+      margin-left: 20%;
+    }
+
+    .f1 {
+      margin-top: 50px ;
+      border: 3px solid #f1f1f1;
+      align-self: center;
+      margin: 50px 10% 0 10%;
+      max-width:auto;
+      max-height: auto;
+    }
   }
   
   .bannerUser {
       font-family: 'Sofia';
       color: black;
+  }
+
+  /* Edit Details */
+
+  
+  
+  input[type=email], input[type=password], input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+ .b1 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 2px !important;
+  }
+
+  .b2 {
+    background-color: #3b5998;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 2px !important;
+  }
+
+  .b2:hover {
+    opacity: 0.8;
+  }
+
+  .b1:hover {
+    opacity: 0.8;
+  }
+
+  b1:disabled, button[disabled]{
+    background-color: rgba(228, 56, 13, 0.808);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 2px !important;
+  }
+
+  .imgcontainer {
+    text-align: center;
+    margin: 16px 0 8px 0;
+  }
+  
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+  .container1 {
+    padding: 12px;
+  }
+  
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    .cancelbtn {
+      width: 100%;
+    }
+  } 
+
+  #imageupload {
+    display: none;
+  }
+
+  #profilepic {
+    cursor: pointer;
   }
