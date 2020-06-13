@@ -1,5 +1,5 @@
 .container3 {
-    border: 2px solid #dedede;
+    border: 2px solid rgb(222, 222, 222);
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
@@ -8,9 +8,15 @@
   
   .darker {
     border-color: #ccc;
-    background-color: #ddd;
+    background-color: #dcf8c6;
+    max-width: 60%;
+    margin-left: 40%;
   }
  
+
+  .recieved {
+    max-width: 60%;;
+  }
   
   .sending {
     text-align: right;
@@ -31,3 +37,13 @@
     margin-right:0;
   }
   
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }

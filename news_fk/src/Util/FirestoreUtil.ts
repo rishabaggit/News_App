@@ -34,10 +34,13 @@ const removeLike = (uid: string, newsItem: Object) => {
 
 const newMessage = (uid: string, message: string) => {
 	userget(uid).then(userData => {
+		var dt = new Date();
+		var utcDate = dt.toUTCString();
 		const msg = {
 			username: userData.first_name + ' ' + userData.last_name,
 			message: message,
-			email: uid
+			email: uid,
+			time: utcDate
 		};
 		db.collection('chat').doc('GroupChat').update({
 			CHAT: firebase.firestore.FieldValue.arrayUnion(msg)
