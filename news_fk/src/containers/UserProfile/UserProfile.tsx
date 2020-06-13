@@ -1,7 +1,9 @@
 import './UserProfile.css'
+import 'react-toastify/dist/ReactToastify.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import { RootState } from 'index';
 import { ModeColors } from 'colors';
 import Avatar from '../../resources/Avatar.jpg'
@@ -10,6 +12,7 @@ import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoa
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler'
 import { UpdateProfile } from '../../Util/FirestoreUtil';
 import { storage } from '../../components/UserAuthentication/firebase';
+
 
 interface UserProfileProps {
     userId: string;
@@ -95,7 +98,18 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
         event.preventDefault();
 
         UpdateProfile(this.props.userId, this.state.updatedUserData)
-            .then(() => this.setState({ userData: this.state.updatedUserData }))
+            .then(() => {
+                this.setState({ userData: this.state.updatedUserData })
+                toast.success('Profile Updated', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
             .catch(e => console.log(e));
     }
     uploadpic = () => {
@@ -117,7 +131,10 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                 <div className="row">
                     <div className="column col-md-4 col-12">
                         <div className="card c1">
-                            <img src={this.state.userData.imageURL} alt="Avatar" style={{ width: '100%' }} />
+                            {this.state.userData.imageURL ?
+                                <img src={this.state.userData.imageURL} alt="Avatar" style={{ width: '100%' }} /> :
+                                <img src={Avatar} alt="Avatar" style={{ width: '100%' }} />
+                            }
 
                             <h1>{this.state.userData.first_name}</h1>
                             <p className="title">{this.state.userData.profession}</p>
@@ -130,13 +147,26 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                             </p>
                         </div>
                     </div>
-
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
                     <form style={{ marginTop: 80, backgroundColor: this.props.colorsObj.formColor }}
                         className='f1'
                         onSubmit={this.updateInfo}>
                         <h1 style={{ color: 'black', fontFamily: 'Sofia' }}>Edit Your Detail</h1>
                         <div className="imgcontainer">
-                            <img src={this.state.updatedUserData.imageURL} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} />
+                            {this.state.updatedUserData.imageURL ?
+                                <img src={this.state.updatedUserData.imageURL} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} /> :
+                                <img src={Avatar} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} />
+                            }
                         </div>
                         <input id="imageUpload"
                             type="file"

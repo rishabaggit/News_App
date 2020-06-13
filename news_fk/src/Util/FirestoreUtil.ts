@@ -68,11 +68,11 @@ const forgetPassword = (email: string) => {
 // }
 async function UpdateProfile(email: string, Update: any) {
 	await db.collection('users').doc(email).update({
-		first_name: Update.first_name,
-		last_name: Update.last_name,
-		profession: Update.profession,
-		bio: Update.bio,
-		imageURL: Update.imageURL
+		first_name: (Update.first_name ? Update.first_name : ''),
+		last_name: (Update.last_name ? Update.last_name : ''),
+		profession: (Update.profession ? Update.profession : ''),
+		bio: (Update.bio ? Update.bio : ''),
+		imageURL: (Update.imageURL ? Update.imageURL : null)
 	});
 }
 export { newUser, userget, addLike, removeLike, newMessage, forgetPassword, UpdateProfile };
