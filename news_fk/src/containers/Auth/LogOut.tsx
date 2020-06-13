@@ -7,6 +7,7 @@ import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authAction } from 'store/actions/auth';
 import { RootState } from 'index';
 import { Cookies } from 'react-cookie';
+import ReactGA from 'react-ga';
 
 
 interface LogOutProps {
@@ -17,6 +18,10 @@ interface LogOutProps {
 
 class LogOut extends Component<LogOutProps> {
     componentDidMount() {
+        ReactGA.event({
+            category: 'Authentication',
+            action: 'User Logged Out'
+        });
         cookiesUtil.signOutHandler(this.props.cookies);
         setTimeout(this.props.logout, 500);
     }
