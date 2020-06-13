@@ -95,7 +95,7 @@ class LogIn extends Component<LogInProps> {
         }
         return (
             <div>
-                <br /><br /><br />
+                <br />
                 <ToastContainer
                     position="top-center"
                     autoClose={5000}
@@ -107,7 +107,7 @@ class LogIn extends Component<LogInProps> {
                     draggable
                     pauseOnHover
                 />
-                <form onSubmit={this.onSubmitHandler} style={{ backgroundColor: this.props.colorsObj.formColor }}>
+                <form onSubmit={this.onSubmitHandler} style={{ backgroundColor: this.props.colorsObj.formColor }} className='flog'>
                     <button className='b2' type="button" onClick={this.props.authWithFacebook} >LOGIN WITH FACEBOOK</button>
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar" />

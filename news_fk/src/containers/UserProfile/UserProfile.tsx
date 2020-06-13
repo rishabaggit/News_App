@@ -56,6 +56,7 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                     <div className="column col-md-4 col-12">
                         <div className="card c1">
                             <img src={Avatar} alt="Avatar" style={{ width: '100%' }} />
+
                             <h1>{this.state.userData.first_name}</h1>
                             <p className="title">PROFESSION</p>
                             <p>INSTITUTION</p>
@@ -67,12 +68,41 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                             </p>
                         </div>
                     </div>
-                    <div className="column col-md-8 col-12">
-                        <div className="vertically-center">
-                            <h1 className="bannerUser"
-                                style={this.props.colorsObj.textStyleHigh}>
-                                Hi {this.state.userData.first_name} {this.state.userData.last_name}
-                            </h1 >
+
+                    <form style={{ marginTop: 80, backgroundColor: this.props.colorsObj.formColor }} className='f1'>
+                        <h1 style={{ color: 'black', fontFamily: 'Sofia' }}>Edit Your Detail</h1>
+                        <div className="imgcontainer">
+                            <img src={Avatar} alt="Avatar" className="avatar" id='profilepic' />
+                            <input id="imageUpload" type="file"
+                                name="profile_photo" placeholder="Photo" required capture></input>
+                        </div>
+                        <div className="container1">
+
+                            <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>First Name</b></label>
+                            <input
+                                id='fname'
+                                type='text'
+                                placeholder={this.state.userData.first_name}
+                                name="uname"
+                            />
+                            <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Last Name</b></label>
+                            <input
+                                id='lname'
+                                type='text'
+                                placeholder={this.state.userData.last_name}
+                                name="uname"
+                            />
+                            <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Profession</b></label>
+                            <input
+                                id='profession'
+                                type='text'
+                                placeholder='Profession'
+                                name="psw"
+                            />
+                            <div id="nwl"></div>
+                            <button
+                                className='btn-primary b1'
+                                type="button">Submit Details</button>
                             <p style={this.props.colorsObj.textStyleHigh}>
                                 We hope and expect, your user experience till now must have been extremely good.
                             </p>
@@ -83,9 +113,20 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                             </NavLink>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
+                {/* <div className="column col-md-8 col-12">
+                        <div className="vertically-center">
+                            <h1 className="bannerUser"
+                                style={this.props.colorsObj.textStyleHigh}>
+                                Hi {this.state.userData.first_name} {this.state.userData.last_name}
+                            </h1 >
+                            
+                            </p>
+                        </div>
+                    </div> */}
             </div>
+            // </div >
 
         );
     }

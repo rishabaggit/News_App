@@ -1,4 +1,4 @@
- form {
+.flog {
     margin-top: 50px ;
     border: 3px solid #f1f1f1;
     max-width: 50%;
@@ -86,3 +86,7 @@
       width: 100%;
     }
   } 
+
+  #profilepic {
+    cursor: pointer;
+  }

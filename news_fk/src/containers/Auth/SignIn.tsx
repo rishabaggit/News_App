@@ -101,7 +101,7 @@ class SignIn extends Component<SignInProps, SignInState> {
                     draggable
                     pauseOnHover
                 />
-                <form onSubmit={this.onSubmitHandler} style={{ backgroundColor: this.props.colorsObj.formColor }} >
+                <form onSubmit={this.onSubmitHandler} style={{ backgroundColor: this.props.colorsObj.formColor }} className='flog' >
                     <div className="imgcontainer">
                         <img src={Avatar} alt="Avatar" className="avatar" />
                     </div>
