@@ -1,6 +1,9 @@
-import firebase from "firebase";
-import "firebase/auth"
-import Rebase from 're-base';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/analytics';
+import 'firebase/storage';
+import 'firebase/auth';
+// import Rebase from 're-base';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y",
@@ -14,10 +17,10 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-const base = Rebase.createClass(app.database());
+// const base = Rebase.createClass(app.database());
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const db = firebase.firestore();
 const analytics = firebase.analytics();
 const storage = firebase.storage();
 
-export { app, base, facebookProvider, firebaseConfig, db, analytics, storage };
+export { app, facebookProvider, firebaseConfig, db, analytics, storage };

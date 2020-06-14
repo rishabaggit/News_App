@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import { db } from '../components/UserAuthentication/firebase';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 async function userget(uid: string) {
 	let res = await db.collection('users').doc(uid).get();

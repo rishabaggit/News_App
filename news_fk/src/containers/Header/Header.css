@@ -49,15 +49,15 @@
 
 .l1 {
     font-size: 24px !important;
-    font-family: cursive;
     color: white;
     margin-right: auto;
+    /* font-family: 'Balsamiq Sans', cursive; */
 }
 
 .l2 {
     font-size: 24px !important;
-    font-family: cursive;
     color: white;
+    /* font-family: 'Balsamiq Sans', cursive; */
     
 }
 
@@ -92,10 +92,10 @@ a.active {
 l1 a.active .collapse {
     display: none;
 }
+
 @media screen and (max-width: 600px){
         .nav-link {
             font-size: 20px !important;
-            font-family: cursive;
             color: white;
         }
         
