@@ -15,7 +15,9 @@ const colors = {
     shadeGray: '#161625',
     black: '#000',
     gainsboro: '#DCDCDC',
-    silver: '#C0C0C0'
+    silver: '#C0C0C0',
+    lightBlue: '#6ca5d8',
+    lightBlue2: '#cadff0'
 };
 
 export interface ModeColors {
@@ -35,13 +37,13 @@ export interface ModeColors {
 
 export const defaultColors: ModeColors = {
     backgroundColor: colors.white,
-    cardButtonColor: colors.silver,
+    cardButtonColor: colors.lightBlue2,
     cardColor: colors.white,
     opacity: 1,
     textStyleHigh: { opacity: 1 },
     textStyleMedium: { opacity: 1 },
     textStyleLow: { opacity: 1 },
-    navBarStyle: { backgroundColor: colors.lightGray },
+    navBarStyle: { backgroundColor: colors.lightBlue },
     navItemStyle: {},
     formColor: colors.white,
     navLinkStyle: { color: colors.white, opacity: 1 },

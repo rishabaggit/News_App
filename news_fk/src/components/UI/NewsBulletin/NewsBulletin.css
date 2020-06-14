@@ -1,12 +1,22 @@
-.jumbotron {
+.jumbotron1 {
     background-image: url("../../../resources/jumbotron.jpg");
     background-size: cover;
     margin-top: 5em;
     opacity: 0.95;
 }
+.jumbotron2 {
+    background-image: url("../../../resources/jumbotron2.jpg");
+    background-size: cover;
+    margin-top: 5em;
+    opacity: 0.95;
+}
 
-.color {
-    color: #fea;
+
+.color1 {
+    color: rgb(8, 8, 7);
+}
+.color2 {
+    color: rgb(228, 228, 228);
 }
 
 .h1, h1 {

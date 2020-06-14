@@ -21,6 +21,7 @@ import NewsBulletin from './components/UI/NewsBulletin/NewsBulletin';
 interface AppProps {
   colorsObj: ModeColors;
   cookies: Cookies;
+  darkMode: boolean;
 }
 
 class App extends Component<AppProps>{
@@ -40,7 +41,7 @@ class App extends Component<AppProps>{
     return (
       <div>
         <Header cookies={this.props.cookies} />
-        <Route path='/' exact component={NewsBulletin} />
+        <Route path='/' exact render={() => <NewsBulletin darkMode={this.props.darkMode} />} />
         <Switch>
           <Route path='/' exact render={() => (<NewsPage cookies={this.props.cookies} />)} />
           <Route path='/login' exact render={() => <Login cookies={this.props.cookies} />} />
