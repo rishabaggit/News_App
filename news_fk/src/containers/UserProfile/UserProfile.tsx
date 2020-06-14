@@ -13,31 +13,30 @@ import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorH
 import { UpdateProfile } from '../../Util/FirestoreUtil';
 import { storage } from '../../components/UserAuthentication/firebase';
 
-
 interface UserProfileProps {
     userId: string;
     colorsObj: ModeColors;
 
 }
 interface UserData {
-    first_name: string,
-    last_name: string,
-    profession: string,
-    bio: string
-    imageURL: string
+    first_name: string | null,
+    last_name: string | null,
+    profession: string | null,
+    bio: string | null,
+    imageURL: string | null
 }
 interface UserProfileState {
     loading: boolean;
-    userData: UserData | any;
-    updatedUserData: UserData | any;
+    userData: UserData | null | undefined | any;
+    updatedUserData: UserData | null | undefined | any;
 }
 class UserProfile extends Component<UserProfileProps, UserProfileState> {
     state: UserProfileState = {
         loading: true,
         userData: null,
         updatedUserData: {
-            firstName: "",
-            lastName: "",
+            first_name: "",
+            last_name: "",
             profession: "",
             bio: "",
             imageURL: null
@@ -57,15 +56,16 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                 .catch(error => console.log(error));
         }
     }
-    changeHandler = (event) => {
+    changeHandler = (event: React.FormEvent<HTMLInputElement>) => {
         this.setState({
             updatedUserData: {
                 ...this.state.updatedUserData,
-                [event.target.id]: event.target.value
+                [event.currentTarget.id]: event.currentTarget.value
             }
         });
     }
-    imageChangeHandler = (event: any) => {
+
+    imageChangeHandler = (event: React.FormEvent<HTMLInputElement> | any) => {
         if (event.target.files[0]) {
             this.setState({ loading: true });
             const uploadTask = storage.ref(`Profile/${this.props.userId}`).put(event.target.files[0]);
@@ -94,7 +94,7 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
             )
         };
     }
-    updateInfo = (event) => {
+    updateInfo = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
 
         UpdateProfile(this.props.userId, this.state.updatedUserData)
@@ -139,12 +139,6 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                             <h1>{this.state.userData.first_name}</h1>
                             <p className="title">{this.state.userData.profession}</p>
                             <p>{this.state.userData.bio}</p>
-                            <p>
-                                <a href="#/"><i className="fa fa-dribbble fa1"></i></a>
-                                <a href="#/"><i className="fa fa-twitter fa1"></i></a>
-                                <a href="#/"><i className="fa fa-linkedin fa1"></i></a>
-                                <a href="#/"><i className="fa fa-facebook fa1"></i></a>
-                            </p>
                         </div>
                     </div>
                     <ToastContainer

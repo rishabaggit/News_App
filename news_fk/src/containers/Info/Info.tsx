@@ -18,16 +18,19 @@ const Info: React.FC<InfoProps> = (props) => {
                         name='Harshavardhana'
                         imageSrc={Pic1} title='SDE Intern at Flipkart'
                         colorsObj={props.colorsObj}
+                        url='https://www.linkedin.com/in/harshavardhana-shrirup-b944341a9/'
                     />
                     <Person
                         name='Mudreka Arif'
                         imageSrc={Pic2} title='SDE Intern at Flipkart'
                         colorsObj={props.colorsObj}
+                        url='https://www.linkedin.com/in/mudreka-arif-5533b5162/'
                     />
                     <Person
                         name='Pranjal Tripathi'
                         imageSrc={Pic3} title='SDE Intern at Flipkart'
                         colorsObj={props.colorsObj}
+                        url='https://www.linkedin.com/in/pranjal-tripathi/'
                     />
                 </div>
             </div>

@@ -14,7 +14,7 @@ interface ModalProps {
     url: string;
     description: string;
     title: string;
-    img: any;
+    img: string;
 }
 
 const Modal: React.FC<ModalProps> = (props) => {

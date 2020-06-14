@@ -7,11 +7,17 @@ interface PersonProps {
     imageSrc: string;
     name: string;
     title: string;
+    url: string;
 }
 const Person: React.FC<PersonProps> = (props) => {
     return (
         <div className='column col-md-4 col-sm-6 col-xs-12'>
-            <div className='card' style={{ backgroundColor: props.colorsObj.cardColor }}>
+            <div className='card'
+                onClick={() => {
+                    var win = window.open(props.url, '_blank');
+                    win.focus();
+                }}
+                style={{ backgroundColor: props.colorsObj.cardColor }}>
                 <img className='image' src={props.imageSrc} alt='' />
                 <div className='container'>
                     <h2 style={props.colorsObj.textStyleHigh}>

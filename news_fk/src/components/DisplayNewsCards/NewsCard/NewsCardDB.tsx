@@ -1,6 +1,6 @@
 import React from 'react';
 import "./NewsCard.css"
-import Modal from './Modal/Modal';
+import ModalWrapper from './Modal/ModalWrapper';
 import { ModeColors } from 'colors';
 import ReactGA from 'react-ga';
 
@@ -81,7 +81,7 @@ class NewsCard extends React.Component<NewsCardProps> {
                             >
                                 <span style={this.props.colorsObj.textStyleMedium}>Read More</span>
                             </button>
-                            <Modal {...this.props} />
+                            <ModalWrapper {...this.props} type={1} />
                         </div>
                     </div>
 

@@ -4,6 +4,7 @@ import './Chat.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { RootState } from 'index';
 import { db } from '../../components/UserAuthentication/firebase';
 import { newMessage } from '../../Util/FirestoreUtil';
 import ChatSendMessage from '../../components/UI/ChatMessage/ChatSendMessage';
@@ -51,9 +52,9 @@ class Chat extends Component<ChatProps, ChatState>{
 	resetMessage = () => {
 		this.setState({ message: '' });
 	}
-	enterHandler = (e) => {
-		if (e.key === 'Enter') {
-			this.sendMessage(e);
+	enterHandler = (event: React.FormEvent<HTMLButtonElement> | any) => {
+		if (event.key === 'Enter') {
+			this.sendMessage(event);
 		}
 	}
 	render() {
@@ -102,7 +103,7 @@ class Chat extends Component<ChatProps, ChatState>{
 		);
 	}
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState) => {
 	return {
 		userId: state.auth.userId
 	};
