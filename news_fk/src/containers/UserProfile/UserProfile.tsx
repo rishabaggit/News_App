@@ -130,15 +130,16 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
             <div className="container">
                 <div className="row">
                     <div className="column col-md-4 col-12">
-                        <div className="card c1">
+                        <div className="card c1" style = {{backgroundColor: this.props.colorsObj.cardColor}}>
                             {this.state.userData.imageURL ?
                                 <img src={this.state.userData.imageURL} alt="Avatar" style={{ width: '100%' }} /> :
                                 <img src={Avatar} alt="Avatar" style={{ width: '100%' }} />
                             }
-
-                            <h1>{this.state.userData.first_name}</h1>
-                            <p className="title">{this.state.userData.profession}</p>
-                            <p>{this.state.userData.bio}</p>
+                            <div>
+                                <h1 style = {this.props.colorsObj.textStyleHigh}>{this.state.userData.first_name}</h1>
+                                <p className="title" style = {this.props.colorsObj.textStyleMedium}>{this.state.userData.profession}</p>
+                                <p style = {this.props.colorsObj.textStyleLow}>{this.state.userData.bio}</p>
+                            </div>
                         </div>
                     </div>
                     <ToastContainer
@@ -155,7 +156,7 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
                     <form style={{ marginTop: 80, backgroundColor: this.props.colorsObj.formColor }}
                         className='f1'
                         onSubmit={this.updateInfo}>
-                        <h1 style={{ color: 'black', fontFamily: 'Sofia' }}>Edit Your Detail</h1>
+                        <h1 style={{ color: 'black', fontFamily: 'Sofia' }}>Edit Your Details</h1>
                         <div className="imgcontainer">
                             {this.state.updatedUserData.imageURL ?
                                 <img src={this.state.updatedUserData.imageURL} alt="Avatar" className="avatar" id='profilepic' onClick={this.uploadpic} /> :
