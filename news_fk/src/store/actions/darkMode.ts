@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-interface flipDarkModeAction {
+export interface flipDarkModeAction {
     type: typeof actionTypes.FLIP_DARK_MODE;
 };
 

@@ -7,25 +7,25 @@ import { RootState } from 'index';
 import { ModeColors } from 'colors';
 import * as actionTypes from '../../store/actions/index';
 import * as cookiesUtil from '../../Util/cookiesUtil'
-import { newsFetchAction } from 'store/actions/news';
-import { appModeAction } from 'store/actions/darkMode';
-import { authAction } from 'store/actions/auth';
+import { categoryChangeHandlerAction, countryChangeHandlerAction} from 'store/actions/news';
+import { flipDarkModeAction } from 'store/actions/darkMode';
+import { authSuccessAction } from 'store/actions/auth';
 import { authSuccess } from '../../store/actions/index';
 import CategoryNavItem from './NavItems/CategoryNavItem';
 
 
 interface HeaderProps {
-    countryChangeHandler: (newCountry: string) => newsFetchAction;
+    countryChangeHandler: (newCountry: string) => countryChangeHandlerAction;
     newsHandler: () => void;
-    categoryChangeHandler: (newCategory: string) => newsFetchAction;
+    categoryChangeHandler: (newCategory: string) => categoryChangeHandlerAction;
     colorsObj: ModeColors;
     countrycode: string;
     newscategory: string;
     cookies: Cookies;
     user: string | any;
     darkMode: boolean;
-    flipDarkMode: () => appModeAction;
-    authSuccess: (email: string) => authAction;
+    flipDarkMode: () => flipDarkModeAction;
+    authSuccess: (email: string) => authSuccessAction;
 }
 
 class Header extends Component<HeaderProps> {

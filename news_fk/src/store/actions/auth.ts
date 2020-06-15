@@ -6,25 +6,25 @@ import { app, facebookProvider } from '../../config/UserAuthentication/firebase'
 import { newUser } from 'Util/FirestoreUtil';
 import ReactGA from 'react-ga';
 
-interface authStartAction {
+export interface authStartAction {
     type: typeof actionTypes.AUTH_START;
 };
 
-interface authSuccessAction {
+export interface authSuccessAction {
     type: typeof actionTypes.AUTH_SUCCESS;
     userId: string;
 };
 
-interface authFailAction {
+export interface authFailAction {
     type: typeof actionTypes.AUTH_FAIL;
     error: string;
 };
 
-interface logoutAction {
+export interface logoutAction {
     type: typeof actionTypes.AUTH_LOGOUT;
 };
 
-interface authRefreshAction {
+export interface authRefreshAction {
     type: typeof actionTypes.AUTH_REFRESH;
 };
 

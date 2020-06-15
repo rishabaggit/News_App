@@ -10,7 +10,7 @@ import { ModeColors } from 'colors';
 import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authWithEmail, authWithFacebook, authRefresh } from '../../store/actions/index';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
-import { authAction } from 'store/actions/auth';
+import { authRefreshAction } from 'store/actions/auth';
 import Avatar from '../../resources/Avatar.jpg';
 
 interface Userdata {
@@ -25,7 +25,7 @@ interface LogInProps {
     userId: string;
     loading: boolean;
     error: string;
-    authRefresh: () => authAction;
+    authRefresh: () => authRefreshAction;
     colorsObj: ModeColors;
     authWithFacebook: () => void;
     cookies: Cookies;

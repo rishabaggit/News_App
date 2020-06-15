@@ -3,35 +3,35 @@ import * as actionTypes from './actionTypes';
 import { RootState } from 'index';
 import axios from 'axios'
 
-interface setShouldLoadAction {
+export interface setShouldLoadAction {
     type: typeof actionTypes.SET_SHOULD_LOAD;
     val: boolean;
 };
-interface countryChangeHandlerAction {
+export interface countryChangeHandlerAction {
     type: typeof actionTypes.COUNTRY_CHANGE;
     newcnt: string;
 };
-interface categoryChangeHandlerAction {
+export interface categoryChangeHandlerAction {
     type: typeof actionTypes.CATEGORY_CHANGE;
     newcat: string;
 };
-interface setInitialLoadingAction {
+export interface setInitialLoadingAction {
     type: typeof actionTypes.SET_INITIAL_LOADING;
     val: boolean;
 };
-interface setNewsArticlesAction {
+export interface setNewsArticlesAction {
     type: typeof actionTypes.SET_NEWS_ARTICLES;
     val: any;
 };
-interface setEndofArticleAction {
+export interface setEndofArticleAction {
     type: typeof actionTypes.SET_END_OF_ARTICLE;
     val: boolean;
 };
-interface setCurrPageAction {
+export interface setCurrPageAction {
     type: typeof actionTypes.SET_CURR_PAGE;
     val: number;
 };
-interface setErrorFoundAction {
+export interface setErrorFoundAction {
     type: typeof actionTypes.SET_ERROR_FOUND;
     val: boolean;
 };

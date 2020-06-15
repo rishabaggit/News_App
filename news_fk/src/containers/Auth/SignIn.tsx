@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { ModeColors } from 'colors';
 import { RootState } from 'index';
 import * as cookiesUtil from '../../Util/cookiesUtil';
-import { authAction } from 'store/actions/auth';
+import { authRefreshAction } from 'store/actions/auth';
 import { forgetPassword } from '../../Util/FirestoreUtil'
 import { authWithEmail, authRefresh } from '../../store/actions/index';
 import Avatar from '../../resources/Avatar.jpg'
@@ -24,7 +24,7 @@ interface SignInProps {
     userId: string;
     loading: boolean;
     error: string;
-    authRefresh: () => authAction;
+    authRefresh: () => authRefreshAction;
     colorsObj: ModeColors;
     cookies: Cookies;
 }

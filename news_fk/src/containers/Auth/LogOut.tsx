@@ -7,11 +7,11 @@ import { RootState } from 'index';
 import { logout } from '../../store/actions/index';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import * as cookiesUtil from '../../Util/cookiesUtil';
-import { authAction } from 'store/actions/auth';
+import { logoutAction } from 'store/actions/auth';
 
 
 interface LogOutProps {
-    logout: () => authAction;
+    logout: () => logoutAction;
     userId: string,
     cookies: Cookies
 }
