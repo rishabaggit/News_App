@@ -3,7 +3,6 @@ import 'firebase/firestore';
 import 'firebase/analytics';
 import 'firebase/storage';
 import 'firebase/auth';
-// import Rebase from 're-base';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAGXfGQY_m2XuciUzqBagMyc7OsbSGwr0Y",
@@ -17,7 +16,6 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-// const base = Rebase.createClass(app.database());
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const db = firebase.firestore();
 const analytics = firebase.analytics();

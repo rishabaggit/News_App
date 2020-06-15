@@ -1,6 +1,6 @@
+import './BottomLoader.css'
 import React from 'react';
 import { BallBeat } from 'react-pure-loaders';
-import './BottomLoader.css'
 
 interface BottomLoaderProps {
   load: boolean;

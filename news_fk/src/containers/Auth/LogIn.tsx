@@ -1,17 +1,17 @@
+import './Login.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { Cookies } from 'react-cookie';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
 import { RootState } from 'index';
 import { ModeColors } from 'colors';
 import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authWithEmail, authWithFacebook, authRefresh } from '../../store/actions/index';
+import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader';
 import { authAction } from 'store/actions/auth';
 import Avatar from '../../resources/Avatar.jpg';
-import './Login.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { Cookies } from 'react-cookie';
 
 interface Userdata {
     email: string;

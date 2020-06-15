@@ -1,7 +1,8 @@
 import * as actionTypes from './actionTypes';
 import { FIREBASE_API_KEY } from '../../constants';
+import * as Redux from 'redux'
 import axios from 'axios';
-import { app, facebookProvider } from '../../components/UserAuthentication/firebase'
+import { app, facebookProvider } from '../../config/UserAuthentication/firebase'
 import { newUser } from 'Util/FirestoreUtil';
 import ReactGA from 'react-ga';
 
@@ -16,7 +17,7 @@ interface authSuccessAction {
 
 interface authFailAction {
     type: typeof actionTypes.AUTH_FAIL;
-    error: any;
+    error: string;
 };
 
 interface logoutAction {
@@ -63,7 +64,7 @@ interface userDataInterface {
     lname: string
 }
 export const authWithEmail = (userData: userDataInterface, SignIn: boolean) => {
-    return (dispatch: any) => {
+    return (dispatch: Redux.Dispatch<any>) => {
         dispatch(authStart());
         const authData = {
             email: userData.email,
@@ -96,7 +97,7 @@ export const authWithEmail = (userData: userDataInterface, SignIn: boolean) => {
 
 
 export const authWithFacebook = () => {
-    return (dispatch: any) => {
+    return (dispatch: Redux.Dispatch<any>) => {
         dispatch(authStart());
         interface ProfileInterface {
             email: string,

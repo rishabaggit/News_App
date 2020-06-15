@@ -1,18 +1,18 @@
+import './Login.css';
+import 'react-toastify/dist/ReactToastify.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authWithEmail, authRefresh } from '../../store/actions/index';
+import { Cookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom';
-import Avatar from '../../resources/Avatar.jpg'
-import './Login.css';
-import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ModeColors } from 'colors';
+import { RootState } from 'index';
 import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authAction } from 'store/actions/auth';
 import { forgetPassword } from '../../Util/FirestoreUtil'
-import { ModeColors } from 'colors';
-import { Cookies } from 'react-cookie';
-import { RootState } from 'index';
+import { authWithEmail, authRefresh } from '../../store/actions/index';
+import Avatar from '../../resources/Avatar.jpg'
+import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 
 interface Userdata {
     email: string;
@@ -46,11 +46,11 @@ class SignIn extends Component<SignInProps, SignInState> {
     }
     showPassword = () => {
         var x = document.getElementById('password');
-        if ((x as any).type === 'password') {
-            (x as any).type = 'text';
+        if (x.type === 'password') {
+            x.type = 'text';
         }
-        else if ((x as any).type === 'text') {
-            (x as any).type = 'password';
+        else if (x.type === 'text') {
+            x.type = 'password';
         }
     }
 

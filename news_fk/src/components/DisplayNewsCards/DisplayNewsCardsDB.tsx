@@ -3,13 +3,14 @@ import './DisplayNewsCards.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Cookies } from 'react-cookie';
-import { ModeColors } from '../../colors'
+import ReactGA from 'react-ga';
 import { RootState } from 'index';
+import { ModeColors } from '../../colors'
 import { userget, addLike, removeLike } from '../../Util/FirestoreUtil';
 import * as cookiesUtil from '../../Util/cookiesUtil'
 import NewsCardDev from './NewsCard/NewsCardDB';
 import FullScreenLoader from '../UI/FullScreenLoader/FullScreenLoader';
-import ReactGA from 'react-ga';
+
 
 interface NewsArticle {
 	urlToImage: string;

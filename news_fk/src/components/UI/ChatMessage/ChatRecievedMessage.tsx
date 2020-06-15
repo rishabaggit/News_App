@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
 import './Chat.css';
+import React from 'react';
 import Avatar from '../../../resources/Avatar.jpg';
 
 interface ChatProps {

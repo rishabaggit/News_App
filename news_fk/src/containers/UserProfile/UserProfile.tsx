@@ -11,7 +11,7 @@ import { userget } from '../../Util/FirestoreUtil';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import FetchErrorHandler from '../../components/UI/FetchErrorHandler/FetchErrorHandler'
 import { UpdateProfile } from '../../Util/FirestoreUtil';
-import { storage } from '../../components/UserAuthentication/firebase';
+import { storage } from '../../config/UserAuthentication/firebase';
 
 interface UserProfileProps {
     userId: string;
@@ -130,15 +130,15 @@ class UserProfile extends Component<UserProfileProps, UserProfileState> {
             <div className="container">
                 <div className="row">
                     <div className="column col-md-4 col-12">
-                        <div className="card c1" style = {{backgroundColor: this.props.colorsObj.cardColor}}>
+                        <div className="card c1" style={{ backgroundColor: this.props.colorsObj.cardColor }}>
                             {this.state.userData.imageURL ?
                                 <img src={this.state.userData.imageURL} alt="Avatar" style={{ width: '100%' }} /> :
                                 <img src={Avatar} alt="Avatar" style={{ width: '100%' }} />
                             }
                             <div>
-                                <h1 style = {this.props.colorsObj.textStyleHigh}>{this.state.userData.first_name}</h1>
-                                <p className="title" style = {this.props.colorsObj.textStyleMedium}>{this.state.userData.profession}</p>
-                                <p style = {this.props.colorsObj.textStyleLow}>{this.state.userData.bio}</p>
+                                <h1 style={this.props.colorsObj.textStyleHigh}>{this.state.userData.first_name}</h1>
+                                <p className="title" style={this.props.colorsObj.textStyleMedium}>{this.state.userData.profession}</p>
+                                <p style={this.props.colorsObj.textStyleLow}>{this.state.userData.bio}</p>
                             </div>
                         </div>
                     </div>

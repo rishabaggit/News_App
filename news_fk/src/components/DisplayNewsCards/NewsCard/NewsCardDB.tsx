@@ -1,8 +1,9 @@
-import React from 'react';
 import "./NewsCard.css"
-import ModalWrapper from './Modal/ModalWrapper';
-import { ModeColors } from 'colors';
+import React from 'react';
 import ReactGA from 'react-ga';
+import { ModeColors } from 'colors';
+import ModalWrapper from './Modal/ModalWrapper';
+
 
 interface NewsArticle {
     urlToImage: string,

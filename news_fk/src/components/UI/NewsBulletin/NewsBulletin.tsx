@@ -1,8 +1,11 @@
-import React from 'react';
 import './NewsBulletin.css';
+import React from 'react';
 
-const NewsBulletin = (props: any) => {
-    if (props.darkMode) {
+interface NewsBulletinProps {
+    darkMode: boolean;
+}
+const NewsBulletin: React.FC<NewsBulletinProps> = ({ darkMode }) => {
+    if (darkMode) {
         return (
             <div className="container">
                 <div className="jumbotron1 jumbotron mt-10">

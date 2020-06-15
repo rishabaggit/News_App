@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../store/actions/index';
+import { Cookies } from 'react-cookie';
+import ReactGA from 'react-ga';
 import { Redirect } from 'react-router-dom';
+import { RootState } from 'index';
+import { logout } from '../../store/actions/index';
 import FullScreenLoader from '../../components/UI/FullScreenLoader/FullScreenLoader'
 import * as cookiesUtil from '../../Util/cookiesUtil';
 import { authAction } from 'store/actions/auth';
-import { RootState } from 'index';
-import { Cookies } from 'react-cookie';
-import ReactGA from 'react-ga';
 
 
 interface LogOutProps {
@@ -41,7 +41,7 @@ const mapStateToProps = (state: RootState) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         logout: () => dispatch(logout())
     }
