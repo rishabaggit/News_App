@@ -130,6 +130,7 @@ class LogIn extends Component<LogInProps> {
                             placeholder='First Name'
                             onChange={this.changeHandler}
                             name="uname"
+                            required
                         />
                         <label htmlFor="uname" style={this.props.colorsObj.textStyleMedium}><b>Last Name</b></label>
                         <input
@@ -139,6 +140,7 @@ class LogIn extends Component<LogInProps> {
                             placeholder='Last Name'
                             onChange={this.changeHandler}
                             name="uname"
+                            required
                         />
                         <label htmlFor="psw" style={this.props.colorsObj.textStyleMedium}><b>Password</b></label>
                         <input
