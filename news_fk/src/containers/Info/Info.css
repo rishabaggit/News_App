@@ -1,10 +1,8 @@
 .center{
 justify-content: center;
 }
-/* Three columns side by side */
 .column {
     float: left;
-    /* width: 33.33%; */
     margin-bottom: 16px;
     padding: 0 8px;
     height: auto;
@@ -17,7 +15,7 @@ justify-content: center;
   .top-margin {
     margin-top: 50px;
   }
-  /* Display the columns below each other instead of side by side on small screens */
+  
   @media screen and (max-width: 650px) {
     .column {
       width: 100%;
@@ -25,7 +23,6 @@ justify-content: center;
     }
   }
   
-  /* Add some shadows to create a card effect */
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border: 1px solid #f1f1f1 !important; 
@@ -37,13 +34,12 @@ justify-content: center;
     object-fit: cover;
 }
 
-  /* Some left and right padding inside the container */
-  .container {
+.container {
     padding: 0 16px;
     align-content: center;
   }
   
-  /* Clear floats */
+  
   .container::after, .row::after {
     content: "";
     clear: both;
