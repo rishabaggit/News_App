@@ -1,6 +1,5 @@
  .column {
     float: left;
-    /* width: 25%; */
     margin-bottom: 16px;
     padding: 0 8px;
     border-radius: 10%;
@@ -27,8 +26,6 @@
     top: 3px;
     right: 10px;
     color: red;
-    /* background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5);  */
     font-family: FontAwesome;
     font-size: 20px;
     text-shadow: 0 0 6px red;
@@ -41,18 +38,16 @@
     right: 10px;
     color: white;
     height:5%;
-    /* background: rgb(0, 0, 0); 
-    background: rgba(0, 0, 0, 0.5);  */
     font-family: FontAwesome;
     font-size: 20px;
   }
-  /* Add some shadows to create a card effect */
+
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-top: 2em;
     border: 0px solid #f1f1f1 !important; 
-    /* cursor: pointer; */
   }
+
   .card:hover {
     background-color: lightgrey;
     
@@ -67,21 +62,12 @@
   }
 
   .card:hover .title {
-    /* font-weight: bold; */
     text-shadow: 0 0 .9px #333, 0 0 .9px #333, 0 0 .9px #333;
   }
   
-  /* Some left and right padding inside the container */
   .container {
     padding: 0 16px;
   }
-  
-  /* Clear floats */
-  /* .container::after, .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  } */
   
   .title {
     color: grey;
@@ -104,13 +90,13 @@
     width: 100%;
   }
 
-  
   .btn.mb-2 span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
   }
+
   .btn.mb-2 span:after {
     content: '\00bb';
     position: absolute;
@@ -119,12 +105,15 @@
     right: -20px;
     transition: 0.5s;
   }
+  
   .btn.mb-2:hover {
     background-color: darkorange;
   }
+
   .btn.mb-2:hover span {
     padding-right: 25px;
   }
+
   .btn.mb-2:hover span:after {
     opacity: 1;
     right: 0;

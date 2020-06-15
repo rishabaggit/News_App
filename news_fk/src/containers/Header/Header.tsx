@@ -11,8 +11,8 @@ import { newsFetchAction } from 'store/actions/news';
 import { appModeAction } from 'store/actions/darkMode';
 import { authAction } from 'store/actions/auth';
 import { authSuccess } from '../../store/actions/index';
-// import CountryNavItem from './NavItems/CountryNavItem'
-import CategoryNavItem from './NavItems/CategoryNavItem'
+import CategoryNavItem from './NavItems/CategoryNavItem';
+
 
 interface HeaderProps {
     countryChangeHandler: (newCountry: string) => newsFetchAction;
@@ -44,12 +44,12 @@ class Header extends Component<HeaderProps> {
     }
 
     countryChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.props.countryChangeHandler(event.currentTarget.value);
         this.props.newsHandler();
     }
     categoryChangeHandler = (event: React.FormEvent<HTMLSelectElement>) => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.props.categoryChangeHandler(event.currentTarget.value);
         this.props.newsHandler();
     }

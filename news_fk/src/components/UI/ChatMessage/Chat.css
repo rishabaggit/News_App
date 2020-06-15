@@ -13,7 +13,6 @@
     margin-left: 40%;
   }
  
-
   .recieved {
     max-width: 60%;;
   }
@@ -42,8 +41,7 @@
     color: #aaa;
   }
   
-  /* Style time text */
-  .time-left {
+ .time-left {
     float: left;
     color: #999;
   }

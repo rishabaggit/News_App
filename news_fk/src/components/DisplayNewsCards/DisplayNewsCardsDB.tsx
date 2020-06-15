@@ -63,10 +63,12 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 				});
 		}
 	}
+
 	state = {
 		loading: true,
 		LikedArray: null
 	}
+
 	likePost = (newsItem: NewsArticle) => {
 		ReactGA.event({
 			category: 'Post Interaction',
@@ -98,6 +100,7 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 			removeLike(this.props.userId, newsItem);
 		}
 	}
+
 	isLiked = (newsitem: NewsArticle) => {
 		if (this.props.userId === null || this.props.userId === '' || this.props.userId === undefined) {
 			return this.state.LikedArray.includes(newsitem.url);
@@ -107,6 +110,7 @@ class DisplayNewsCards extends Component<DisplayNewsCardsProps, DisplayNewsCards
 		}
 
 	}
+
 	render() {
 		if (this.state.loading) {
 			return <FullScreenLoader />;

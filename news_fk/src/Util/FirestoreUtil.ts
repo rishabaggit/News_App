@@ -36,7 +36,8 @@ const removeLike = (uid: string, newsItem: Object) => {
 const newMessage = (uid: string, message: string) => {
 	userget(uid).then(userData => {
 		var dt = new Date();
-		var utcDate = dt.toUTCString();
+		var utcDate = dt.toString();
+		utcDate = utcDate.slice(-utcDate.length, -31)
 		const msg = {
 			username: userData.first_name + ' ' + userData.last_name,
 			message: message,
@@ -61,16 +62,7 @@ const forgetPassword = (email: string) => {
 			console.log(e);
 		});
 };
-// const UpdateProfile = (email: string, Update: any) => {
-// 	console.log(Update)
-// 	db.collection('users').doc(email).update({
-// 		first_name: Update.first_name,
-// 		last_name: Update.last_name,
-// 		profession: Update.profession
-// 	})
-// 		.then()
-// 		.catch(err => console.log(err));
-// }
+
 async function UpdateProfile(email: string, Update: any) {
 	await db.collection('users').doc(email).update({
 		first_name: (Update.first_name ? Update.first_name : ''),
